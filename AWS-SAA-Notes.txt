@@ -30,4 +30,12 @@ S3
 * 3 types: S3, S3-IA and S3-resource
 * Can be encrypted - either client or server side (own or managed)
 
+EC2
+* As you increaset CPU / ram you also increase network throughput/bandwith
+* AMI - Amazon Machine Image
+* An AMI is required for Auto scaling
+* AMI nneds to determin the root device for boot disk EBS or Instance store volume
+* Virtulisation type ie what hypervisor - xen ( highly customised ) or nitro
+* HVM or PV ( Hardware Virtulisation ) ( Paravirtualisation )
+* HVM provides extentions to be "closer" to the hardware, ie access GPU
 
