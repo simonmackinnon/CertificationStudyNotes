@@ -1,4 +1,4 @@
-##IAM
+## IAM
 - Users - individual access to the console
 - Groups - collection of users
 - Roles - assigned to resources to grant access to other resources
@@ -9,7 +9,7 @@
 - IAM is universal
 - New users = no permissions, get access key and Secret access key, password (can only view this once)
 
-##S3
+## S3
 - object based, Key-value store (key object name, value data, version id, metadata, sub-recs - ACLs - Torrent)
 - 0B - 5TB
 - unlimited storage
@@ -30,7 +30,7 @@
 - 3 types: S3, S3-IA and S3-resource
 - Can be encrypted - either client or server side (own or managed)
 
-##EC2
+## EC2
 - As you increaset CPU / ram you also increase network throughput/bandwith
 - AMI - Amazon Machine Image
 - An AMI is required for Auto scaling
