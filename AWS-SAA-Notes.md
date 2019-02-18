@@ -43,7 +43,7 @@
     - is a Content Delivery Network (CDN)
     - requests for any (not just static) content delivered to Edge Locations with lowest latency
     - Edge location is a location where content will be cached. Different than Region or AZ
-    - Origin is where the files will come from - S3, EC2, ELB or Route 53
+    - Origin is where the files will come from - S3, EC2, ELB or Route 53, or non-AWS source
 
 
 ## EC2
