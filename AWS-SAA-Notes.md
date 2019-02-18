@@ -29,6 +29,7 @@
 - Successful upload gets HTTP 200 response
 - 3 types: S3, S3-IA and S3-resource
 - Can be encrypted - either client or server side (own or managed)
+- Cross Region replication requires versioning to be enbabled on both source and destination buckets
 
 ## EC2
 - As you increaset CPU / ram you also increase network throughput/bandwith
