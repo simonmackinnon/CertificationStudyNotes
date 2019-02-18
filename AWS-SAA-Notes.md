@@ -108,6 +108,10 @@
     - Dedicated hosts - physical dedicated servers, where multi tenancy can be done. can be good for per server software, i.e. VMWare, or regulatory needs
 - Types
     - F1, I3, G3 H1, T2, D2, R4, M5, C5, P3, X1 (__FIGHT DR MCPX__)
+- Termination protection is turned __off__ by defailt
+- For EBS backed volumes, ebs volume deleted when instance terminated
+- __Can't encrypt root volume of default AMIs__, but can create own AMI and encrypt that.
+- Any other volumes can be encrypted
 - As you increase CPU / ram you also increase network throughput/bandwith
 - AMI - Amazon Machine Image
 - An AMI is required for Auto scaling
@@ -128,3 +132,18 @@
         - Throughput optimised HDD, big data, data warehouses, log processing, can't be a boot volume
         - Cold HDD - low cost, IA -  probs a file server
         - Magnetic - lowest cost, legacy, IA data
+- Security Groups
+
+## Route 53
+
+## Databases
+
+## VPC
+
+## Application Services
+
+## Whitepapers & Well Architected Framework
+
+## Other
+- AutoScaling
+- CloudFormation
