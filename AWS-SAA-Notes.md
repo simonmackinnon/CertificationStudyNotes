@@ -65,6 +65,11 @@
         - Stored Volumes
         - Cached Voumes
     - Tape Gateway (VTL) - Archive data
+- Snowball -  Physical disk connected to DC, files uploaded, then sent to AWS to be uploaded on network internally
+    - replaced Import Export, different disks sent to AWS, difficult to manage
+    - Encrypted
+    - Edge - has compute capabilites on it, i.e. can run Lambdas on uploaded data
+    - Truck version of Snowball, Exabyte scale data transfer 100PB per truck
 
 ## EC2
 - As you increase CPU / ram you also increase network throughput/bandwith
