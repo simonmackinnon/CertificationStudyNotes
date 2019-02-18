@@ -59,6 +59,12 @@
     - Should be secured using pre-signed URLs or cookies
     - Can force users to not be able to access content from origin directly
 - Can be configured to create acccess logs
+- Storage Gateway - connect on-prem DC to AWS Data Store (S3 or Glacier). VM installed in customer DC
+    - File Gateway (NFS) - flat files
+    - Volume Gateways (iSCSI) - block storage - incremental volume backups
+        - Stored Volumes
+        - Cached Voumes
+    - Tape Gateway (VTL) - Archive data
 
 ## EC2
 - As you increase CPU / ram you also increase network throughput/bandwith
