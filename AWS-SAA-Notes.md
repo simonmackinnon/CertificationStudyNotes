@@ -48,18 +48,19 @@
     - Can actually PUT to edge locations, not just Read Only
     - Files chached for the Time-To-Live value (TTL), but can be invalidated with an account change
     - Should be secured using pre-signed URLs or cookies
+    - Can force users to not be able to access content from origin directly
 
 
 ## EC2
-- As you increaset CPU / ram you also increase network throughput/bandwith
+- As you increase CPU / ram you also increase network throughput/bandwith
 - AMI - Amazon Machine Image
 - An AMI is required for Auto scaling
-- AMI nneds to determin the root device for boot disk EBS or Instance store volume
+- AMI needs to determine the root device for boot disk EBS or Instance store volume
 - Virtulisation type ie what hypervisor - xen ( highly customised ) or nitro
 - HVM or PV ( Hardware Virtulisation ) ( Paravirtualisation )
 - HVM provides extentions to be "closer" to the hardware, ie access GPU
-- AWS runs all interl CPU's
-- CPU Types are Letter then Number Ie m - Gernal and 5 which is the 5th generation
+- AWS runs all Intel CPU's
+- CPU Types are Letter then Number Ie m - General and 5 which is the 5th generation
 - Local disks are called "Instance store" Ephemeral Storage
 - Dedicated Tenancy a VPC and EC2 where you are the only customer on that hardware
 - Spot instance, heavy discounts for unused compute but can be terminated at any time
