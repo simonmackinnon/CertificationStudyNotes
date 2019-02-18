@@ -18,6 +18,7 @@
 - stored in buckets - basically a cloud based folder
 - S3 names are globally unique, urls are: https://s3-<region>.amazonaws.com/<bucketName>
 - interaction is API based, normal http response codes
+- Can get faster uploads by enabling multi-part upload
 - new objects = read after write consistent
 - old objects = eventual consistent
 - S3 Standard: SLA 99.9 available, 99.999999999 durable
@@ -47,9 +48,9 @@
         - SSL/TLS
     - At Rest
         - Server Side
-            - S3 Managed Keys - SSE S3 (AES256, managed by AWS)
-            - AWS KMS - SSE-KMS (envelope key, audit trail when keys used and by who, and can manage own keys)
-            - Cutomer Provided Keys - SSE-C - Keys managed by us
+            - S3 Managed Keys - __SSE S3__ (AES256, managed by AWS)
+            - AWS KMS - __SSE-KMS__ (envelope key, audit trail when keys used and by who, and can manage own keys)
+            - Cutomer Provided Keys - __SSE-C__ - Keys managed by us
         - Client Side
             - Encrypt data on client side before uploading, decrypt client side after downloading
 - Cross Region Replication
@@ -84,12 +85,16 @@
 - Snowball -  Physical disk connected to DC, files uploaded, then sent to AWS to be uploaded on network internally
     - replaced Import Export, different disks sent to AWS, difficult to manage
     - Encrypted
-    - Edge - has compute capabilites on it, i.e. can run Lambdas on uploaded data
-    - Truck version of Snowball, Exabyte scale data transfer 100PB per truck
+    - Types
+        - Snowball - just basic storage
+        - Edge - has compute capabilites on it, i.e. can run Lambdas on uploaded data
+        - Snowmobile - Truck version of Snowball, Exabyte scale data transfer 100PB per truck
 - Transfer Acceleration
     - Upload files to an edge location, makes uploads faster when latency would be otherwise higher
     - Optimised over Amazone backbone technology
+    - Cost extra
 - Static website hosting
+    - Serverless site hosting
     - Endpoint format - <BucketName>.s3-website-<Region>.amazonaws.com
     - Scales automatically
 
