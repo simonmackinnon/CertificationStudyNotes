@@ -10,21 +10,35 @@
 - New users = no permissions, get access key and Secret access key, password (can only view this once)
 
 ## S3
-- object based, Key-value store (key object name, value data, version id, metadata, sub-recs - ACLs - Torrent)
+- object based, KEY-VALUE store (key object name, value data, version id, metadata, sub-recs - ACLs - Torrent)
+    - Files, etc.
+    - Not suitable for OS installs (use EBS instead)
 - 0B - 5TB
 - unlimited storage
-- stored in buckets
-- S3 names are globally unique, urls are: https://<region>.amazonaws.com/<bucket>
+- stored in buckets - basically a cloud based folder
+- S3 names are globally unique, urls are: https://s3-<region>.amazonaws.com/<bucketName>
 - interaction is API based, normal http response codes
 - new objects = read after write consistent
 - old objects = eventual consistent
-- SLA 99.9 available, 99.999999999 durable
+- S3 Standard: SLA 99.9 available, 99.999999999 durable
+- S3 Infrequently Accessed: slightly less cost
+- S3 One zone IA - lower cost, not replicated across AZs
+- Glacier - Expidited, Standard, Bulk. Standard tier takes about 3-5 hours
 - versioning
+    - pay for each version
     - each new version needs to be made public individually
     - deleting a versioned object will create a following version which is the delete marker
     - can enable MFA delete, extra delete security
 - Access Control Lists => regulate access to individual objects
 - Bucket Policies => way of regulating access to entire buckets
+    - Policies written in JSON
+    - Can be used to make entire buckets public
+    - Statement
+        Sid - Statement Id
+        Effect - Allow or Deny
+        Principle - Who/what is attempting access
+        Action - What actions are being effected (i.e. denied or allowed)
+        Resource - What is being accessed (ARN - can be wildcard)
 - Default all buckets and objects are private
 - Successful upload gets HTTP 200 response
 - 3 types: S3, S3-IA and S3-resource
@@ -38,20 +52,22 @@
             - Cutomer Provided Keys - SSE-C - Keys managed by us
         - Client Side
             - Encrypt data on client side before uploading, decrypt client side after downloading
-- Replication
+- Cross Region Replication
     - Must be in a different region
     - Cross Region replication requires versioning to be enbabled on both source and destination buckets
     - Existing files will not be automatically replicated, need to be manually copied in via cli
     - New files and changes replicated automatically
     - Deleting an object (object marker) or object version in primary will not be automatically replicated into the replication bucket
 - LifeCycle Rules
-    - can be used in conjunction with versioning
+    - To be used in conjunction with versioning
     - can have rules for current and previous versions
     - can use it to delete permanently as well
+    - transition to standard IA class
+    - archive
 - CloudFront
     - is a Content Delivery Network (CDN)
     - requests for any (not just static) content delivered to Edge Locations with lowest latency
-    - Edge location is a location where content will be cached. Different than Region or AZ
+    - __Edge location__ is a location where content will be cached. Different than Region or AZ
     - Origin is where the files will come from - S3, EC2, ELB or Route 53, or non-AWS source
     - Distribution is the collection of edge locations
     - Can actually PUT to edge locations, not just Read Only
@@ -70,6 +86,12 @@
     - Encrypted
     - Edge - has compute capabilites on it, i.e. can run Lambdas on uploaded data
     - Truck version of Snowball, Exabyte scale data transfer 100PB per truck
+- Transfer Acceleration
+    - Upload files to an edge location, makes uploads faster when latency would be otherwise higher
+    - Optimised over Amazone backbone technology
+- Static website hosting
+    - Endpoint format - <BucketName>.s3-website-<Region>.amazonaws.com
+    - Scales automatically
 
 ## EC2
 - As you increase CPU / ram you also increase network throughput/bandwith
