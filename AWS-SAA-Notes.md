@@ -30,7 +30,9 @@
 - 3 types: S3, S3-IA and S3-resource
 - Can be encrypted - either client or server side (own or managed)
 - Replication
+    - Must be in a different region
     - Cross Region replication requires versioning to be enbabled on both source and destination buckets
+    - Existing files will not be automatically replicated, need to be manually copied in via cli
     - New files and changes replicated automatically
     - Deleting an object (object marker) or object version in primary will not be automatically replicated into the replication bucket
 
