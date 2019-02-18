@@ -35,6 +35,11 @@
     - Existing files will not be automatically replicated, need to be manually copied in via cli
     - New files and changes replicated automatically
     - Deleting an object (object marker) or object version in primary will not be automatically replicated into the replication bucket
+- LifeCycle Rules
+    - can be used in conjunction with versioning
+    - can have rules for current and previous versions
+    - can use it to delete permanently as well
+
 
 ## EC2
 - As you increaset CPU / ram you also increase network throughput/bandwith
