@@ -39,6 +39,11 @@
     - can be used in conjunction with versioning
     - can have rules for current and previous versions
     - can use it to delete permanently as well
+- CloudFront
+    - is a Content Delivery Network (CDN)
+    - requests for static content delivered to Edge Locations with lowest latency
+    - Edge location is a location where content will be cached. Different than Region or AZ
+    - Origin is where the files will come from - S3, EC2, ELB or Route 53
 
 
 ## EC2
