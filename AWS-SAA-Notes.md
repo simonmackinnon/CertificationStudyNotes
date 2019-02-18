@@ -29,6 +29,15 @@
 - Successful upload gets HTTP 200 response
 - 3 types: S3, S3-IA and S3-resource
 - Can be encrypted - either client or server side (own or managed)
+    - In transit
+        - SSL/TLS
+    - At Rest
+        - Server Side
+            - S3 Managed Keys - SSE S3 (AES256, managed by AWS)
+            - AWS KMS - SSE-KMS (envelope key, audit trail when keys used and by who, and can manage own keys)
+            - Cutomer Provided Keys - SSE-C - Keys managed by us
+        - Client Side
+            - Encrypt data on client side before uploading, decrypt client side after downloading
 - Replication
     - Must be in a different region
     - Cross Region replication requires versioning to be enbabled on both source and destination buckets
@@ -49,7 +58,7 @@
     - Files chached for the Time-To-Live value (TTL), but can be invalidated with an account change
     - Should be secured using pre-signed URLs or cookies
     - Can force users to not be able to access content from origin directly
-
+- Can be configured to create acccess logs
 
 ## EC2
 - As you increase CPU / ram you also increase network throughput/bandwith
