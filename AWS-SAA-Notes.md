@@ -46,6 +46,7 @@
     - Origin is where the files will come from - S3, EC2, ELB or Route 53, or non-AWS source
     - Distribution is the collection of edge locations
     - Can actually PUT to edge locations, not just Read Only
+    - Files chached for the Time-To-Live value (TTL), but can be invalidated with an account change
 
 
 ## EC2
