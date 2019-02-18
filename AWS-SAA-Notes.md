@@ -105,7 +105,7 @@
     - On demand - pay per fixed rate, no commitment, good for spiky that can't be interupted
     - Reserved - capcity reservation - 1 or 3 years, discounted, good for predictable workloads
     - Spot - bid for instance capacity - needs flexible start/end times
-    - Dedicated hosts - physical dedicated servers, can be good for per server software, i.e. VMWare, or regulatory needs
+    - Dedicated hosts - physical dedicated servers, where multi tenancy can be done. can be good for per server software, i.e. VMWare, or regulatory needs
 - Types
     - F1, I3, G3 H1, T2, D2, R4, M5, C5, P3, X1 (__FIGHT DR MCPX__)
 - As you increase CPU / ram you also increase network throughput/bandwith
@@ -122,8 +122,9 @@
 - Spot instance, heavy discounts for unused compute but can be terminated at any time
 - EBS - Persistant storage volumes, can have a file system. Placed in a specific AZ, replicated within the AZ.
     - Root device volume is the one attached to EC2 instances
-    - GP2 - General purpose, 3 IOPS per GB up to 10,000 IPOS, burst up to 3000 IOPS
-    - Provisioned IOPS SSD - if you need more than 10K IOPS
-    - Throughput optimised HDD, big data, data warehouses, log processing, can't be a boot volume
-    - Cold HDD - low cost, IA -  probs a file server
-    - Magnetic - lowest cost, legacy, IA data
+    - Types:
+        - GP2 - General purpose, 3 IOPS per GB up to 10,000 IPOS, burst up to 3000 IOPS
+        - Provisioned IOPS SSD - if you need more than 10K IOPS
+        - Throughput optimised HDD, big data, data warehouses, log processing, can't be a boot volume
+        - Cold HDD - low cost, IA -  probs a file server
+        - Magnetic - lowest cost, legacy, IA data
