@@ -121,18 +121,36 @@
 - HVM provides extentions to be "closer" to the hardware, ie access GPU
 - AWS runs all Intel CPU's
 - CPU Types are Letter then Number Ie m - General and 5 which is the 5th generation
-- Local disks are called "Instance store" Ephemeral Storage
+- Instances can be Instance Store or EBS backed
+    - Local disks are called "Instance store volumes" Ephemeral Storage
+        - These cannot be stopped. Host failures mean data loss
+    - EBS can be stopped. Host failures don't result in data loss
+    - Can reboot both
+    - Root volumes are deleted on termination (although can persist the EBS volumes by choice)
 - Dedicated Tenancy a VPC and EC2 where you are the only customer on that hardware
 - Spot instance, heavy discounts for unused compute but can be terminated at any time
 - EBS - Persistant storage volumes, can have a file system. Placed in a specific AZ, replicated within the AZ.
-    - Root device volume is the one attached to EC2 instances
+    - Root device volume is the one attached to EC2 instances, where OS is installed (should stop first if taking a snapshot)
     - Types:
         - GP2 - General purpose, 3 IOPS per GB up to 10,000 IPOS, burst up to 3000 IOPS
         - Provisioned IOPS SSD - if you need more than 10K IOPS
         - Throughput optimised HDD, big data, data warehouses, log processing, can't be a boot volume
         - Cold HDD - low cost, IA -  probs a file server
         - Magnetic - lowest cost, legacy, IA data
-- Security Groups
+    - EBS Volume will __always__ be in the same AZ as the EC2 instance
+    - Snapshots stored in S3, but can't be viewed directly
+    - Snapshots are incremental, first ones can take some time to take
+    - Can change EBS volumes size on  the fly (with volume running)
+    - To __move EC2 volume to another AZ or Region__, need to take a snapshot, or an image and can then copy it to the new AZ or Region
+    - Snaps of encrypted volumes are automatically encrypted, same goes for restoring from snaps
+    - Can share unencrypted volumes
+- Security Groups 
+    - Changes to SGs are applied immediately
+    - Can have multiple SGs per instance
+    - all inbound traffic blocked by default - all outbound allowed
+    - SGs are stateful, allowed inbound traffic is allowed back out, without needing to specify the outbound rule (ACLs work Stateless)
+    - Can't block specific traffic with SGs, only allow
+
 
 ## Route 53
 
