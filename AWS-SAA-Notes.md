@@ -152,6 +152,18 @@
     - all inbound traffic blocked by default - all outbound allowed
     - SGs are stateful, allowed inbound traffic is allowed back out, without needing to specify the outbound rule (ACLs work Stateless)
     - Can't block specific traffic with SGs, only allow
+- Load Balancers
+    - Application Load balancers
+        - http / https traffic 
+        - layer 7 (application) balanced, i.e. looks at web app
+    - Network Load balancers
+        - layer 4 connection
+        - useful when extreme performance is required
+    - Classic load balancers (old terminology Elastic LB)
+        - Layer 4 connection, but can look at particular layer 7 stuff like X-Forwarded & stick sessions
+        - Relies purely on TCP connections
+        - Responds with a 504 if there's an issue behind the LB
+    - X-Forwarded-For header - passes public IP onto application
 
 
 ## Route 53
