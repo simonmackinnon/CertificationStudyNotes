@@ -164,6 +164,20 @@
         - Relies purely on TCP connections
         - Responds with a 504 if there's an issue behind the LB
     - X-Forwarded-For header - passes public IP onto application
+- CloudWatch
+    - Can look at the performance of underlying resources
+    - Dashboards / Alarms / Events / Logs
+    - Monitoring
+        - Standard = 5min
+        - Detailed = 1min
+- CloudTrail
+    - Auditing, what has been changed / created / deleted. Record of API calls
+- Command Line
+    - Can configure with "aws configure" with key/secret keys, This should be avoided, uses Roles instead
+    - Role gives access only to the resources that have that role assigned, no need to store on instances
+    - Can attach IAM roles to running EC2 instances
+
+    
 
 
 ## Route 53
