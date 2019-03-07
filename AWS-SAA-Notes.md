@@ -176,7 +176,9 @@
     - Can configure with "aws configure" with key/secret keys, This should be avoided, uses Roles instead
     - Role gives access only to the resources that have that role assigned, no need to store on instances
     - Can attach IAM roles to running EC2 instances
-
+    - Used to require "--region" for some cli commands accessing resources cross-region, not needed anymore
+- Bash scripting
+    - 
     
 
 
