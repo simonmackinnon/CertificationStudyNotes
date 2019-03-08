@@ -178,7 +178,36 @@
     - Can attach IAM roles to running EC2 instances
     - Used to require "--region" for some cli commands accessing resources cross-region, not needed anymore
 - Bash scripting
-    - 
+    - Useful for stuff like automating setting up of a web-server, etc
+    - Runs everytime an EC2 instance is started
+    - Needs to be started with shebang - #!/bin/bash (#!{path/to/interpreter})
+    - Added in "Advances Details" under launch configuration section
+- EC2 Metadata
+    - get with "curl http://169.254.169.254/latest/meta-data"
+    - gives stuff like ip or ami-id ("curl http://169.254.169.254/latest/meta-data/public-ipv4", "curl http://169.254.169.254/latest/meta-data/ami-id")
+    - "curl http://169.254.169.254/latest/user-data" gives the bootstrap script
+- Lauch configurations and AutoScaling
+    - LC: select AMI (can be custom or AWS ones), add bootstrap script
+    - ASG: 
+        -   select group size (how many instances to start with), 
+        - select subnet(s) - use all for best redundancy, 
+        - set load balancing, and what the healthcheck type is (is it ec2 or elb) and the grace-time (time after the instance starts before checking, default is 5 minutes), 
+        - set the scaling policy (when to increase or decrease size of group) (or say to leave at initial size)
+        - set the notification settings
+        - tags
+    -  Automatically provisions instances evenly accross selected availability zones
+    - Recreates new instances when instances aren't available (i.e. healthcheck can't be found) anymore
+- Placement groups
+    - Clustered PG, Spread PG
+    - Typlically exam refers to Clustered PG
+        - placed within __single AZ__
+        - low latency
+        - allows for high network throughput
+        - only things with high specs generally can be provisioned in PGs
+    - Spread PG
+        - ensures all instances are provisioned on different AZs
+   
+    
     
 
 
