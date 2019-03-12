@@ -254,6 +254,9 @@
     
 
 ## Route 53
+- DNS Converts human readable names to an IP address
+- IPv4 - 32bit address, IPv6 128bit address
+- Domains - top level .com, .gov - 2nd level .com.au, .co.uk
 - 
 
 ## Databases
