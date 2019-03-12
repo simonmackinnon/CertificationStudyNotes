@@ -100,7 +100,7 @@
     - Endpoint format - <BucketName>.s3-website-<Region>.amazonaws.com
     - Scales automatically
 
-## EC2
+## Compute / EC2 / Lambda
 - Elastic Compute Cloud
     - VMs in the cloud, resizable capacity
 - Pricing
