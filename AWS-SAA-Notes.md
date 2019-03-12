@@ -206,8 +206,35 @@
         - only things with high specs generally can be provisioned in PGs
     - Spread PG
         - ensures all instances are provisioned on different AZs
-   
-    
+- EFS
+    - on-demand, scalable storage
+    - block-based storage
+    - Read after write consistency
+    - is essentially a file server
+    - can do user and directory level permissions
+    - use case is having muliple ec2 instances using the one central locations connecting to it
+- Lambda
+    - Serverless technology
+    - Just upload code, all underlying infrastructure and runtime managed by AWS
+    - completely scalable outwards automatically
+    - runs based on a trigger 
+        - API Gateway
+        - AWS IoT
+        - Alexa Skills / Smart Home
+        - CloudFront
+        - Cloudwatch events/logs
+        - CodeCommit
+        - Cognito Sync Trigger
+        - DynamoDB
+        - Kinesis S3
+        - SNS
+    - can run up to 15 minutes
+    - Runs many types of languages
+        - C# .NET Core
+        - Go
+        - Java
+        - Node.js
+        - Python
     
 
 
