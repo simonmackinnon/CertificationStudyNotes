@@ -141,12 +141,14 @@
         - Magnetic - lowest cost, legacy, IA data
     - EBS Volume will __always__ be in the same AZ as the EC2 instance
     - Snapshots stored in S3, but can't be viewed directly
+    - use 'aws ec2 create-snapshot' command from cli to create a snapshot
     - Snapshots are incremental, first ones can take some time to take
     - Can change EBS volumes size on  the fly (with volume running)
     - To __move EC2 volume to another AZ or Region__, need to take a snapshot, or an image and can then copy it to the new AZ or Region
     - Same for AMIs
     - Snaps of encrypted volumes are automatically encrypted, same goes for restoring from snaps
     - Can share unencrypted volumes
+    - You can add multiple volumes to an EC2 instance and then create your own RAID 5/RAID 10/RAID 0 configurations using those volumes
     - Snapshot of RAID Array - take application consistent snapshot: Stop app, flush transactions, unmount raid array (shotdown ec2), take snapshot
 - Security Groups 
     - Changes to SGs are applied immediately
@@ -252,6 +254,7 @@
     
 
 ## Route 53
+- 
 
 ## Databases
 
