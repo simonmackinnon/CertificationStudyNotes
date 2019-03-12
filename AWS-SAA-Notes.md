@@ -144,8 +144,10 @@
     - Snapshots are incremental, first ones can take some time to take
     - Can change EBS volumes size on  the fly (with volume running)
     - To __move EC2 volume to another AZ or Region__, need to take a snapshot, or an image and can then copy it to the new AZ or Region
+    - Same for AMIs
     - Snaps of encrypted volumes are automatically encrypted, same goes for restoring from snaps
     - Can share unencrypted volumes
+    - Snapshot of RAID Array - take application consistent snapshot: Stop app, flush transactions, unmount raid array (shotdown ec2), take snapshot
 - Security Groups 
     - Changes to SGs are applied immediately
     - Can have multiple SGs per instance
