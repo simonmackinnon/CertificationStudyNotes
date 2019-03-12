@@ -244,6 +244,8 @@
     - Has a IAM Role associated with it. The basic execution role is now called "Simple Microservice permissions"
         - This will need changing depending on what services Lambda needs to connect to
     - Serverless static website uses S3 for static content hosting, lambda for compute, etc.
+    - To enable s3 to connect to api gateway on another domain, need to enable CORS for the methods that need the resource(s)
+    
 
 ## Route 53
 
