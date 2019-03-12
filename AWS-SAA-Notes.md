@@ -216,8 +216,8 @@
 - Lambda
     - Serverless technology
     - Just upload code, all underlying infrastructure and runtime managed by AWS
-    - completely scalable outwards automatically
-    - runs based on a trigger 
+    - completely scalable outwards automatically (but not up!)
+    - runs based on a trigger, these are the triggers available:
         - API Gateway
         - AWS IoT
         - Alexa Skills / Smart Home
@@ -235,8 +235,15 @@
         - Java
         - Node.js
         - Python
-    
-
+        - (Can use your own custom runtime)
+    - A million invocations per month free, then some fee (~$0.20 per million calls)
+    - No servers (no adminstration needed)
+    - Other services services
+        - dynamoDB, S3, Cognito, etc.
+    - Architecture can get complicated - Use XRAY to debug
+    - Has a IAM Role associated with it. The basic execution role is now called "Simple Microservice permissions"
+        - This will need changing depending on what services Lambda needs to connect to
+    - Serverless static website uses S3 for static content hosting, lambda for compute, etc.
 
 ## Route 53
 
