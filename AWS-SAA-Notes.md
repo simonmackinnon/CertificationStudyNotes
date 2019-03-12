@@ -210,6 +210,8 @@
         - ensures all instances are provisioned on different AZs
 - EFS
     - on-demand, scalable storage
+    - scales to petabytes
+    - handles 1000s of connections
     - block-based storage
     - Read after write consistency
     - is essentially a file server
