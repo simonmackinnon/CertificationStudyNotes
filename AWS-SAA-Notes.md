@@ -136,7 +136,7 @@
     - Types:
         - GP2 - General purpose, 3 IOPS per GB up to 10,000 IPOS, burst up to 3000 IOPS
         - Provisioned IOPS SSD - if you need more than 10K IOPS
-        - Throughput optimised HDD, big data, data warehouses, log processing, can't be a boot volume
+        - Throughput optimised HDD, (frequently accessed data) big data, data warehouses, log processing, can't be a boot volume
         - Cold HDD - low cost, IA -  probs a file server
         - Magnetic - lowest cost, legacy, IA data
     - EBS Volume will __always__ be in the same AZ as the EC2 instance
@@ -257,6 +257,4 @@
 
 ## Whitepapers & Well Architected Framework
 
-## Other
-- AutoScaling
-- CloudFormation
+
