@@ -254,10 +254,30 @@
     
 
 ## Route 53
-- DNS Converts human readable names to an IP address
-- IPv4 - 32bit address, IPv6 128bit address
-- Domains - top level .com, .gov - 2nd level .com.au, .co.uk
-- 
+- DNS General info
+    - DNS Converts human readable names to an IP address
+    - IPv4 - 32bit address, IPv6 128bit address
+    - Domains - top level .com, .gov (managed by IANA) - 2nd level .com.au, .co.uk
+    - Regitrars: place to ensure no domain duplications. GoDaddy, Route53, etc.
+    - NS Records
+    - A Record - Used to translate a domain name to an address
+    - CName - resolve one domain to another
+    - TTL - DNS records have a TTL
+    - Alias records (Route 53 only) - pooint to an reource record set
+        - CNames can't be used for naked domain names, Aliases can
+        - SHould choose Alias ove CNAME
+    - __ELBs don't have an IPv4 address, only an DNS Name__
+    - DNS Types: SOA Records, NS Records, A Records, CNAMES, MX Records, PTR Records
+- Routing Policies available:
+    - Simple
+        - Default - no complex smarts, just send requests to a endpoint
+    - Weighted
+        - splits traffic across multiple endpoints (e.g. 20% US-East-1, 80% US-West-1
+    - Latency
+        - Routes traffic based on end-user netowrk latency 
+    - Failover
+        - For Active/Passive setup, monitors health of site. sends traffic to passive site if active fails (is down).
+    -
 
 ## Databases
 
