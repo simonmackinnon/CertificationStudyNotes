@@ -280,6 +280,23 @@
     -
 
 ## Databases
+- RDS 
+    - Sql server, oracle, mysql, postgresql, aurora, mariadb
+    - Multi AZ - DR
+    - Read Replica - Performance
+    - OLTP
+- Non relational
+    - DynamoDB
+- Data Warehouses
+    - Redshift (OLAP)
+- Elasticache
+    - in memory cache - caches commonly accessed web requests from a cache
+    - use to reduce load on DB
+    - MemCached
+    - Redis
+
+
+
 
 ## VPC
 
