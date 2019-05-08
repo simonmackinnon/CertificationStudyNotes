@@ -299,7 +299,7 @@
 
 
 ## VPC
-- Transative peering - can't connect from one VPC to another via a middle one, need direct peering between each VPC that need to connect
+- No Transative peering - can't connect from one VPC to another via a middle one, need direct peering between each VPC that need to connect
 
 ## Application Services
 
