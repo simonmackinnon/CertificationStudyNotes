@@ -1,12 +1,5 @@
 # AWS Solution Architect Associate
 
-##### Table of Contents  
-[Headers](#headers)  
-[Emphasis](#emphasis)  
-...snip...    
-<a name="headers"/>
-## Headers
-
 ## IAM
 - Users - individual access to the console
 - Groups - collection of users
