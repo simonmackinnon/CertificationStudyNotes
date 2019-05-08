@@ -10,9 +10,7 @@
   * [Application Services](#application-services)
   * [Whitepapers & Well Architected Framework](#whitepapers---well-architected-framework)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
-
+<a name="iam"/>
 ## IAM
 - Users - individual access to the console
 - Groups - collection of users
@@ -24,6 +22,7 @@
 - IAM is universal
 - New users = no permissions, get access key and Secret access key, password (can only view this once)
 
+<a name="s3"/>
 ## S3
 - object based, KEY-VALUE store (key object name, value data, version id, metadata, sub-recs - ACLs - Torrent)
     - Files, etc.
@@ -112,7 +111,8 @@
     - Serverless site hosting
     - Endpoint format - <BucketName>.s3-website-<Region>.amazonaws.com
     - Scales automatically
-
+ 
+<a name="compute---ec2---lambda"/>
 ## Compute / EC2 / Lambda
 - Elastic Compute Cloud
     - VMs in the cloud, resizable capacity
@@ -265,7 +265,7 @@
     - Serverless static website uses S3 for static content hosting, lambda for compute, etc.
     - To enable s3 to connect to api gateway on another domain, need to enable CORS for the methods that need the resource(s)
     
-
+<a name="route-53"/>
 ## Route 53
 - DNS General info
     - DNS Converts human readable names to an IP address
@@ -292,6 +292,7 @@
         - For Active/Passive setup, monitors health of site. sends traffic to passive site if active fails (is down).
     -
 
+<a name="databases"/>
 ## Databases
 - RDS 
     - Sql server, oracle, mysql, postgresql, aurora, mariadb
@@ -308,12 +309,11 @@
     - MemCached
     - Redis
 
-
-
-
+<a name="vpc"/>
 ## VPC
 - No Transative peering - can't connect from one VPC to another via a middle one, need direct peering between each VPC that need to connect
 
+<a name="steps-to-provision---create-a-custom-vpc"/>
 # Steps to provision / create a custom VPC
 - Select region
 - Go to ‘VPC’ Dashboard
@@ -407,9 +407,10 @@
     - Select the new NACL, edit inbound rules, add rules for port 80, 443, 22 on all sources (0.0.0.0/0)
     - Select the new NACL, edit outbound rules, add rules for port 80, 443 and 1024 - 65535 (ephemeral ports) on all sources (0.0.0.0/0)
 
-
+<a name="application-services"/>
 ## Application Services
 
+<a name="whitepapers---well-architected-framework"/>
 ## Whitepapers & Well Architected Framework
 
 
