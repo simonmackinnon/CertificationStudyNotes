@@ -6,7 +6,7 @@
   * [Route 53](#route-53)
   * [Databases](#databases)
   * [VPC](#vpc)
-- [Steps to provision / create a custom VPC](#steps-to-provision-create-a-custom-vpc)
+    - [Steps to provision / create a custom VPC](#steps-to-provision-create-a-custom-vpc)
   * [Application Services](#application-services)
   * [Whitepapers & Well Architected Framework](#whitepapers-and-well-architected-framework)
 
