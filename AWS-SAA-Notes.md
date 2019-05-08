@@ -2,13 +2,13 @@
 
   * [IAM](#iam)
   * [S3](#s3)
-  * [Compute / EC2 / Lambda](#compute---ec2---lambda)
+  * [Compute / EC2 / Lambda](#compute-ec2-lambda)
   * [Route 53](#route-53)
   * [Databases](#databases)
   * [VPC](#vpc)
-- [Steps to provision / create a custom VPC](#steps-to-provision---create-a-custom-vpc)
+- [Steps to provision / create a custom VPC](#steps-to-provision-create-a-custom-vpc)
   * [Application Services](#application-services)
-  * [Whitepapers & Well Architected Framework](#whitepapers---well-architected-framework)
+  * [Whitepapers & Well Architected Framework](#whitepapers-and-well-architected-framework)
 
 ## IAM
 - Users - individual access to the console
@@ -110,7 +110,7 @@
     - Endpoint format - <BucketName>.s3-website-<Region>.amazonaws.com
     - Scales automatically
  
-## Compute / EC2 / Lambda
+## Compute EC2 Lambda
 - Elastic Compute Cloud
     - VMs in the cloud, resizable capacity
 - Pricing
@@ -307,7 +307,7 @@
 ## VPC
 - No Transative peering - can't connect from one VPC to another via a middle one, need direct peering between each VPC that need to connect
 
-# Steps to provision / create a custom VPC
+# Steps to provision create a custom VPC
 - Select region
 - Go to ‘VPC’ Dashboard
 - Click ‘Create VPC’
@@ -402,7 +402,7 @@
 
 ## Application Services
 
-## Whitepapers & Well Architected Framework
+## Whitepapers and Well Architected Framework
 
 
  
