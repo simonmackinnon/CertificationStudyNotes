@@ -10,7 +10,6 @@
   * [Application Services](#application-services)
   * [Whitepapers & Well Architected Framework](#whitepapers---well-architected-framework)
 
-<a name="iam"/>
 ## IAM
 - Users - individual access to the console
 - Groups - collection of users
