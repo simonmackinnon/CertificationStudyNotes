@@ -1,5 +1,12 @@
 # AWS Solution Architect Associate
 
+##### Table of Contents  
+[Headers](#headers)  
+[Emphasis](#emphasis)  
+...snip...    
+<a name="headers"/>
+## Headers
+
 ## IAM
 - Users - individual access to the console
 - Groups - collection of users
@@ -301,7 +308,7 @@
 ## VPC
 - No Transative peering - can't connect from one VPC to another via a middle one, need direct peering between each VPC that need to connect
 
-#Steps to provision / create a custom VPC
+# Steps to provision / create a custom VPC
 - Select region
 - Go to ‘VPC’ Dashboard
 - Click ‘Create VPC’
