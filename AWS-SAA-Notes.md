@@ -1,5 +1,18 @@
 # AWS Solution Architect Associate
 
+  * [IAM](#iam)
+  * [S3](#s3)
+  * [Compute / EC2 / Lambda](#compute---ec2---lambda)
+  * [Route 53](#route-53)
+  * [Databases](#databases)
+  * [VPC](#vpc)
+- [Steps to provision / create a custom VPC](#steps-to-provision---create-a-custom-vpc)
+  * [Application Services](#application-services)
+  * [Whitepapers & Well Architected Framework](#whitepapers---well-architected-framework)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 ## IAM
 - Users - individual access to the console
 - Groups - collection of users
