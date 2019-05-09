@@ -326,6 +326,7 @@
     - use to reduce load on DB
     - MemCached
     - Redis
+        - Use Redis AUTH to ensure that credentials needed for all access to the Redis cluster
 - Use DynamoDB or Elasticache to store session data to make app layer stateless
 
 ## VPC
