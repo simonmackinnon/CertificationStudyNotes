@@ -84,6 +84,7 @@
     - requests for any (not just static) content delivered to Edge Locations with lowest latency
     - __Edge location__ is a location where content will be cached. Different than Region or AZ
     - Origin is where the files will come from - S3, EC2, ELB or Route 53, or non-AWS source
+         - Can configure multople origins, the second one will be used if the primary returns and error
     - Distribution is the collection of edge locations
     - Can actually PUT to edge locations, not just Read Only
     - Files chached for the Time-To-Live value (TTL), but can be invalidated with an account change
@@ -111,6 +112,9 @@
     - Serverless site hosting
     - Endpoint format - <BucketName>.s3-website-<Region>.amazonaws.com
     - Scales automatically
+- File restrictions
+    - Signed URLs to restrict individual files
+    - Signed Cookies to restrict multiple files
  
 ## Compute EC2 Lambda
 - Elastic Compute Cloud
@@ -272,6 +276,7 @@
         - This will need changing depending on what services Lambda needs to connect to
     - Serverless static site uses S3 for static content hosting, lambda for compute, etc.
     - To enable s3 to connect to api gateway on another domain, need to enable CORS for the methods that need the resource(s)
+    - Lambda@Edge can be used to run functions at a location closer to the user (lower latency, higher availability)
     
 ## Route 53
 - DNS General info
@@ -306,6 +311,8 @@
 ## Databases
 - RDS 
     - Sql server, oracle, mysql, postgresql, aurora, mariadb
+    - Aurora
+        - You can create custom endpoints (load balanced) to handle criteria other and RO or RW
     - Multi AZ - DR
     - Read Replica - Performance
     - OLTP
@@ -319,6 +326,7 @@
     - use to reduce load on DB
     - MemCached
     - Redis
+- Use DynamoDB or Elasticache to store session data to make app layer stateless
 
 ## VPC
 - No Transative peering - can't connect from one VPC to another via a middle one, need direct peering between each VPC that need to connect
@@ -422,6 +430,12 @@
     - Select the new NACL, edit outbound rules, add rules for port 80, 443 and 1024 - 65535 (ephemeral ports) on all sources (0.0.0.0/0)
 
 ## Application Services
+- Messaging
+   - for existing messaging apps, use Amazon MQ
+   - for new apps, use SQS and SNS
+- API Gateway
+   - Use throttling to limit requests to back-end, max 1000/sec normal and 2000/sec burst
+   
 
 ## Whitepapers and Well Architected Framework
 
