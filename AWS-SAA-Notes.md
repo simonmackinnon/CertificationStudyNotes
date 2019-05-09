@@ -313,6 +313,7 @@
     - DynamoDB
 - Data Warehouses
     - Redshift (OLAP)
+        - Enhanced VPC Routing forces all COPY and UNLOAD traffic b/w cluster and data repos through VPC
 - Elasticache
     - in memory cache - caches commonly accessed web requests from a cache
     - use to reduce load on DB
