@@ -436,6 +436,8 @@
    - for new apps, use SQS and SNS
 - API Gateway
    - Use throttling to limit requests to back-end, max 1000/sec normal and 2000/sec burst
+- Cost Explorer - can see costs already incurred
+- Budgets - set budgets, alerts, etc. for your costs
    
 
 ## Whitepapers and Well Architected Framework
