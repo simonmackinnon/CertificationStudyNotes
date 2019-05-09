@@ -323,8 +323,11 @@
 - No Transative peering - can't connect from one VPC to another via a middle one, need direct peering between each VPC that need to connect
 - An internet gateway supports IPv4 and IPv6 traffic
 - You can recreate a new default VPC via API or CLI (i.e. no need to contact AWS)
+- NACLs 
+    - default NACL allows all inbound and outbound ipv4 and ipv6 traffic
+    - custom NACL denies all traffic by default, allows ipv4 by rule and ipv6 by rule (if VPC is configured with ipv6 cidr)
 
-# Steps to provision create a custom VPC
+### Steps to provision create a custom VPC
 - Select region
 - Go to ‘VPC’ Dashboard
 - Click ‘Create VPC’
