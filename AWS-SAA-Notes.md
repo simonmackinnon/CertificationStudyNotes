@@ -4,7 +4,7 @@
   * [S3](#s3)
   * [Compute / EC2 / Lambda](#compute-ec2-lambda)
   * [Route 53](#route-53)
-  * [VPN] (#vpn)
+  * [VPN](#vpn)
   * [Databases](#databases)
   * [VPC](#vpc)
     - [Steps to provision / create a custom VPC](#steps-to-provision-create-a-custom-vpc)
