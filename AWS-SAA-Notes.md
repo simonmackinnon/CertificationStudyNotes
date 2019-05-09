@@ -153,6 +153,10 @@
     - Snapshots stored in S3, but can't be viewed directly
     - use 'aws ec2 create-snapshot' command from cli to create a snapshot
     - Snapshots are incremental, first ones can take some time to take
+    - Can take snapshot of in-use EBS volume, but this will exclude any data that's cached by OS or apps. To ensure application consistent snapshots: 
+        - unmount the volume from within the instance
+        - issue the snapshot command
+        - remount the volume (can remount while the snapshot status = pending)
     - Can change EBS volumes size on  the fly (with volume running)
     - To __move EC2 volume to another AZ or Region__, need to take a snapshot, or an image and can then copy it to the new AZ or Region
     - Same for AMIs
@@ -167,6 +171,11 @@
     - SGs are stateful, allowed inbound traffic is allowed back out, without needing to specify the outbound rule (ACLs work Stateless)
     - Can't block specific traffic with SGs, only allow
 - Load Balancers
+    - You can set the IP address type of your Internet-facing load balancer when you create it or after it is active. Note that internal load balancers must use IPv4 addresses.
+        - The following are the load balancer IP address types:
+            - ipv4, The load balancer supports only IPv4 addresses (for example, 192.0.2.1)
+            - dualstack The load balancer supports both IPv4 and IPv6 addresses (for example, 2001:0db8:85a3:0:0:8a2e:0370:7334).
+    - Load balancers in EC2-Classic support both IPv4 and IPv6 addresses
     - Application Load balancers
         - http / https traffic 
         - layer 7 (application) balanced, i.e. looks at web app
@@ -259,7 +268,7 @@
     - Architecture can get complicated - Use XRAY to debug
     - Has a IAM Role associated with it. The basic execution role is now called "Simple Microservice permissions"
         - This will need changing depending on what services Lambda needs to connect to
-    - Serverless static website uses S3 for static content hosting, lambda for compute, etc.
+    - Serverless static site uses S3 for static content hosting, lambda for compute, etc.
     - To enable s3 to connect to api gateway on another domain, need to enable CORS for the methods that need the resource(s)
     
 ## Route 53
