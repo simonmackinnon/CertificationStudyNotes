@@ -9,7 +9,7 @@
   * [VPC](#vpc)
     - [Steps to provision / create a custom VPC](#steps-to-provision-create-a-custom-vpc)
   * [Application Services](#application-services)
-  * [Whitepapers & Well Architected Framework](#whitepapers-and-well-architected-framework)
+  * [Well Architected Framework](#well-architected-framework)
 
 ## IAM
 - Users - individual access to the console
@@ -440,7 +440,12 @@
 - Budgets - set budgets, alerts, etc. for your costs
    
 
-## Whitepapers and Well Architected Framework
+## Well Architected Framework
+- Operational Excellence
+- Security
+- Reliability
+- Performance Efficiency
+- Cost Optimization
 
 
  
