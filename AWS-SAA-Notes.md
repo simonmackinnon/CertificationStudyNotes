@@ -4,6 +4,7 @@
   * [S3](#s3)
   * [Compute / EC2 / Lambda](#compute-ec2-lambda)
   * [Route 53](#route-53)
+  * [VPN] (#vpn)
   * [Databases](#databases)
   * [VPC](#vpc)
     - [Steps to provision / create a custom VPC](#steps-to-provision-create-a-custom-vpc)
@@ -65,6 +66,7 @@
             - Cutomer Provided Keys - __SSE-C__ - Keys managed by us
         - Client Side
             - Encrypt data on client side before uploading, decrypt client side after downloading
+            - Uses a Client-Side Master Key (never sent to AWS) so only encrypted data sent
 - Cross Region Replication
     - Must be in a different region
     - Cross Region replication requires versioning to be enbabled on both source and destination buckets
@@ -295,8 +297,12 @@
         - Routes traffic based on end-user netowrk latency 
     - Failover
         - For Active/Passive setup, monitors health of site. sends traffic to passive site if active fails (is down).
-    -
-
+    
+## VPN
+- VPN allows access from on-prem to aws
+- Needs Virtual Private Gateway (VGW) on aws side, and Customer Gateway on customer (on-prem) side
+    - Customer Gateway initiates the tunnel(s)
+    
 ## Databases
 - RDS 
     - Sql server, oracle, mysql, postgresql, aurora, mariadb
@@ -315,6 +321,8 @@
 
 ## VPC
 - No Transative peering - can't connect from one VPC to another via a middle one, need direct peering between each VPC that need to connect
+- An internet gateway supports IPv4 and IPv6 traffic
+- You can recreate a new default VPC via API or CLI (i.e. no need to contact AWS)
 
 # Steps to provision create a custom VPC
 - Select region
