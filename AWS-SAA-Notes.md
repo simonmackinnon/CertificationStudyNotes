@@ -163,7 +163,7 @@
         - unmount the volume from within the instance
         - issue the snapshot command
         - remount the volume (can remount while the snapshot status = pending)
-    - Can change EBS volumes size on  the fly (with volume running)
+    - Can change EBS volumes size on  the fly (with volume running), but it might take some time to update, and might need to do things like extending the drive at OS level
     - To __move EC2 volume to another AZ or Region__, need to take a snapshot, or an image and can then copy it to the new AZ or Region
     - Same for AMIs
     - Snaps of encrypted volumes are automatically encrypted, same goes for restoring from snaps
@@ -285,7 +285,7 @@
     - Domains - top level .com, .gov (managed by IANA) - 2nd level .com.au, .co.uk
     - Regitrars: place to ensure no domain duplications. GoDaddy, Route53, etc.
     - NS Records
-    - A Record - Used to translate a domain name to an address
+    - A Record - Used to translate a domain name to an address (AAAA for IPv6)
     - CName - resolve one domain to another
     - TTL - DNS records have a TTL
     - Alias records (Route 53 only) - pooint to an reource record set
@@ -302,6 +302,8 @@
         - Routes traffic based on end-user netowrk latency 
     - Failover
         - For Active/Passive setup, monitors health of site. sends traffic to passive site if active fails (is down).
+    - Geolocation
+        - Route traffic based on the user location
     
 ## VPN
 - VPN allows access from on-prem to aws
