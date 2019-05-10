@@ -182,6 +182,7 @@
             - ipv4, The load balancer supports only IPv4 addresses (for example, 192.0.2.1)
             - dualstack The load balancer supports both IPv4 and IPv6 addresses (for example, 2001:0db8:85a3:0:0:8a2e:0370:7334).
     - Load balancers in EC2-Classic support both IPv4 and IPv6 addresses
+    - Can add target groups
     - Application Load balancers
         - http / https traffic 
         - layer 7 (application) balanced, i.e. looks at web app
