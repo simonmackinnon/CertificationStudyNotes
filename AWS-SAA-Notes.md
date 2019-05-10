@@ -37,7 +37,9 @@
 - S3 Standard: SLA 99.9 available, 99.999999999 durable
 - S3 Infrequently Accessed: slightly less cost
 - S3 One zone IA - lower cost, not replicated across AZs
-- Glacier - Expidited, Standard, Bulk. Standard tier takes about 3-5 hours
+- Glacier 
+    - Expidited (1-10 min, etc.), Standard, Bulk. Standard tier takes about 3-5 hours
+    - Encrypted at Rest by default
 - versioning
     - pay for each version
     - each new version needs to be made public individually
@@ -93,6 +95,7 @@
 - Can be configured to create acccess logs
 - Storage Gateway - connect on-prem DC to AWS Data Store (S3 or Glacier). VM installed in customer DC
     - Used for secondary purposes (normally)
+    - Encrypted by default
     - File Gateway (NFS) - flat files
     - Volume Gateways (iSCSI) - block storage - incremental volume backups
         - Stored Volumes
