@@ -338,6 +338,7 @@
     - default NACL allows all inbound and outbound ipv4 and ipv6 traffic
     - custom NACL denies all traffic by default, allows ipv4 by rule and ipv6 by rule (if VPC is configured with ipv6 cidr)
 - All instances launched in a VPC have a private IP assigned
+- Can connect services to your VPC via a VPC Endpoint, traffic is routed internally within 
 
 ### Steps to provision create a custom VPC (ClickOps but...)
 - Select region
