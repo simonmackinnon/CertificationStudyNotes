@@ -92,6 +92,7 @@
     - Can force users to not be able to access content from origin directly
 - Can be configured to create acccess logs
 - Storage Gateway - connect on-prem DC to AWS Data Store (S3 or Glacier). VM installed in customer DC
+    - Used for secondary purposes (normally)
     - File Gateway (NFS) - flat files
     - Volume Gateways (iSCSI) - block storage - incremental volume backups
         - Stored Volumes
@@ -169,7 +170,7 @@
     - Snaps of encrypted volumes are automatically encrypted, same goes for restoring from snaps
     - Can share unencrypted volumes
     - You can add multiple volumes to an EC2 instance and then create your own RAID 5/RAID 10/RAID 0 configurations using those volumes
-    - Snapshot of RAID Array - take application consistent snapshot: Stop app, flush transactions, unmount raid array (shotdown ec2), take snapshot
+    - Snapshot of RAID Array - take application consistent snapshot: Stop app, flush transactions, unmount raid array (shotdown ec2), take snapshot - otherwise restored RAID array integrity can be degraded
 - Security Groups 
     - Changes to SGs are applied immediately
     - Can have multiple SGs per instance
