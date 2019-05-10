@@ -331,6 +331,7 @@
 
 ## VPC
 - No Transative peering - can't connect from one VPC to another via a middle one, need direct peering between each VPC that need to connect
+- Subnets can't span AZs
 - An internet gateway supports IPv4 and IPv6 traffic
 - You can recreate a new default VPC via API or CLI (i.e. no need to contact AWS)
 - NACLs 
