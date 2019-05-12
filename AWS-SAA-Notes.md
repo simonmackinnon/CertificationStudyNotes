@@ -450,6 +450,9 @@
    - Use throttling to limit requests to back-end, max 1000/sec normal and 2000/sec burst
 - Cost Explorer - can see costs already incurred
 - Budgets - set budgets, alerts, etc. for your costs
+- Kinesis
+    - Data streams - ingests data and pass to compute (lambda, ec2, spark, kinesis DA)
+    - Firehose - loads data continuously to the chosen destination (S3, Redshift, Elasticsearch, splunk)
    
 
 ## Well Architected Framework
