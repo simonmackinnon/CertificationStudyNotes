@@ -60,6 +60,7 @@
         Resource - What is being accessed (ARN - can be wildcard)
 - Default all buckets and objects are private
 - Successful upload gets HTTP 200 response
+- Server Access Logging - Detailed logging of access (i.e. requester, bucket name, request time, action, status, error codes) can be obtained using S3 Server Access Logging 
 - 3 types: S3, S3-IA and S3-resource
 - Can be encrypted - either client or server side (own or managed)
     - In transit
