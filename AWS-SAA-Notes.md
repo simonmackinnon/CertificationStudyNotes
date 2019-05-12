@@ -355,7 +355,8 @@
 - All instances launched in a VPC have a private IP assigned
 - Can connect services to your VPC via a VPC Endpoint, traffic is routed internally within 
 
-### Steps to provision create a custom VPC (ClickOps but...)
+### Steps to provision create a custom VPC 
+(ClickOps but...)
 - Select region
 - Go to ‘VPC’ Dashboard
 - Click ‘Create VPC’
