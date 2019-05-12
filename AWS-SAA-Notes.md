@@ -16,7 +16,7 @@
 - Groups - collection of users
 - Roles - assigned to resources to grant access to other resources
 - Policies - documents that define resource access
-- Root account = god mode
+- Root account = god mode (i.e. Adminstrator Access)
 - Sign in url is customisable, (globally unique)
 - Always enable MFA
 - IAM is universal
@@ -29,6 +29,7 @@
 - 0B - 5TB
 - unlimited storage
 - stored in buckets - basically a cloud based folder
+- Each account can have up to 100 buckets by default
 - S3 names are globally unique, urls are: https://s3-<region>.amazonaws.com/<bucketName>
 - interaction is API based, normal http response codes
 - Can get faster uploads by enabling multi-part upload
