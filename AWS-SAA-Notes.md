@@ -21,6 +21,7 @@
 - Always enable MFA
 - IAM is universal
 - New users = no permissions, get access key and Secret access key, password (can only view this once)
+- Power User Access allows access to all AWS services except the management of groups and users within IAM
 
 ## S3
 - object based, KEY-VALUE store (key object name, value data, version id, metadata, sub-recs - ACLs - Torrent)
