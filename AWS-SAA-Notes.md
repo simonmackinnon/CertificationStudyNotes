@@ -34,6 +34,7 @@
 - S3 names are globally unique, urls are: https://s3-<region>.amazonaws.com/<bucketName>
 - interaction is API based, normal http response codes
 - Can get faster uploads by enabling multi-part upload
+    - Also needed if file size > 5GB (max single PUT operation upload size)
 - new objects = read after write consistent
 - old objects = eventual consistent
 - S3 Standard: SLA 99.9 available, 99.999999999 durable
