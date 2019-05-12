@@ -146,6 +146,10 @@
 - HVM provides extentions to be "closer" to the hardware, ie access GPU
 - AWS runs all Intel CPU's
 - CPU Types are Letter then Number Ie m - General and 5 which is the 5th generation
+- The Elastic IP address remains associated with the instance when stopped or rebooted, disassociated when termiated
+- EC2 Instance store volume is erased when rebooted, stopped hibernated or terminated
+- Root volume is only erased when the instance is terminated
+- Are NOT charged when stopped, stopping (unless hybernating), shutting-down (obviously terminated as well) states
 - Instances can be Instance Store or EBS backed
     - Local disks are called "Instance store volumes" Ephemeral Storage
         - These cannot be stopped. Host failures mean data loss
@@ -455,6 +459,12 @@
 - Kinesis
     - Data streams - ingests data and pass to compute (lambda, ec2, spark, kinesis DA)
     - Firehose - loads data continuously to the chosen destination (S3, Redshift, Elasticsearch, splunk)
+- Simple WorkFlow (SWF)
+    - manage multi-step workloads in the cloud
+    - Decider - software that has logic of the workflow
+    - Activity Worker - caries out workflow step
+    - Workflow starter - initiated the workflow
+    - Decision task - passes state of workflow to decider for logic coordination, i.e. next step, etc.
    
 
 ## Well Architected Framework
