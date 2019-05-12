@@ -182,6 +182,7 @@
     - Can share unencrypted volumes
     - You can add multiple volumes to an EC2 instance and then create your own RAID 5/RAID 10/RAID 0 configurations using those volumes
     - Snapshot of RAID Array - take application consistent snapshot: Stop app, flush transactions, unmount raid array (shotdown ec2), take snapshot - otherwise restored RAID array integrity can be degraded
+    - 50:1 is the maximum ratio of provisioned IOPS to requested volume size in Gibibyte (GiB). i.e. 10GB = 500IOPS max
 - Security Groups 
     - Changes to SGs are applied immediately
     - Can have multiple SGs per instance
