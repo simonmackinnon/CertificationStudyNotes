@@ -37,12 +37,14 @@
     - Also needed if file size > 5GB (max single PUT operation upload size)
 - new objects = read after write consistent
 - old objects = eventual consistent
+- If data is changing rapidly, consider EFS instead, for better performance
 - S3 Standard: SLA 99.9 available, 99.999999999 durable
 - S3 Infrequently Accessed: slightly less cost
 - S3 One zone IA - lower cost, not replicated across AZs
 - Glacier 
     - Expidited (1-10 min, etc.), Standard, Bulk. Standard tier takes about 3-5 hours
     - Encrypted at Rest by default
+    - Can't upload to Glacier via console directly, can via CLI or SDK, or via LifeCycle Policy
 - versioning
     - pay for each version
     - each new version needs to be made public individually
@@ -85,6 +87,7 @@
     - can use it to delete permanently as well
     - transition to standard IA class
     - archive
+- Glue - used to perform Extract, Transform and Load (ETL) operations on S3 data
 - CloudFront
     - is a Content Delivery Network (CDN)
     - requests for any (not just static) content delivered to Edge Locations with lowest latency
@@ -159,6 +162,9 @@
     - Root volumes are deleted on termination (although can persist the EBS volumes by choice)
 - Dedicated Tenancy a VPC and EC2 where you are the only customer on that hardware
 - Spot instance, heavy discounts for unused compute but can be terminated at any time
+    - If terminated by AWS in first hour, no charge
+    - If terminated by AWS after first hour, pay per time used, including partial hours
+    - If terminated by customer, pay per time used
 - EBS - Persistant storage volumes, can have a file system. Placed in a specific AZ, replicated within the AZ.
     - Root device volume is the one attached to EC2 instances, where OS is installed (should stop first if taking a snapshot)
     - Types:
@@ -215,6 +221,9 @@
         - Detailed = 1min
 - CloudTrail
     - Auditing, what has been changed / created / deleted. Record of API calls
+    - Stored in S3
+        - Encrypted by Default with SSE
+- Elastic Beanstalk - automatically provision EC2 instances but still need to manage yourself
 - Command Line
     - Can configure with "aws configure" with key/secret keys, This should be avoided, uses Roles instead
     - Role gives access only to the resources that have that role assigned, no need to store on instances
@@ -329,6 +338,10 @@
     - Sql server, oracle, mysql, postgresql, aurora, mariadb
     - Aurora
         - You can create custom endpoints (load balanced) to handle criteria other and RO or RW
+        - Failover of primary instance:
+            - If you have replicas, flips CNAME record to the replica
+            - if no replica attempts new DB in same AZ
+            - then attempts to create new DB in different AZ
     - Multi AZ - DR
     - Read Replica - Performance
     - OLTP
@@ -357,6 +370,9 @@
 - All instances launched in a VPC have a private IP assigned
 - Can connect services to your VPC via a VPC Endpoint, traffic is routed internally within 
 - If an instance in public subnet can't be accessed via web, but other instances can, it needs an Elastic IP to be associated with it!
+- VPC Endpoints - private endpoints for aws services so that traffic doesn't go over internet
+    - Interface endpoint - ENI with EIP, used as entrypoint for traffic to supported services
+    - Gateway endpoint - target for route in table. S3 and DynamoDB need to use Gateway endpoint
 
 ### Steps to provision create a custom VPC 
 (ClickOps but...)
@@ -469,6 +485,15 @@
     - Activity Worker - caries out workflow step
     - Workflow starter - initiated the workflow
     - Decision task - passes state of workflow to decider for logic coordination, i.e. next step, etc.
+- AWS Trusted Advisor - analyzes environment, provides best practice recommendations for: 
+    - Cost Optimization
+    - Performance
+    - Fault Tolerance
+    - Security
+    - Service Limits
+- AWS Systems Manager - Use Run Command to remotely manage instance configs
+- CloudHSM - Store keys
+    - If you have no redundancy set up, keys are lost perminantly during failure
    
 
 ## Well Architected Framework
