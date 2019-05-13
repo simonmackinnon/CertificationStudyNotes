@@ -315,7 +315,19 @@
         - CNames can't be used for naked domain names, Aliases can
         - SHould choose Alias ove CNAME
     - __ELBs don't have an IPv4 address, only an DNS Name__
-    - DNS Types: SOA Records, NS Records, A Records, CNAMES, MX Records, PTR Records
+    - DNS Types: 
+        -A (address record)
+        -AAAA (IPv6 address record)
+        -CNAME (canonical name record)
+        -CAA (certification authority authorization)
+        -MX (mail exchange record)
+        -NAPTR (name authority pointer record)
+        -NS (name server record)
+        -PTR (pointer record)
+        -SOA (start of authority record)
+        -SPF (sender policy framework)
+        -SRV (service locator)
+        -TXT (text record)
 - Routing Policies available:
     - Simple
         - Default - no complex smarts, just send requests to a endpoint
