@@ -15,16 +15,16 @@
 - Can be used on-premise, just need to download and configure SSM agent and Cloudwatch agent
     
 ### Recognize and differentiate performance and availability metrics
-- EC2 Metrics
-    - Default (host level)
-        - CPU
-        - Network
-        - Disk
-        - Status Check
-    - Custom (virtual layer)
-        - Memory (RAM utilisation)
-        - Application Errors, messages, etc.
-        - Any other virtual disk layer metrics
+#### EC2 Metrics
+- Default (host level)
+    - CPU
+    - Network
+    - Disk
+    - Status Check
+- Custom (virtual layer)
+    - Memory (RAM utilisation)
+    - Application Errors, messages, etc.
+    - Any other virtual disk layer metrics
 ### Perform the steps necessary to remediate based on performance and availability metrics
 
 ## High Availability
