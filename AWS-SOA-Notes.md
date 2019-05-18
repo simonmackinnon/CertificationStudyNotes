@@ -1,5 +1,15 @@
 # AWS Solution Architect Associate
 
-## Topic 1
+## Monitoring and Reporting
 
-## Topic 2
+## High Availability
+
+## Deployment and Provisioning
+
+## Storage and Data Management
+
+## Security and Compliance
+
+## Networking
+
+## Automation and Optimization 
