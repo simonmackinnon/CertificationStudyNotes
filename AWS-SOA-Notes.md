@@ -6,6 +6,15 @@
 - Service to monitor all of your AWS resources and applications
 - Stored indefinitely by default
 - Retrieved using GetMetricStatistics API
+- Most default metric granularity is 1, 3 or 5 minutes
+- Detailed monitoring minimum granularity is 1sec (previously 1 minute) - needs high resolution monitoring enabled
+- Alarms
+    - For any Service
+    - Thresholds
+    - Actions
+- Can be used on-premise, just need to download and configure SSM agent and Cloudwatch agent
+    
+### Recognize and differentiate performance and availability metrics
 - EC2 Metrics
     - Default (host level)
         - CPU
@@ -16,15 +25,6 @@
         - Memory (RAM utilisation)
         - Application Errors, messages, etc.
         - Any other virtual disk layer metrics
-- Most default metric granularity is 1, 3 or 5 minutes
-- Detailed monitoring minimum granularity is 1sec (previously 1 minute) - needs high resolution monitoring enabled
-- Alarms
-    - For any Service
-    - Thresholds
-    - Actions
-- Can be used on-premise, just need to download and configure SSM agent and Cloudwatch agent
-    
-### Recognize and differentiate performance and availability metrics
 ### Perform the steps necessary to remediate based on performance and availability metrics
 
 ## High Availability
