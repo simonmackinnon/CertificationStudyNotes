@@ -25,6 +25,21 @@
     - Memory (RAM utilisation)
     - Application Errors, messages, etc.
     - Any other virtual disk layer metrics
+    - Manual (Console) Steps to set up custom metrics
+        - Create IAM role for EC2 to access CloudWatch
+        - Provision Ec2 Instance, assign created role
+        - Add Bootstrap script 
+        
+```
+#!/bin/bash
+yum update -y
+sudo yum install -y perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA.x86_64
+cd /home/ec2-user/
+curl https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.2.zip -O
+unzip CloudWatchMonitoringScripts-1.2.2.zip
+rm -rf CloudWatchMonitoringScripts-1.2.2.zip
+```
+        
 ### Perform the steps necessary to remediate based on performance and availability metrics
 
 ## High Availability
