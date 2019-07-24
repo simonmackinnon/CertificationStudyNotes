@@ -54,7 +54,7 @@
              */1 * * * * root /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail
              ```
              this will now add new entry points to CloudWatch on a minute by minute basis, sent at 5 minute aggregated values (can make this more frequent with detailed monitoring)
-#### EBS Monitoring
+#### EBS Metrics
 - EBS Types
     - See https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html for latest stats
     - General Purpose SSD (gp2)*
@@ -63,6 +63,8 @@
         - Virtual Desktops
         - Low-latency interactive apps
         - Dev and Test environments
+        - Up to 16,000 IOPS
+        - 3 IOPS/GiB
     - Provisioned IOPS SSD (io1)
         - critical business apps that need sustained IOPS perf
         - requires more than 16,000 IOPS or 250MiB/s throughput per volume 
@@ -79,8 +81,27 @@
         - infrequently accessed
         - cheap storage
         - can't be boot volume
-    
-          
+    - No need to pre-warm new EBS volumes
+    - Volumes restored from snaps have latency on I/O ops when first accessed, you don't have to, but can pre-warm this.
+        - to do this, just read all the blocks on volume so that latencty reduced.
+- Modifying
+    - Can do on-the-fly
+    - size, type or IOPS perf
+    - without detaching
+    - can do via console or api/cli
+- Metrics
+    - VolumeReadBytes, VolumeWriteBytes (num bytes transferred per time period, avg, sum, min, max)
+    - VolumeReadOps, VolumeWriteOps (num IO ops per time perios, total)
+    - VolumeTotalReadTime, VolumeTotalWriteTime (num time spent on IO ops per time period, total)
+    - VolumeIdleTime (time when no R/W ops performed per time period, total)
+    - VolumeQueueLength (no. of waiting ops per time period, total)
+    - VolumeThroughputPercentange (for prov. IOPs only, % of IOPS delivered vs. total IOPS for that volume, percent)
+    - VolumeConsumedReadWriteOps (for prov. IOPS only, no. of R/W ops consumed per time period, total)
+    - Volume Status Checks 
+        - ok: normal
+        - warning: degraded, severely degraded
+        - impaired: stalled, not available
+        - insufficient-data 
         
 ### Perform the steps necessary to remediate based on performance and availability metrics
 
