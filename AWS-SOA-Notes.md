@@ -39,6 +39,48 @@
             rm -rf CloudWatchMonitoringScripts-1.2.2.zip
             ```
          - Assign security group, allow ssh and http access
+         - Launch with default settings for all else
+         - run the following to test the custom metrics are working (should complete with "Verification completed successfully. No actual metrics sent to CloudWatch.")
+             ```
+             /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --verify --verbose
+             ```
+         - run the following to send data to CloudWatch (Successfully reported metrics to CloudWatch. Reference Id: 2b5ec5d7-ae62-11e9-b319-1148eff87fbf)
+             ```
+             /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail
+             ```
+            Can see the metric in the console now.
+        - Set this up to run on Crontab (scheduled task)
+             ```
+             */1 * * * * root /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail
+             ```
+             this will now add new entry points to CloudWatch on a minute by minute basis, sent at 5 minute aggregated values (can make this more frequent with detailed monitoring)
+#### EBS Monitoring
+- EBS Types
+    - See https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html for latest stats
+    - General Purpose SSD (gp2)*
+        - Recommended for most workloads
+        - System boot volumes
+        - Virtual Desktops
+        - Low-latency interactive apps
+        - Dev and Test environments
+    - Provisioned IOPS SSD (io1)
+        - critical business apps that need sustained IOPS perf
+        - requires more than 16,000 IOPS or 250MiB/s throughput per volume 
+        - For big database workloads (SQL Server, Oracle, MongoDB, etc.
+        - up to 64,000 IOPS for Nitro-based instances (32,000 for others)
+        - up to 1,000 MiB/s for Nitro-based instances (500 for others)
+    - Throughput Optimised HDD (st1)
+        - Steaming workloads
+        - Big data, log processing
+        - can't be boot volume
+    - Cold HDD (sc1)
+        - throughput optimised
+        - large amounts of data
+        - infrequently accessed
+        - cheap storage
+        - can't be boot volume
+    
+          
         
 ### Perform the steps necessary to remediate based on performance and availability metrics
 
