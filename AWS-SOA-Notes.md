@@ -1,4 +1,4 @@
-# AWS Solution Architect Associate
+# AWS SysOps Associate
 
 ## Monitoring and Reporting
 ### Create and maintain metrics and alarms utilizing AWS monitoring services
