@@ -14,7 +14,9 @@
     - Actions
 - Can be used on-premise, just need to download and configure SSM agent and Cloudwatch agent
 - CloudWatch dashboards
-    - 
+    - International
+    - Can display any widget (metric graph/number/text, etc) to any region
+    - Must be in the region of the metric to add it to the board
 #### Cloudwatch vs. CloudTrail
 - Cloudwatch is for metrics, alarms, rules, performance monitoring and notifications
 - Cloudtrail is for auditing. Is a record of all API calls, detailed info, etc.
@@ -126,8 +128,7 @@
         - **TIP**: if Memcached, can scale up OR out
         - **TIP**: if Redis, can ONLY scale out
     - CurrConnections
-        - set alarm on no. of concurrent connections, if large, configure app, or could be spike in traffic
-        
+        - set alarm on no. of concurrent connections, if large, configure app, or could be spike in traffic        
 - Host level metrics
     - CPUUtilization (% CPU utilization for entire host. Because Redis is single-threaded, we recommend you monitor EngineCPUUtilization metric for nodes with 4 or more vCPUs, %)
     - FreeableMemory (amount of free memory available on host. derived from RAM, buffers & cache that OS reports as freeable, bytes)
@@ -148,6 +149,13 @@
     - ReplicationBytes
     - ReplicationLag
     - SaveInProgress
+#### Organizations
+- Allows central policy admin / billing etc.
+- SCPs - service control policies
+    - centrally control service access from a single policy to child accounts
+    - Overrides the child account's IAM
+- Can help automation of new accounts
+- Consolidated billing
 
   
 ### Perform the steps necessary to remediate based on performance and availability metrics
