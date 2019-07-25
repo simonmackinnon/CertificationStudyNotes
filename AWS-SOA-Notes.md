@@ -13,6 +13,9 @@
     - Thresholds
     - Actions
 - Can be used on-premise, just need to download and configure SSM agent and Cloudwatch agent
+#### Cloudwatch vs. CloudTrail
+- Cloudwatch is for metrics, alarms, rules, performance monitoring and notifications
+- Cloudtrail is for auditing. Is a record of all API calls, detailed info, etc.
     
 ### Recognize and differentiate performance and availability metrics
 #### EC2 Metrics
@@ -105,19 +108,49 @@
 #### ELB Monitoring
 - CloudWatch metrics (perf. metrics)
 - Access logs
-- Request tracing (network LB only)
+    - can store data where the EC2 instance has been deleted
+- Request tracing (application LB only)
 - CloudTrail logs (api call logs)
 
-        
-### Perform the steps necessary to remediate based on performance and availability metrics
+#### Monitoring Elasticache
+- *Recommended metrics to monitor*:
+    - CPUUtilization
+    - EngineCPUUtilization
+    - SwapUsage
+    - Evictions
+    - CurrConnections
 
-## High Availability
-### Implement scalability and elasticity based on use case
-### Recognize and differentiate highly available and resilient environments on AWS
+- Host level metrics
+    - CPUUtilization	The percentage of CPU utilization for the entire host. Because Redis is single-threaded, we recommend you monitor EngineCPUUtilization metric for nodes with 4 or more vCPUs.	Percent
+    - FreeableMemory	The amount of free memory available on the host. This is derived from the RAM, buffers and cache that the OS reports as freeable.	Bytes
+    - NetworkBytesIn (no. bytes host has read from the network, total).	
+    - NetworkBytesOut (no. bytes s sent out on all network interfaces by the instance.	Bytes
+    - NetworkPacketsIn (no. packets received on all network interfaces by instance. Identifies volume of incoming traffic - no. of packets on single instance, total)
+    - NetworkPacketsOut (no. packets sent on all network interfaces by instance. Identifies volume of outgoting traffic - no. of packets on single instance, total)
+- Redis
+    - ActiveDefragHits
+    - BytesUsedForCache
+    - CacheHits
+    - CacheMisses
+    - CurrConnections
+    - EngineCPUUtilization
+    - Evictions
+    - NewConnections
+    - Reclaimed
+    - ReplicationBytes
+    - ReplicationLag
+    - SaveInProgress
+
+  
+### Perform the steps necessary to remediate based on performance and availability metrics
 
 ## Deployment and Provisioning
 ### Identify and execute steps required to provision cloud resources
 ### Identify and remediate deployment issues
+
+## High Availability
+### Implement scalability and elasticity based on use case
+### Recognize and differentiate highly available and resilient environments on AWS
 
 ## Storage and Data Management
 ### Create and manage data retention
