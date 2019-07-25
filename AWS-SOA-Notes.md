@@ -101,7 +101,13 @@
         - ok: normal
         - warning: degraded, severely degraded
         - impaired: stalled, not available
-        - insufficient-data 
+        - insufficient-data         
+#### ELB Monitoring
+- CloudWatch metrics (perf. metrics)
+- Access logs
+- Request tracing (network LB only)
+- CloudTrail logs (api call logs)
+
         
 ### Perform the steps necessary to remediate based on performance and availability metrics
 
