@@ -13,6 +13,8 @@
     - Thresholds
     - Actions
 - Can be used on-premise, just need to download and configure SSM agent and Cloudwatch agent
+- CloudWatch dashboards
+    - 
 #### Cloudwatch vs. CloudTrail
 - Cloudwatch is for metrics, alarms, rules, performance monitoring and notifications
 - Cloudtrail is for auditing. Is a record of all API calls, detailed info, etc.
@@ -113,16 +115,22 @@
 - CloudTrail logs (api call logs)
 
 #### Monitoring Elasticache
-- *Recommended metrics to monitor*:
+- **_Recommended metrics to monitor_**:
     - CPUUtilization
+        - **TIP**: if Memcached, > 90%, add more nodes 
     - EngineCPUUtilization
     - SwapUsage
+        - **TIP**: if Memcached, > 50Mb, + memcached_connections_overhead
     - Evictions
+        - no recomended settings
+        - **TIP**: if Memcached, can scale up OR out
+        - **TIP**: if Redis, can ONLY scale out
     - CurrConnections
-
+        - set alarm on no. of concurrent connections, if large, configure app, or could be spike in traffic
+        
 - Host level metrics
-    - CPUUtilization	The percentage of CPU utilization for the entire host. Because Redis is single-threaded, we recommend you monitor EngineCPUUtilization metric for nodes with 4 or more vCPUs.	Percent
-    - FreeableMemory	The amount of free memory available on the host. This is derived from the RAM, buffers and cache that the OS reports as freeable.	Bytes
+    - CPUUtilization (% CPU utilization for entire host. Because Redis is single-threaded, we recommend you monitor EngineCPUUtilization metric for nodes with 4 or more vCPUs, %)
+    - FreeableMemory (amount of free memory available on host. derived from RAM, buffers & cache that OS reports as freeable, bytes)
     - NetworkBytesIn (no. bytes host has read from the network, total).	
     - NetworkBytesOut (no. bytes s sent out on all network interfaces by the instance.	Bytes
     - NetworkPacketsIn (no. packets received on all network interfaces by instance. Identifies volume of incoming traffic - no. of packets on single instance, total)
