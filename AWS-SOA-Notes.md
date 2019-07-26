@@ -155,9 +155,41 @@
     - centrally control service access from a single policy to child accounts
     - Overrides the child account's IAM
 - Can help automation of new accounts
+    - Can create new accounts via Organizations, or invite existing accounts
 - Consolidated billing
 
-  
+#### Tags & Resource Groups
+- Tags are Key-Value pair metadata for AWS resources
+    - Some can be inherited (where resources are provisioned via another service (ASG, Beanstalk, CFN)
+- Resource groups are a way of grouping resources by tag or stack basis
+- Systems Manager - useful to manage resources in RGs
+    - e.g. take a snapshot of all EC2 in a group
+    
+#### EC2 Pricing
+- On demand - pay per fixed rate, no commitment, good for spiky that can't be interupted
+- Reserved - capcity reservation - 1 or 3 years, discounted, good for predictable workloads
+- Spot - bid for instance capacity - cheap, but can be kicked off if price rises above bid, so needs flexible start/end times
+- Dedicated hosts - physical dedicated servers, where multi tenancy can be done. can be good for per server software, i.e. VMWare, or regulatory needs
+
+#### AWS Config
+- Evaluates the state of out AWS environment at any point in time
+    - Configuration Items
+        - Point in time attribute of a resource
+    - Configuration Snapshots
+        - Collection of Config Items at a particular time
+    - Configuration Stream
+        - Stream of changed Config Items
+    - Configuration History
+        - Collection of Config Items for a resource over time
+        - shows all the changes on a per action basis
+    - Configuration Recorder 
+        - what records and stores config items
+        - logs config for account (per region)
+        - stored in s3
+        - notifications in SNS
+- Can perform remediation actions
+- Checks can be triggered on schedule or event driven
+
 ### Perform the steps necessary to remediate based on performance and availability metrics
 
 ## Deployment and Provisioning
