@@ -136,7 +136,7 @@
     - NetworkBytesOut (no. bytes s sent out on all network interfaces by the instance.	Bytes
     - NetworkPacketsIn (no. packets received on all network interfaces by instance. Identifies volume of incoming traffic - no. of packets on single instance, total)
     - NetworkPacketsOut (no. packets sent on all network interfaces by instance. Identifies volume of outgoting traffic - no. of packets on single instance, total)
-- Redis
+- Redis specific metrics
     - ActiveDefragHits
     - BytesUsedForCache
     - CacheHits
