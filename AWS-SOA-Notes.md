@@ -226,6 +226,12 @@
 - Can perform remediation actions
 - Checks can be triggered on schedule or event driven
 
+### Health Dashboards
+- Service Health
+    - Status of Services on a per region basis
+- Personal Health
+    - alerts and remediation guidance for AWS services that you are using
+
 ### Perform the steps necessary to remediate based on performance and availability metrics
 
 ## Deployment and Provisioning
