@@ -238,12 +238,19 @@
 ## Deployment and Provisioning
 ### Identify and execute steps required to provision cloud resources
 #### Deploying EC2
-- Pick AMI
-- Pick Type (Size, etc.)
-- Configure (LC/ASG, Spot?, User Data, VPC, Subnet, Placement Group, IAM role, etc.)
-- Setup Security Groups, etc.
+- Steps
+    - Pick AMI
+    - Pick Type (Size, etc.)
+    - Configure (LC/ASG, Spot?, User Data, Monitoring, VPC, Subnet, Placement Group, IAM role, etc.)
+    - Add Storage
+    - Setup Security Groups
+    - Add SSH Key
+#### Deploy EBS Volumes
 - 
 ### Identify and remediate deployment issues
+- Potential EC2 Launch Issues
+    - InstanceLimitExceeded error - too many instances in the region (soft limit is 20 instances per region, can request to get this raised)
+    - InsufficientInstanceCapacity error - AWS doesn't have enough hardware to meet request (wait some time and try again, or request less instances, different instance type, or reserved instances, non specific AZ request)
 
 ## High Availability
 ### Implement scalability and elasticity based on use case
