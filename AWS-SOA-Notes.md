@@ -39,7 +39,7 @@
 ## Monitoring and Reporting
 ### Create and maintain metrics and alarms utilizing AWS monitoring services
 #### CloudWatch
-- Service to monitor all of your AWS resources and applications
+- Service used for Monitoring AWS resources as well as the applications you run on AWS
 - Stored indefinitely by default
 - Retrieved using GetMetricStatistics API
 - Most default metric granularity is 1, 3 or 5 minutes
@@ -68,6 +68,7 @@
     - Memory (RAM utilisation)
     - Application Errors, messages, etc.
     - Any other virtual disk layer metrics
+    - Is required to monitor disk usage activity of the ephemeral volumes of an Amazon EC2 instance
     - Manual (Console) Steps to set up custom metrics
         - Create IAM role for EC2 to access CloudWatch
         - Provision Ec2 Instance, assign created role
@@ -149,7 +150,7 @@
 - CloudWatch metrics (perf. metrics)
 - Access logs
     - can store data where the EC2 instance has been deleted
-- Request tracing (application LB only)
+- Request tracing (application LB only) - monitoring HTTP requests from users to your application
 - CloudTrail logs (api call logs)
 
 #### Monitoring Elasticache
@@ -236,6 +237,12 @@
 
 ## Deployment and Provisioning
 ### Identify and execute steps required to provision cloud resources
+#### Deploying EC2
+- Pick AMI
+- Pick Type (Size, etc.)
+- Configure (LC/ASG, Spot?, User Data, VPC, Subnet, Placement Group, IAM role, etc.)
+- Setup Security Groups, etc.
+- 
 ### Identify and remediate deployment issues
 
 ## High Availability
