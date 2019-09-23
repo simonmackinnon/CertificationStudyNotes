@@ -246,7 +246,28 @@
     - Setup Security Groups
     - Add SSH Key
 #### Deploy EBS Volumes
-- 
+- Elastic Block Store
+    - Storage volume attached to EC2
+    - File system, DB or OS
+    - SSD backed storage
+        - gp2: 
+            - General Purpose 
+            - boot volume 
+            - min 100 IOPS, max 16,000 IOPS (3 IOPS/GB up to 5.2TB)
+        - io1: 
+            - Provisioned IOPs 
+            - I/O intensive, NoSQL, Relational DBs, latency sensitive workloads 
+            - 50 IOPS/GB to a max of 64,000 IOPS
+    - IOPS - input/output operations per second, performance benchmark for SSD volumes
+    - If you hit IOPS limit exceeded, IO requests start queuing, may slow down your app
+        - increase size of volume
+        - switch to io1 from gp2 if need more than 16K IOPS
+
+#### Bastion Hosts (Jumpbox)
+- host located in public subnet that allows access to instances in private subnet (via SSH or RDP)
+- allows access to instances without having to grant them internet access
+- Carefully limit port access to reduce attack surface (if Bastion Host compromised)
+
 ### Identify and remediate deployment issues
 - Potential EC2 Launch Issues
     - InstanceLimitExceeded error - too many instances in the region (soft limit is 20 instances per region, can request to get this raised)
@@ -254,6 +275,11 @@
 
 ## High Availability
 ### Implement scalability and elasticity based on use case
+#### Elastic Load Balancers
+- Application Load Balancer 
+    - Work at app layer (layer 7)
+    - 
+
 ### Recognize and differentiate highly available and resilient environments on AWS
 
 ## Storage and Data Management
