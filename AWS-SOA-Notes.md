@@ -262,7 +262,7 @@
             - boot volume 
             - min 100 IOPS, max 16,000 IOPS (3 IOPS/GB up to 5.2TB)
         - io1: 
-            - Provisioned IOPs 
+            - Provisioned IOPs (PIOPS)
             - I/O intensive, NoSQL, Relational DBs, latency sensitive workloads 
             - 50 IOPS/GB to a max of 64,000 IOPS
     - IOPS - input/output operations per second, performance benchmark for SSD volumes
