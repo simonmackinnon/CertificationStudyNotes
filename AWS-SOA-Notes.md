@@ -303,19 +303,44 @@
     - Healthy/UnHealthyHostCount - number of instances registered or marked as unhealthy
     - HTTPCode_Backend_2XX,3XX,4XX,5XX
     - Latency - how long for instance to respond/connect
-    - RequestCount - how many transactions per period
+    - RequestCount - how many transactions per period (1 or 5 min)
+    - SurgeQueueLength - no. of pending req, queue size is 1024 - more than that, rejected (CLB only)
+    - SpilloverCount - no. or rejected req due to full queue (CLB only)
 #### Deploy an ALB
-
+    - spin up ec2 instance(s)
+    - create ALB 
+    - configure SG to allow incoming traffic
+    - Add listener on required ports
+    - register instance(s) to group
+    - access via created DNS for ALB
+    - can see ELB specific metrics in CloudWatch
 
 #### Bastion Hosts (Jumpbox)
 - host located in public subnet that allows access to instances in private subnet (via SSH or RDP)
 - allows access to instances without having to grant them internet access
 - Carefully limit port access to reduce attack surface (if Bastion Host compromised)
 
+#### Systems Manager (SSM)
+- tool to manage all infra
+- integrates with CW dashboards to view data and detect issues
+- Can logically group resources
+- has RunCommand which allows centralised running of ops tasks (pre-defined commands) on resources
+    - stop/start/terminate/re-size ec2
+    - attach/detatch EBS volumes
+    - create snaps/ backup DynamoDB
+    - apply patches
+    - run an Ansible playbook
+    - run a shell script
+- can use it to manage on-prem instances
+
+
+
 ### Identify and remediate deployment issues
 - Potential EC2 Launch Issues
     - InstanceLimitExceeded error - too many instances in the region (soft limit is 20 instances per region, can request to get this raised)
     - InsufficientInstanceCapacity error - AWS doesn't have enough hardware to meet request (wait some time and try again, or request less instances, different instance type, or reserved instances, non specific AZ request)
+
+
 
 ## High Availability
 ### Implement scalability and elasticity based on use case
