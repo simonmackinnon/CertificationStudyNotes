@@ -13,9 +13,16 @@
   * [Tags & Resource Groups](#tags---resource-groups)
   * [EC2 Pricing](#ec2-pricing)
   * [AWS Config](#aws-config)
+  * [Health Dashboards](#health-dashboards)
   * [Perform the steps necessary to remediate based on performance and availability metrics](#perform-the-steps-necessary-to-remediate-based-on-performance-and-availability-metrics)
 - [Deployment and Provisioning](#deployment-and-provisioning)
   * [Identify and execute steps required to provision cloud resources](#identify-and-execute-steps-required-to-provision-cloud-resources)
+    + [Deploying EC2](#deploying-ec2)
+    + [Deploy EBS Volumes](#deploy-ebs-volumes)
+    + [Elastic Load Balancers](#elastic-load-balancers)
+    + [Deploy an ALB](#deploy-an-alb)
+    + [Bastion Hosts (Jumpbox)](#bastion-hosts--jumpbox-)
+    + [Systems Manager (SSM)](#systems-manager--ssm-)
   * [Identify and remediate deployment issues](#identify-and-remediate-deployment-issues)
 - [High Availability](#high-availability)
   * [Implement scalability and elasticity based on use case](#implement-scalability-and-elasticity-based-on-use-case)
@@ -333,14 +340,10 @@
     - run a shell script
 - can use it to manage on-prem instances
 
-
-
 ### Identify and remediate deployment issues
 - Potential EC2 Launch Issues
     - InstanceLimitExceeded error - too many instances in the region (soft limit is 20 instances per region, can request to get this raised)
     - InsufficientInstanceCapacity error - AWS doesn't have enough hardware to meet request (wait some time and try again, or request less instances, different instance type, or reserved instances, non specific AZ request)
-
-
 
 ## High Availability
 ### Implement scalability and elasticity based on use case
