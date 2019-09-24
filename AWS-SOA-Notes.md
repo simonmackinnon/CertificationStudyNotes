@@ -297,7 +297,13 @@
         - 504 gateway timeout - app not responsing, could be an web server issue, app or DB not working
         - 562 unauthorised - got error code from ID provider when trying to auth a user
 - ELB Cloudwatch Metrics
-    - 
+    - ELBs publish to CW for LB and instances
+    - Metrics gather at 60 sec intervals
+    - BackendConnectionErrors - how many unsuccessful connections to ec2 instances
+    - Healthy/UnHealthyHostCount - number of instances registered or marked as unhealthy
+    - HTTPCode_Backend_2XX,3XX,4XX,5XX
+    - Latency - how long for instance to respond/connect
+    - RequestCount - how many transactions per period
 #### Deploy an ALB
 
 
