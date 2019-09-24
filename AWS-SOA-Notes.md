@@ -262,6 +262,44 @@
     - If you hit IOPS limit exceeded, IO requests start queuing, may slow down your app
         - increase size of volume
         - switch to io1 from gp2 if need more than 16K IOPS
+#### Elastic Load Balancers
+- Application Load Balancer 
+    - Work at app layer (layer 7)
+    - Can route traffic based on Application contents, http headers, etc.
+- Network Load Balancer
+    - Works at transport layer (later 4)
+    - High performance, low latency
+    - Most expensive
+- Classic Load Balancer
+    - works at both layer 4 and 7, but layer 7 capability is limited (x-forwarded for and sticky sessions)
+- Pre-warm ELBs
+    - If sudden spikes in traffic expected, use ELB pre-warming (need to contact AWS)
+    - Provide
+        - start/end
+        - expected traffic
+        - typical request size
+- Static IPs
+    - ALBs scale automatically, but result is new IP address for connections
+    - NLBs have a static IP in each subnet, so only one IP address needed for connections
+    - To solve ALB issue, can place ALB behind NLB
+    - **TIP:** If exam question asks for LB with static/elastic IP, need to use Network LB
+- ELB Errors
+    - 4XX error - client
+        - 400 bad/malformed request
+        - 401 unauthorized user
+        - 403 forbidden - blocked by WAF
+        - 460 client connection closed - maybe not enough time configured for client timeout
+        - 463 LB got x-forwarded for header w/ > 30 IP addresses - can't do this
+    - 5XX error - server
+        - 500 internal server error, could be at LB
+        - 502 bad gateway - app closed connection, or response malformed
+        - 503 service available - no registered targets
+        - 504 gateway timeout - app not responsing, could be an web server issue, app or DB not working
+        - 562 unauthorised - got error code from ID provider when trying to auth a user
+- ELB Cloudwatch Metrics
+    - 
+#### Deploy an ALB
+
 
 #### Bastion Hosts (Jumpbox)
 - host located in public subnet that allows access to instances in private subnet (via SSH or RDP)
@@ -275,11 +313,6 @@
 
 ## High Availability
 ### Implement scalability and elasticity based on use case
-#### Elastic Load Balancers
-- Application Load Balancer 
-    - Work at app layer (layer 7)
-    - 
-
 ### Recognize and differentiate highly available and resilient environments on AWS
 
 ## Storage and Data Management
