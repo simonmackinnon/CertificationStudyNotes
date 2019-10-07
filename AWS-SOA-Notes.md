@@ -347,6 +347,21 @@
 
 ## High Availability
 ### Implement scalability and elasticity based on use case
+#### Elasticity & Scalability
+- EC2, S: + instance size E: + no. of instances
+- DynamoDB, S: unlimited amount of storage E: +/- IOPS for spikey traffic
+- RDS, S: + instance size E: not very elastic (can do it with Aurora Serverless)
+#### RDS 
+- RDS and Multi-AZ Failover
+    - RDS is for DR, not for performance, exact copy of DB in another AZ, fails over (automatically) to that DB if the primary isn't usable
+    - takes about 1 minute to fail over RDS
+    - backups/restored taken from secondary, no I/O suspensions of primary
+    - NOT a scaling solution
+- RDS Read Replicas
+    - read-only copy of DB to channel read-throughput traffic away from primary DB
+    - really good for business reporting (BI) queries rather than primary DB
+    - supported: (native asynch) MySQL, PosgreSQL, MariaDB, (SSD backed virtualised storage layer) Aurora
+
 ### Recognize and differentiate highly available and resilient environments on AWS
 
 ## Storage and Data Management
