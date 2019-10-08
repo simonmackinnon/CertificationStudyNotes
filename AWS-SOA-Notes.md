@@ -60,6 +60,7 @@
     - International
     - Can display any widget (metric graph/number/text, etc) to any region
     - Must be in the region of the metric to add it to the board
+- Logs can be dumped into S3 for longterm usage
 #### Cloudwatch vs. CloudTrail
 - Cloudwatch is for metrics, alarms, rules, performance monitoring and notifications
 - Cloudtrail is for auditing. Is a record of all API calls, detailed info, etc.
@@ -374,6 +375,8 @@
 ### Differentiate between the roles and responsibility within the shared responsibility model
 
 ## Networking
+#### Global Infra
+- No. edge locations > no. of AZ > no. of Regions
 ### Apply AWS networking features
 - DNS Resoltion occurs at edge locations
 ### Implement connectivity services of AWS
