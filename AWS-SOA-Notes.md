@@ -375,6 +375,7 @@
 
 ## Networking
 ### Apply AWS networking features
+- DNS Resoltion occurs at edge locations
 ### Implement connectivity services of AWS
 ### Gather and interpret relevant information for network troubleshooting
 
