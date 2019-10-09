@@ -284,18 +284,6 @@
     - Resolution - DIG
     - Response - NC
     - Routing
-#### Autoscaling
-- Healthchecks are used to figure out the whether to do scaling events (i.e. terminate and create a new instance)
-- Can use CloudWatch to trigger ASG events
-- Schedules
-- Programmatically
-- Manually set limits
-- Launch Configurations/Templates
-    - Configs for ASG only
-    - Templates for EC2 more generally
-- Auto Scaling Groups
-    - Scale between min, max and aim at desired (desired should be the long term nominal requirement)
-- Set alarms for desired +/- some value or nominal + some value
 
 #### Lifecycle
 [LifeCycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
@@ -401,6 +389,29 @@
 - EC2, S: + instance size E: + no. of instances
 - DynamoDB, S: unlimited amount of storage E: +/- IOPS for spikey traffic
 - RDS, S: + instance size E: not very elastic (can do it with Aurora Serverless)
+#### Autoscaling
+- Healthchecks are used to figure out the whether to do scaling events (i.e. terminate and create a new instance)
+- Can use CloudWatch to trigger ASG events
+- Schedules
+- Programmatically
+- Manually set limits
+- Launch Configurations/Templates
+    - Configs for ASG only
+    - Templates for EC2 more generally
+- Auto Scaling Groups
+    - Scale between min, max and aim at desired (desired should be the long term nominal requirement)
+- Set CloudWatch alarms for desired +/- some value or nominal + some value
+- Scaling Policy
+    - Determines when an ASG scaling event should occur
+    - Can be triggered via:
+        - CloudWatch metric
+        - Manually
+        - Instance health check
+        - Scheduled
+    - Need to take into consideration Boot-time-to-service-time (server start-up/healthy time) to ensure no. of instances can meet traffic demand
+        - Baking own AMI with application installed reduces BTTST, but decreases flexibility in what is installed/configured
+    - Network / Latency a better metric for scaling than CPU utilisation, better reflection of client experience
+    
 #### RDS 
 - RDS and Multi-AZ Failover
     - RDS is for DR, not for performance, exact copy of DB in another AZ, fails over (automatically) to that DB if the primary isn't usable
