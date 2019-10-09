@@ -252,14 +252,19 @@
 
 ## Deployment and Provisioning
 ### Identify and execute steps required to provision cloud resources
-#### Deploying EC2
-- Steps
+#### EC2
+- Virtualization
+    - VMs run on servers with Hypervisor (e.g. AWS Nitro) running on it
+    - CPUs, RAM, Instance store
+- Pricing
+    - 
+- Deployment Steps
     - Pick AMI
     - Pick Type (Size, etc.)
     - Configure (LC/ASG, Spot?, User Data, Monitoring, VPC, Subnet, Placement Group, IAM role, etc.)
     - Add Storage
     - Setup Security Groups
-    - Add SSH Key
+    - Add SSH Key Pair
 #### Deploy EBS Volumes
 - Elastic Block Store
     - Storage volume attached to EC2
@@ -335,19 +340,6 @@
 - allows access to instances without having to grant them internet access
 - Carefully limit port access to reduce attack surface (if Bastion Host compromised)
 
-#### Systems Manager (SSM)
-- tool to manage all infra
-- integrates with CW dashboards to view data and detect issues
-- Can logically group resources
-- has RunCommand which allows centralised running of ops tasks (pre-defined commands) on resources
-    - stop/start/terminate/re-size ec2
-    - attach/detatch EBS volumes
-    - create snaps/ backup DynamoDB
-    - apply patches
-    - run an Ansible playbook
-    - run a shell script
-- can use it to manage on-prem instances
-
 ### Identify and remediate deployment issues
 - Potential EC2 Launch Issues
     - InstanceLimitExceeded error - too many instances in the region (soft limit is 20 instances per region, can request to get this raised)
@@ -416,9 +408,42 @@
 ### Use AWS services and features to manage and assess resource utilization
 #### CLI
 - use _aws configure_ to set up
-- Secret Access Key/Access Key and Region
-#### SSM
+- Secret Access Key/Access Key, Region and default output format
+- use _--filter_ to filter the command for elements with particular value
+- use _--query_ to limit results
+- use _--dry-run_ to perform non-committal execution (see expected output)
+#### Systems Manager (SSM)
+- Replaces traditional management tools, e.g. Chef, Puppet, Ansible
+- tool to manage all infra
+- integrates with CW dashboards to view data and detect issues
+- Can logically group resources
+- has RunCommand which allows centralised running of ops tasks (pre-defined commands) on resources
+    - stop/start/terminate/re-size ec2
+    - attach/detatch EBS volumes
+    - create snaps/ backup DynamoDB
+    - apply patches
+    - run an Ansible playbook
+    - run a shell script
+- can use it to manage on-prem instances (it's agent based)
+- Session Manager
+    - allow instance access via the console - browser (feature of SSM)
+    - SSH or RDP
+- Parameter store 
+    - Collection of account data
+    - shouldn't store secret info, instead use reference to Secrets Manager entry
 #### Cloudformation
+- Infrastructure as Code
+- JSON or YAML
+- template creation of resources as a "single" unit
+- has Drift Detection - shows differences from the template
+- deployed resources from template is a Stack
+    - changes required can be previewed
 #### SDK
+- Heaps of language support
+#### Powershell
+- runs on all OSs
+#### OpsWorks
+- Fully managed service for Chef/Puppet
+- Has AWS proprietary OpsWorks Stacks - own version of Chef - layered architecture
 ### Employ cost-optimization strategies for efficient resource utilization
 ### Automate manual or repeatable process to minimize management overhead
