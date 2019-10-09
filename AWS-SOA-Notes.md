@@ -284,9 +284,20 @@
     - Resolution - DIG
     - Response - NC
     - Routing
+#### Autoscaling
+- Healthchecks are used to figure out the whether to do scaling events (i.e. terminate and create a new instance)
+- Can use CloudWatch to trigger ASG events
+- Schedules
+- Programmatically
+- Manually set limits
+- Launch Configurations/Templates
+    - Configs for ASG only
+    - Templates for EC2 more generally
+- Auto Scaling Groups
+    - Scale between min, max and aim at desired (desired should be the long term nominal requirement)
+- Set alarms for desired +/- some value or nominal + some value
 
 - Lifecycle
-
 [LifeCycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
 ![EC2 Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_lifecycle.png)
 - Security Groups
@@ -311,6 +322,12 @@
         - increase size of volume
         - switch to io1 from gp2 if need more than 16K IOPS
 #### Elastic Load Balancers
+- Targets
+    - where traffic gets routed, EC2, lambda, IP address
+- Listeners
+    - check for incoming client traffic
+- Rule
+    - applied to listeners to ensure incoming traffic matches, and specifies the target group, condition, and priority
 - Behind the scenes:
     - operates in separate ELB-managed VPC
     - Connects to our VPCs using ENIs
@@ -396,8 +413,6 @@
     - supported: (native asynch) MySQL, PosgreSQL, MariaDB, (SSD backed virtualised storage layer) Aurora
 
 ### Recognize and differentiate highly available and resilient environments on AWS
-#### Autoscaling
-- ELB
 
 ## Storage and Data Management
 ### Create and manage data retention
