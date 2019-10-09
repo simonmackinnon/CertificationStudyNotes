@@ -258,6 +258,10 @@
     - CPUs, RAM, Instance store
 - Pricing
     - 
+- Tenancy
+    - Shared - multiple tenants use the server
+    - Dedicated - part of server, but no one else can use other parts of server
+    - Dedicated Host - whole server
 - Deployment Steps
     - Pick AMI
     - Pick Type (Size, etc.)
