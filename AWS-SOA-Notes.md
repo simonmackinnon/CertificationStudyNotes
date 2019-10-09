@@ -297,7 +297,7 @@
     - Scale between min, max and aim at desired (desired should be the long term nominal requirement)
 - Set alarms for desired +/- some value or nominal + some value
 
-- Lifecycle
+#### Lifecycle
 [LifeCycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
 ![EC2 Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_lifecycle.png)
 - Security Groups
