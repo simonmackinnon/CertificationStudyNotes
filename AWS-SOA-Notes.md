@@ -373,13 +373,22 @@
 ### Implement and manage security policies on AWS
 - IAM
     - Credentials
+        - email/Password - root account access
         - Username/Password - Console access
         - Secret Key/Access Key - Programatic Access
         - SSH Key - Service Access
+        - MFA access
     - User: any entity that can have access to the system
     - Role: **Temporary** credentials used to allow access to system
     - Group: Collection of users, makes managing large collection easier
     - Policies: JSON Document which defines the scope of access to the system which the entity/role has
+        - Order:
+            - collect policy rules for entity 
+            - is there an explicit deny? if so, not authorised (http 403 error)
+            - is there an explicit allow? if so, authorised, otherwised not denied
+    - If account compromised, detatch all policies from U/R/G 
+    - Authorisation
+        - 
 ### Implement access controls when using AWS
 ### Differentiate between the roles and responsibility within the shared responsibility model
 
