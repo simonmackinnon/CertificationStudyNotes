@@ -414,5 +414,11 @@
 
 ## Automation and Optimization
 ### Use AWS services and features to manage and assess resource utilization
+#### CLI
+- use _aws configure_ to set up
+- Secret Access Key/Access Key and Region
+#### SSM
+#### Cloudformation
+#### SDK
 ### Employ cost-optimization strategies for efficient resource utilization
 ### Automate manual or repeatable process to minimize management overhead
