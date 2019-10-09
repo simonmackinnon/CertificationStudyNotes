@@ -334,6 +334,8 @@
     - NLBs have a static IP in each subnet, so only one IP address needed for connections
     - To solve ALB issue, can place ALB behind NLB
     - **TIP:** If exam question asks for LB with static/elastic IP, need to use Network LB
+- Cross-Zone routing
+    - disabled by default, but turn on to ensure even load on servers
 - ELB Errors
     - 4XX error - client
         - 400 bad/malformed request
