@@ -371,6 +371,15 @@
 
 ## Security and Compliance
 ### Implement and manage security policies on AWS
+- IAM
+    - Credentials
+        - Username/Password - Console access
+        - Secret Key/Access Key - Programatic Access
+        - SSH Key - Service Access
+    - User: any entity that can have access to the system
+    - Role: **Temporary** credentials used to allow access to system
+    - Group: Collection of users, makes managing large collection easier
+    - Policies: JSON Document which defines the scope of access to the system which the entity/role has
 ### Implement access controls when using AWS
 ### Differentiate between the roles and responsibility within the shared responsibility model
 
