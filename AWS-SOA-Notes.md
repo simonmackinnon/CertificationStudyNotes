@@ -194,7 +194,10 @@
     - ReplicationBytes
     - ReplicationLag
     - SaveInProgress
-### Organizations
+
+### Multiple AWS Accounts
+- Strategy for isolating applications and workloads
+#### Organizations
 - Allows central policy admin / billing etc.
 - SCPs - service control policies
     - centrally control service access from a single policy to child accounts
@@ -202,6 +205,10 @@
 - Can help automation of new accounts
     - Can create new accounts via Organizations, or invite existing accounts
 - Consolidated billing
+- Organization divided into Organizational Units, (can have multiple layers) 
+- SCPs are applied at an OU or Org level
+
+
 
 ### Tags & Resource Groups
 - Tags are Key-Value pair metadata for AWS resources
