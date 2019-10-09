@@ -380,15 +380,20 @@
         - MFA access
     - User: any entity that can have access to the system
     - Role: **Temporary** credentials used to allow access to system
+        - for federated access
+        - access via saml or oauth (SSO)
     - Group: Collection of users, makes managing large collection easier
     - Policies: JSON Document which defines the scope of access to the system which the entity/role has
         - Order:
             - collect policy rules for entity 
             - is there an explicit deny? if so, not authorised (http 403 error)
             - is there an explicit allow? if so, authorised, otherwised not denied
+        - AWS Managed - aws created policies, commonly used permissions
+        - Job function - based on what job function a user performs
+        - Customer managed - custome policies that allows uncommon access
     - If account compromised, detatch all policies from U/R/G 
     - Authorisation
-        - 
+        - Changes to policies is **immediately** applied to entities
 ### Implement access controls when using AWS
 ### Differentiate between the roles and responsibility within the shared responsibility model
 
