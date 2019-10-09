@@ -411,7 +411,10 @@
     - Need to take into consideration Boot-time-to-service-time (server start-up/healthy time) to ensure no. of instances can meet traffic demand
         - Baking own AMI with application installed reduces BTTST, but decreases flexibility in what is installed/configured
     - Network / Latency a better metric for scaling than CPU utilisation, better reflection of client experience
-
+- Testing scalability
+    - TheGrinder
+    - Apache Jmeter
+    - Bees with Machine Guns
 #### RDS 
 - RDS and Multi-AZ Failover
     - RDS is for DR, not for performance, exact copy of DB in another AZ, fails over (automatically) to that DB if the primary isn't usable
@@ -486,6 +489,7 @@
         - splits traffic across multiple endpoints (e.g. 20% US-East-1, 80% US-West-1
     - Latency
         - Routes traffic based on end-user netowrk latency 
+        - Can use service like cloudping.info
     - Failover
         - For Active/Passive setup, monitors health of site. sends traffic to passive site if active fails (is down).
     - Geolocation
