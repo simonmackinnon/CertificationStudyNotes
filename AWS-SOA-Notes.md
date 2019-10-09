@@ -216,12 +216,6 @@
 - Resource groups are a way of grouping resources by tag or stack basis
 - Systems Manager - useful to manage resources in RGs
     - e.g. take a snapshot of all EC2 in a group
-    
-### EC2 Pricing
-- On demand - pay per fixed rate, no commitment, good for spiky that can't be interupted
-- Reserved - capcity reservation - 1 or 3 years, discounted, good for predictable workloads
-- Spot - bid for instance capacity - cheap, but can be kicked off if price rises above bid, so needs flexible start/end times
-- Dedicated hosts - physical dedicated servers, where multi tenancy can be done. can be good for per server software, i.e. VMWare, or regulatory needs
 
 ### AWS Config
 - Evaluates the state of out AWS environment at any point in time
@@ -253,11 +247,17 @@
 ## Deployment and Provisioning
 ### Identify and execute steps required to provision cloud resources
 #### EC2
+- Pricing
+    - On demand - pay per fixed rate, no commitment, good for spiky that can't be interupted
+    - Reserved - capcity reservation - 1 or 3 years, discounted, good for predictable workloads
+    - Scheduled - capacity reservation - 1 year RI for recurring period of time
+    - Spot - bid for instance capacity - cheap, but can be kicked off if price rises above bid, so needs flexible start/end times
+    - Dedicated hosts - physical dedicated servers, where multi tenancy can be done. can be good for per server software, i.e. VMWare, or regulatory needs
+    - Dedicated instances - single account runs on server
+    - i3.metal - physical host, can run own OS, etc.
 - Virtualization
     - VMs run on servers with Hypervisor (e.g. AWS Nitro) running on it
     - CPUs, RAM, Instance store
-- Pricing
-    - 
 - Tenancy
     - Shared - multiple tenants use the server
     - Dedicated - part of server, but no one else can use other parts of server
@@ -269,6 +269,30 @@
     - Add Storage
     - Setup Security Groups
     - Add SSH Key Pair
+    - e.g.
+        ```
+        aws ec2 run-instances \
+            --image-id ami-abc1234 \
+            --count 1 \
+            --instance-type m4.large \
+            --key-name keypair \
+            --user-data file://my_script.txt \
+            --subnet-id subnet-abcd1234 \
+            --security-group-ids sg-abcd1234
+        ```
+- Debugging web servers
+    - Resolution - DIG
+    - Response - NC
+    - Routing
+
+- Lifecycle
+
+[LifeCycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
+![EC2 Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_lifecycle.png)
+- Security Groups
+    - default nothing inbound
+    - everything outbound
+    - can allow access based on source Secrurity Group
 #### Deploy EBS Volumes
 - Elastic Block Store
     - Storage volume attached to EC2
@@ -287,11 +311,14 @@
         - increase size of volume
         - switch to io1 from gp2 if need more than 16K IOPS
 #### Elastic Load Balancers
+- Behind the scenes:
+    - operates in separate ELB-managed VPC
+    - Connects to our VPCs using ENIs
 - Application Load Balancer 
     - Work at app layer (layer 7)
     - Can route traffic based on Application contents, http headers, etc.
 - Network Load Balancer
-    - Works at transport layer (later 4)
+    - Works at transport layer (layer 4)
     - High performance, low latency
     - Most expensive
 - Classic Load Balancer
@@ -367,6 +394,8 @@
     - supported: (native asynch) MySQL, PosgreSQL, MariaDB, (SSD backed virtualised storage layer) Aurora
 
 ### Recognize and differentiate highly available and resilient environments on AWS
+#### Autoscaling
+- ELB
 
 ## Storage and Data Management
 ### Create and manage data retention
@@ -399,6 +428,21 @@
         - Changes to policies is **immediately** applied to entities
 ### Implement access controls when using AWS
 ### Differentiate between the roles and responsibility within the shared responsibility model
+- Who is responsible for what when something happens
+- AWS (Security of the Cloud)
+    - Physical - Data Centres
+    - Network - Custom networking tech, etc. - (see [Day in the Life of a Billion Packets](https://www.youtube.com/results?search_query=A+Day+in+the+Life+of+a+Billion+Packets))
+                   ------------------------> EC2 (i3.metal)
+    - Hypervisor
+- Customer (Security in the Cloud)
+                   ------------------------> EC2
+    - Guest OS
+                   ------------------------> Lambda
+    - Application
+                   ------------------------> S3, RDS
+    - Data
+- Vulnerability scanning and pen testing
+    - Need to let AWS know
 
 ## Networking
 #### Global Infra
