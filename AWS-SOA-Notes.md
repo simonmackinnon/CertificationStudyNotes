@@ -403,7 +403,33 @@
     - InsufficientInstanceCapacity error - AWS doesn't have enough hardware to meet request (wait some time and try again, or request less instances, different instance type, or reserved instances, non specific AZ request)
 
 #### Containers and Serverless
+- Containers
+    - Consistent environment, portable
+    - Operational efficiency - easy to manage environments
+    - Dev productivity - tooling is good, Dockerfiles are (basically) like scripts
+    - Version control - deployment defined in text file - Dockerfile
+    - Docker 'shares' the host OS and kernal, saves the container needing it
+    - EKS and ECS exist to address the "large fleet of containers on large fleet of VMs" operational issue, DNS is too slow
+        - Deploying, scheduling, scaling & management of containerised applications
+    - Hosting
+        - EC2 (control of underlying VM, instance types, etc.)
+        - Fargate - serverless version of managing EC2 (mainly only m-type instances, GPU)
+    - Image registry
+        - repo for container images
+    - Problems:
+        - sprawl, versioning, ownershop, bin packing, zombie containers
 
+- Serverless
+    - Lambda
+        - Functions as a Service (BYO Code)
+        - uses micro-VMs (micro-kernal) technology not Containers
+        - Charged per resource reserved (CPU and Memory are allocated proportionally)
+    - API Gateway
+        - Managed service for Web-Proxy
+        - Concurrancy limit (6000)
+
+- AWS Batch
+    - Job Scheduler - AWS Managed
 
 ## High Availability
 ### Implement scalability and elasticity based on use case
@@ -439,6 +465,7 @@
     - Bees with Machine Guns
     - use bash 'stress' command to simulate CPU spike
 
+### Recognize and differentiate highly available and resilient environments on AWS
 #### RDS 
 - RDS and Multi-AZ Failover
     - RDS is for DR, not for performance, exact copy of DB in another AZ, fails over (automatically) to that DB if the primary isn't usable
@@ -449,8 +476,6 @@
     - read-only copy of DB to channel read-throughput traffic away from primary DB
     - really good for business reporting (BI) queries rather than primary DB
     - supported: (native asynch) MySQL, PosgreSQL, MariaDB, (SSD backed virtualised storage layer) Aurora
-
-### Recognize and differentiate highly available and resilient environments on AWS
 
 ## Storage and Data Management
 ### Create and manage data retention
