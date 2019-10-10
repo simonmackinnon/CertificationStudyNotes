@@ -432,7 +432,9 @@
     - Job Scheduler - AWS Managed
 
 ## High Availability
+### Recognize and differentiate highly available and resilient environments on AWS
 ### Implement scalability and elasticity based on use case
+
 #### Elasticity & Scalability
 - EC2, S: + instance size E: + no. of instances
 - DynamoDB, S: unlimited amount of storage E: +/- IOPS for spikey traffic
@@ -465,8 +467,38 @@
     - Bees with Machine Guns
     - use bash 'stress' command to simulate CPU spike
 
-### Recognize and differentiate highly available and resilient environments on AWS
-#### RDS 
+#### Route 53
+- DNS Resoltion occurs at edge locations
+- Routing Policies available:
+    - Simple
+        - Default - no complex smarts, just send requests to a endpoint
+    - Weighted
+        - splits traffic across multiple endpoints (e.g. 20% US-East-1, 80% US-West-1
+    - Latency
+        - Routes traffic based on end-user netowrk latency 
+        - Can use service like cloudping.info
+    - Failover
+        - For Active/Passive setup, monitors health of site. sends traffic to passive site if active fails (is down).
+    - Geolocation
+        - Route traffic based on the user location (IP Address)
+    - Geoproximity
+        - Based on distance to location
+    - Multivalue
+
+## Storage and Data Management
+### Create and manage data retention
+### Identify and implement data protection, encryption, and capacity planning needs
+- NoSQL vs SQL
+    - NoSQL came about largely because of scale requirements
+#### Relational Database Service
+- Pick instance class: CPU, Memory and Network Performance
+- Pick instance storage: Magnetic, GPU (SSD) or Provisioned IOPS
+- Six different types of DB engines
+    - Sql server, oracle, mysql, postgresql, aurora, mariadb
+    - Multi AZ - DR
+    - Read Replica - Performance
+    - OLTP
+- Automated backups
 - RDS and Multi-AZ Failover
     - RDS is for DR, not for performance, exact copy of DB in another AZ, fails over (automatically) to that DB if the primary isn't usable
     - takes about 1 minute to fail over RDS
@@ -475,11 +507,24 @@
 - RDS Read Replicas
     - read-only copy of DB to channel read-throughput traffic away from primary DB
     - really good for business reporting (BI) queries rather than primary DB
-    - supported: (native asynch) MySQL, PosgreSQL, MariaDB, (SSD backed virtualised storage layer) Aurora
-
-## Storage and Data Management
-### Create and manage data retention
-### Identify and implement data protection, encryption, and capacity planning needs
+    - supported: (native async) MySQL, PosgreSQL, MariaDB, (SSD backed virtualised storage layer) Aurora
+#### Aurora
+- In-house build Relational Database
+- You can create custom endpoints (load balanced) to handle criteria other and RO or RW
+- Failover of primary instance:
+    - If you have replicas, flips CNAME record to the replica
+    - if no replica attempts new DB in same AZ
+    - then attempts to create new DB in different AZ
+- Primary/Replica pattern
+- Aurora Serverless
+    - Pay per request
+#### DynamoDB
+- Managed NoSQL database
+- Provide TPS and AWS scales out for you
+- Fine-grained control to data
+#### AWS Database Migration Service
+- Mainly used when DB size if > 5TB
+- Easy to set up -> see schema conversion tool for how to convert current to AWS
 
 ## Security and Compliance
 ### Implement and manage security policies on AWS
@@ -525,27 +570,52 @@
     - Need to let AWS know
 
 ## Networking
+- Mainly working Layer 4 and above
+- IP Addressing
+    - To send, need to know destination IP, routing IP prefix, broadcast address, and subnect mask
+    - this is defined by CIDR e.g. 192.168.1.0/24
+        - Fixed/Flexible address parts. /24 means first 24 bits of address fixed, last 8 are flexible (2^8 addresses available)
+- Amazon VPC
+    - created inside region, spans AZs
+    - Router is included in the VPC creation, for internal communication
+        - Represented by a Route Table
+    - we create subnets -> traditionally create Public and Private subnets in each AZ
+        - 5 IPs are reserved
+    - internet access created by adding a router gateway device (Internet Gateway - IGW)
+        - Add route in Route Table to the internet, associate this with public subnets
+    - All instances are assigned a private IP address
+        - instances in a public subnet will have a public IP and private IP
+    - To connect two locations within AWS, use a VPN (encrypted internet tunnel)
+        - To connect to customer data centre, use Customer Gateway (CGW) on DC side, Virtual Private Gateway (VGW) on VPC side
+    - To connect two VPCs, can use VPC peering, still need to add entry into route table in each VPC to route traffic
+    - NACLs 
+        - default NACL allows all inbound and outbound ipv4 and ipv6 traffic
+        - custom NACL denies all traffic by default, allows ipv4 by rule and ipv6 by rule (if VPC is configured with ipv6 cidr)
+        - ordered rules, allows all by default, need to add explicit deny all after all the allow rules to make a whitelist
+    - Security Groups 
+        - Changes to SGs are applied immediately
+        - Can have multiple SGs per instance
+        - all inbound traffic blocked by default - all outbound allowed
+        - SGs are stateful, allowed inbound traffic is allowed back out, without needing to specify the outbound rule (ACLs work Stateless)
+        - Can't block specific traffic with SGs, only allow
+    - Use Bastion Hosts (jumpbox) to ensure secure connections to instances
+    - NAT instance (or prefer NAT gateway)
+        - allows safe connections for instances in private subnet to the internet without exposing them to the incoming traffic
+    - VPC endpoints
+        - enables private connection from VPC to supported AWS services (no internet or DX required)
+        - interface endpoints
+            - ENI with private IP address
+            - serves as entry point to supported AWS service
+        - gateway endpoints
+            - 
+    
+
+
 #### Global Infra
 - No. edge locations > no. of AZ > no. of Regions
+
 ### Apply AWS networking features
 
-#### Route 53
-- DNS Resoltion occurs at edge locations
-- Routing Policies available:
-    - Simple
-        - Default - no complex smarts, just send requests to a endpoint
-    - Weighted
-        - splits traffic across multiple endpoints (e.g. 20% US-East-1, 80% US-West-1
-    - Latency
-        - Routes traffic based on end-user netowrk latency 
-        - Can use service like cloudping.info
-    - Failover
-        - For Active/Passive setup, monitors health of site. sends traffic to passive site if active fails (is down).
-    - Geolocation
-        - Route traffic based on the user location (IP Address)
-    - Geoproximity
-        - Based on distance to location
-    - Multivalue
 ### Implement connectivity services of AWS
 ### Gather and interpret relevant information for network troubleshooting
 
