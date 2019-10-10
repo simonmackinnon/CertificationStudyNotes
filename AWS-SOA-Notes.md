@@ -487,6 +487,15 @@
 
 ## Storage and Data Management
 ### Create and manage data retention
+- EBS - Block store, hard drives, attach to VMS
+- EFS - File System, share across EC2 instances
+    - Elastic
+    - can be shared across systems
+- FSx - Windows File Server
+- S3 - Object storage
+- Glacier - Archival S3
+- AWS Storage Gateway - connect on-prem software to Cloud based storage
+
 ### Identify and implement data protection, encryption, and capacity planning needs
 - NoSQL vs SQL
     - NoSQL came about largely because of scale requirements
@@ -618,9 +627,6 @@
         - Is there a NACL issue
         - View Flow Logs
     
-    
-
-
 #### Global Infra
 - No. edge locations > no. of AZ > no. of Regions
 
