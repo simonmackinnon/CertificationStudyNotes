@@ -606,8 +606,18 @@
         - interface endpoints
             - ENI with private IP address
             - serves as entry point to supported AWS service
+            - Can secure enpoint using Security group
         - gateway endpoints
-            - 
+            - gateway used as a target to supported AWS service (for use in Route Table)
+            - S3, DynamoDB only
+            - difficult to secure
+    - No Transative peering - can't connect from one VPC to another via a middle one, need direct peering between each VPC that need to connect
+    - No Edge to Edge routing, can't use resources from VPC-A in VPC-B, even when peered, need direct connection from VPC-B to resources
+    - Debugging
+        - Is it instance issue?
+        - Is there a NACL issue
+        - View Flow Logs
+    
     
 
 
