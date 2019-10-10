@@ -27,14 +27,18 @@
     + [Potential EC2 Launch Issues](#potential-ec2-launch-issues)
     + [Containers and Serverless](#containers-and-serverless)
 - [High Availability](#high-availability)
+  * [Recognize and differentiate highly available and resilient environments on AWS](#recognize-and-differentiate-highly-available-and-resilient-environments-on-aws)
   * [Implement scalability and elasticity based on use case](#implement-scalability-and-elasticity-based-on-use-case)
     + [Elasticity & Scalability](#elasticity---scalability)
     + [Autoscaling](#autoscaling)
-    + [RDS](#rds)
-  * [Recognize and differentiate highly available and resilient environments on AWS](#recognize-and-differentiate-highly-available-and-resilient-environments-on-aws)
+    + [Route 53](#route-53)
 - [Storage and Data Management](#storage-and-data-management)
   * [Create and manage data retention](#create-and-manage-data-retention)
   * [Identify and implement data protection, encryption, and capacity planning needs](#identify-and-implement-data-protection--encryption--and-capacity-planning-needs)
+    + [Relational Database Service](#relational-database-service)
+    + [Aurora](#aurora)
+    + [DynamoDB](#dynamodb)
+    + [AWS Database Migration Service](#aws-database-migration-service)
 - [Security and Compliance](#security-and-compliance)
   * [Implement and manage security policies on AWS](#implement-and-manage-security-policies-on-aws)
   * [Implement access controls when using AWS](#implement-access-controls-when-using-aws)
@@ -42,7 +46,6 @@
 - [Networking](#networking)
     + [Global Infra](#global-infra)
   * [Apply AWS networking features](#apply-aws-networking-features)
-    + [Route 53](#route-53)
   * [Implement connectivity services of AWS](#implement-connectivity-services-of-aws)
   * [Gather and interpret relevant information for network troubleshooting](#gather-and-interpret-relevant-information-for-network-troubleshooting)
 - [Automation and Optimization](#automation-and-optimization)
@@ -55,9 +58,6 @@
     + [OpsWorks](#opsworks)
   * [Employ cost-optimization strategies for efficient resource utilization](#employ-cost-optimization-strategies-for-efficient-resource-utilization)
   * [Automate manual or repeatable process to minimize management overhead](#automate-manual-or-repeatable-process-to-minimize-management-overhead)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ## Monitoring and Reporting
 ### Create and maintain metrics and alarms utilizing AWS monitoring services
