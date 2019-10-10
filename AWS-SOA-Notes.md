@@ -672,13 +672,17 @@
 - AWS (Security of the Cloud)
     - Physical - Data Centres
     - Network - Custom networking tech, etc. - (see [Day in the Life of a Billion Packets](https://www.youtube.com/results?search_query=A+Day+in+the+Life+of+a+Billion+Packets))
+                   
                    ------------------------> EC2 (i3.metal)
     - Hypervisor
 - Customer (Security in the Cloud)
+                   
                    ------------------------> EC2
     - Guest OS
+                   
                    ------------------------> Lambda
     - Application
+                   
                    ------------------------> S3, RDS
     - Data
 - Vulnerability scanning and pen testing
