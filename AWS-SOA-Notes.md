@@ -488,13 +488,119 @@
 ## Storage and Data Management
 ### Create and manage data retention
 - EBS - Block store, hard drives, attach to VMS
+    - Network attached
+    - Tied to Availability Zones
+    - Stop disk writes before snapshot
 - EFS - File System, share across EC2 instances
     - Elastic
     - can be shared across systems
+    - NFS based
 - FSx - Windows File Server
-- S3 - Object storage
+- S3 
+    - object based, KEY-VALUE store (key object name, value data, version id, metadata, sub-recs - ACLs - Torrent)
+        - Files, etc.
+        - Not suitable for OS installs (use EBS instead)
+    - 0B - 5TB
+    - unlimited storage
+    - stored in buckets - basically a cloud based folder
+    - Each account can have up to 100 buckets by default
+    - S3 names are globally unique, urls are: https://s3-<region>.amazonaws.com/<bucketName>
+    - interaction is API based, normal http response codes
+    - Can get faster uploads by enabling multi-part upload
+        - Also needed if file size > 5GB (max single PUT operation upload size)
+    - new objects = read after write consistent
+    - old objects = eventual consistent
+    - If data is changing rapidly, consider EFS instead, for better performance
+    - S3 Standard: SLA 99.9 available, 99.999999999 durable
+    - S3 Infrequently Accessed: slightly less cost
+    - S3 One zone IA - lower cost, not replicated across AZs
+    - Glacier 
+        - Expidited (1-10 min, etc.), Standard, Bulk. Standard tier takes about 3-5 hours
+        - Encrypted at Rest by default
+        - Can't upload to Glacier via console directly, can via CLI or SDK, or via LifeCycle Policy
+    - versioning
+        - pay for each version
+        - each new version needs to be made public individually
+        - deleting a versioned object will create a following version which is the delete marker
+        - can enable MFA delete, extra delete security
+    - Access Control Lists => regulate access to individual objects
+    - Bucket Policies => way of regulating access to entire buckets
+        - Policies written in JSON
+        - Can be used to make entire buckets public
+        - Statement
+            Sid - Statement Id
+            Effect - Allow or Deny
+            Principle - Who/what is attempting access
+            Action - What actions are being effected (i.e. denied or allowed)
+            Resource - What is being accessed (ARN - can be wildcard)
+    - Default all buckets and objects are private
+    - Successful upload gets HTTP 200 response
+    - Server Access Logging - Detailed logging of access (i.e. requester, bucket name, request time, action, status, error codes) can be obtained using S3 Server Access Logging 
+    - 3 types: S3, S3-IA and S3-resource
+    - Can be encrypted - either client or server side (own or managed)
+        - In transit
+            - SSL/TLS
+        - At Rest
+            - Server Side
+                - S3 Managed Keys - __SSE S3__ (AES256, managed by AWS)
+                - AWS KMS - __SSE-KMS__ (envelope key, audit trail when keys used and by who, and can manage own keys)
+                - Cutomer Provided Keys - __SSE-C__ - Keys managed by us
+            - Client Side
+                - Encrypt data on client side before uploading, decrypt client side after downloading
+                - Uses a Client-Side Master Key (never sent to AWS) so only encrypted data sent
+    - Cross Region Replication
+        - Must be in a different region
+        - Cross Region replication requires versioning to be enbabled on both source and destination buckets
+        - Existing files will not be automatically replicated, need to be manually copied in via cli
+        - New files and changes replicated automatically
+        - Deleting an object (object marker) or object version in primary will not be automatically replicated into the replication bucket
+    - LifeCycle Rules
+        - To be used in conjunction with versioning
+        - can have rules for current and previous versions
+        - can use it to delete permanently as well
+        - transition to standard IA class
+        - archive
+    - Glue - used to perform Extract, Transform and Load (ETL) operations on S3 data
+    - CloudFront
+        - is a Content Delivery Network (CDN)
+        - requests for any (not just static) content delivered to Edge Locations with lowest latency
+        - __Edge location__ is a location where content will be cached. Different than Region or AZ
+        - Origin is where the files will come from - S3, EC2, ELB or Route 53, or non-AWS source
+            - Can configure multople origins, the second one will be used if the primary returns and error
+        - Distribution is the collection of edge locations
+        - Can actually PUT to edge locations, not just Read Only
+        - Files chached for the Time-To-Live value (TTL), but can be invalidated with an account change
+        - Should be secured using pre-signed URLs or cookies
+        - Can force users to not be able to access content from origin directly
+    - Can be configured to create acccess logs
+    - Snowball -  Physical disk connected to DC, files uploaded, then sent to AWS to be uploaded on network internally
+        - replaced Import Export, different disks sent to AWS, difficult to manage
+        - Encrypted
+        - Types
+            - Snowball - just basic storage
+            - Edge - has compute capabilites on it, i.e. can run Lambdas on uploaded data
+            - Snowmobile - Truck version of Snowball, Exabyte scale data transfer 100PB per truck
+    - Transfer Acceleration
+        - Upload files to an edge location, makes uploads faster when latency would be otherwise higher
+        - Optimised over Amazone backbone technology
+        - Cost extra
+    - Static website hosting
+        - Serverless site hosting
+        - Endpoint format - <BucketName>.s3-website-<Region>.amazonaws.com
+        - Scales automatically
+    - File restrictions
+        - Signed URLs to restrict individual files
+        - Signed Cookies to restrict multiple files
 - Glacier - Archival S3
-- AWS Storage Gateway - connect on-prem software to Cloud based storage
+- AWS Storage Gateway 
+    - Storage Gateway - connect on-prem DC to AWS Data Store (S3 or Glacier). VM installed in customer DC
+        - Used for secondary purposes (normally)
+        - Encrypted by default
+        - File Gateway (NFS) - flat files
+        - Volume Gateways (iSCSI) - block storage - incremental volume backups
+            - Stored Volumes
+            - Cached Voumes
+        - Tape Gateway (VTL) - Archive data
 
 ### Identify and implement data protection, encryption, and capacity planning needs
 - NoSQL vs SQL
