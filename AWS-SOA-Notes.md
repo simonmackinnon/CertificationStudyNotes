@@ -292,6 +292,7 @@
     - default nothing inbound
     - everything outbound
     - can allow access based on source Secrurity Group
+
 #### Deploy EBS Volumes
 - Elastic Block Store
     - Storage volume attached to EC2
@@ -309,6 +310,7 @@
     - If you hit IOPS limit exceeded, IO requests start queuing, may slow down your app
         - increase size of volume
         - switch to io1 from gp2 if need more than 16K IOPS
+
 #### Elastic Load Balancers
 - Targets
     - where traffic gets routed, EC2, lambda, IP address
@@ -364,6 +366,7 @@
     - RequestCount - how many transactions per period (1 or 5 min)
     - SurgeQueueLength - no. of pending req, queue size is 1024 - more than that, rejected (CLB only)
     - SpilloverCount - no. or rejected req due to full queue (CLB only)
+
 #### Deploy an ALB
     - spin up ec2 instance(s)
     - create ALB 
@@ -379,9 +382,12 @@
 - Carefully limit port access to reduce attack surface (if Bastion Host compromised)
 
 ### Identify and remediate deployment issues
-- Potential EC2 Launch Issues
+#### Potential EC2 Launch Issues
     - InstanceLimitExceeded error - too many instances in the region (soft limit is 20 instances per region, can request to get this raised)
     - InsufficientInstanceCapacity error - AWS doesn't have enough hardware to meet request (wait some time and try again, or request less instances, different instance type, or reserved instances, non specific AZ request)
+
+#### Containers and Serverless
+
 
 ## High Availability
 ### Implement scalability and elasticity based on use case
@@ -415,6 +421,8 @@
     - TheGrinder
     - Apache Jmeter
     - Bees with Machine Guns
+    - use bash 'stress' command to simulate CPU spike
+
 #### RDS 
 - RDS and Multi-AZ Failover
     - RDS is for DR, not for performance, exact copy of DB in another AZ, fails over (automatically) to that DB if the primary isn't usable
