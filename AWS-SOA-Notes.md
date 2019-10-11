@@ -237,8 +237,6 @@
 - Organization divided into Organizational Units, (can have multiple layers) 
 - SCPs are applied at an OU or Org level
 
-
-
 ### Tags & Resource Groups
 - Tags are Key-Value pair metadata for AWS resources
     - Some can be inherited (where resources are provisioned via another service (ASG, Beanstalk, CFN)
@@ -790,6 +788,9 @@
 ### Gather and interpret relevant information for network troubleshooting
 
 ## Automation and Optimization
+- Use RI for base workload and On-Demand for variable workload
+- Use TrustedAdviser to check real-time optimization guidance (security, cost, etc.)
+- AWS Budgets for custom budget reports and alerts
 ### Use AWS services and features to manage and assess resource utilization
 #### CLI
 - use _aws configure_ to set up
@@ -832,3 +833,4 @@
 - Has AWS proprietary OpsWorks Stacks - own version of Chef - layered architecture
 ### Employ cost-optimization strategies for efficient resource utilization
 ### Automate manual or repeatable process to minimize management overhead
+
