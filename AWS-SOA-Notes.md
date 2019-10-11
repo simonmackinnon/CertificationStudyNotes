@@ -817,13 +817,56 @@
 - Parameter store 
     - Collection of account data
     - shouldn't store secret info, instead use reference to Secrets Manager entry
+#### Configuration Management
+- AMIs
+- User Data
+- Deployment Frameworks
+- OpsWorks
+- Cloudformation
+#### AMIs
+- Foundational components
+- Company-wide tools/standards - e.g. domain join and Active Directory
+- Create
+    - Launch instance
+    - Install apps
+    - create AMI from this
+- Can create AMI from EBS snapshot (Linux only)
+- What should we configure
+    - Agents
+    - Logging/Monitoring/Security (can be dynamic at launch - Infra team)
+    - Application Runtime (Frameworks, Apache, Tomcat, J2EE) (can be dynamic at launch, Hybrid AMI - App team)
+    - Application (can be dynamic at launch, Hybrid AMI - developers)
+- Use "Sysprep" to remove instance details for Windows AMIs
+- Region specific
+    - Can copy to another region
+- Can share with another account
+
 #### Cloudformation
 - Infrastructure as Code
 - JSON or YAML
+- Declaritive language (resources, not functions)
+- Engine determines order based on dependicies
+- Can take in parameters, and output values based on deployed resources
 - template creation of resources as a "single" unit
 - has Drift Detection - shows differences from the template
 - deployed resources from template is a Stack
     - changes required can be previewed
+- Can operate on collection of resources (Stack)
+- Stack Sets are useful for standard stacks that should be deployed across many accounts
+- Sections:
+    - **Parameters** Input parameters to be used by the template during deployments, e.g. environment, static IPs, application version, etc.
+    - **Mappings** Dictionary to map to important stuff like latest AMI IDs or instances, etc. (use Fn::FindInMap)
+    - **Resources** the resources to deploy
+    - **Init** use this to deploy some stuff on EC2 instances during CFN deployments
+    - **WaitCondition** Conditions that define when the resource actually is created fully
+    - **Outputs** values of outputs specified by the script, normally for alerting and for other resources to consume
+- Can use Macros to speed up CFN template creation for common resources, etc.
+- Can use CloudFormation Development Kit to use commong programming languages (TypeScript, JavaScript, and Python, preview support for C#/.NET, & Java) to "code" CloudFormation templates
+- AWS Architecture Center has CFN templates for common architectures
+- Template Designer shows visual editor of the template
+- Has "Drift Detect" support to show differences in resources vs. stack
+- User --on-failure DO_NOTHING to keep resources (and logs) for investigation
+
 #### SDK
 - Heaps of language support
 #### Powershell
