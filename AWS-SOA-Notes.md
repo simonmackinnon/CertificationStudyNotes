@@ -67,6 +67,7 @@
 - Retrieved using GetMetricStatistics API
 - Most default metric granularity is 1, 3 or 5 minutes
 - Detailed monitoring minimum granularity is 1sec (previously 1 minute) - needs high resolution monitoring enabled
+- AWS Metrics prefixed with "AWS" this is reserved namespace
 - Alarms
     - For any Service
     - Thresholds
@@ -77,6 +78,18 @@
     - Can display any widget (metric graph/number/text, etc) to any region
     - Must be in the region of the metric to add it to the board
 - Logs can be dumped into S3 for longterm usage
+- Log Streams
+    - individual data from instances
+- Log Groups
+    - aggregated data based on similar systems
+- Log events
+    - individual data points from the streams
+- CloudWatch rules can be used to trigger based on events, targets Lambda, Step-functions, or other account event buses
+#### CloudTrail
+- Logs for your AWS environment
+- All API calls within the account
+- For auditing
+- Encrypted by Default with SSE
 #### Cloudwatch vs. CloudTrail
 - Cloudwatch is for metrics, alarms, rules, performance monitoring and notifications
 - Cloudtrail is for auditing. Is a record of all API calls, detailed info, etc.
@@ -229,11 +242,15 @@
 ### Tags & Resource Groups
 - Tags are Key-Value pair metadata for AWS resources
     - Some can be inherited (where resources are provisioned via another service (ASG, Beanstalk, CFN)
+    - IAM Policies can now use tags as a condition
+    - Tag Editor can bulk-edit or bulk-apply tags to resources
 - Resource groups are a way of grouping resources by tag or stack basis
+    - e.g. all EC2 instance with tag "stack:MyApp"
 - Systems Manager - useful to manage resources in RGs
     - e.g. take a snapshot of all EC2 in a group
 
 ### AWS Config
+- AWS has built some standard rules that cover common compliance config and remediation stuff
 - Evaluates the state of out AWS environment at any point in time
     - Configuration Items
         - Point in time attribute of a resource
@@ -251,6 +268,7 @@
         - notifications in SNS
 - Can perform remediation actions
 - Checks can be triggered on schedule or event driven
+- Can trigger notifications for real-time alerting
 
 ### Health Dashboards
 - Service Health
@@ -601,6 +619,7 @@
             - Stored Volumes
             - Cached Voumes
         - Tape Gateway (VTL) - Archive data
+- DataSync - managed service to sync data between on-prem and AWS
 
 ### Identify and implement data protection, encryption, and capacity planning needs
 - NoSQL vs SQL
@@ -643,6 +662,31 @@
 
 ## Security and Compliance
 ### Implement and manage security policies on AWS
+- Certificate Manager
+    - Can create and deploy certificates from this service
+- AWS Shield
+    - Below layer 4
+    - DoS attack protection
+- Shield+ 
+    - Dedicated 24/7 team of engineers who help fight DDoS attacks
+- HSM 
+    - Manage Keys
+- KMS
+    - Manage Keys (multi-tenanted)
+- Guard Duty
+    - Person looking at logs (CloudTrail, VPC Flow, DNS)
+    - Looks for suspicious activity
+    - Subscription service (pay per month per million events, or per GB of data)
+    - VPC Flow Log and DNS Log Analysis	
+        - First 500 GB / month	$1.15 per GB
+        - Next 2000 GB / month	$0.58 per GB
+        - Over 2500 GB / month	$0.29 per GB
+    - AWS CloudTrail Event Analysis	
+        - Per 1 million events / month	$4.60 per 1 million events
+- Macie
+    - Scans objects in S3, finds PID or CC info and assesses risk
+- Inspector 
+    - Agent runs on instances to evaluate bad configurations
 - IAM
     - Credentials
         - email/Password - root account access
