@@ -1,8 +1,10 @@
 # AWS SysOps Associate
 
+    + [Exam preparation:](#exam-preparation-)
 - [Monitoring and Reporting](#monitoring-and-reporting)
   * [Create and maintain metrics and alarms utilizing AWS monitoring services](#create-and-maintain-metrics-and-alarms-utilizing-aws-monitoring-services)
     + [CloudWatch](#cloudwatch)
+    + [CloudTrail](#cloudtrail)
     + [Cloudwatch vs. CloudTrail](#cloudwatch-vs-cloudtrail)
   * [Recognize and differentiate performance and availability metrics](#recognize-and-differentiate-performance-and-availability-metrics)
     + [EC2 Metrics](#ec2-metrics)
@@ -52,12 +54,24 @@
   * [Use AWS services and features to manage and assess resource utilization](#use-aws-services-and-features-to-manage-and-assess-resource-utilization)
     + [CLI](#cli)
     + [Systems Manager (SSM)](#systems-manager--ssm-)
+    + [Configuration Management](#configuration-management)
+    + [AMIs](#amis)
     + [Cloudformation](#cloudformation)
     + [SDK](#sdk)
     + [Powershell](#powershell)
     + [OpsWorks](#opsworks)
   * [Employ cost-optimization strategies for efficient resource utilization](#employ-cost-optimization-strategies-for-efficient-resource-utilization)
   * [Automate manual or repeatable process to minimize management overhead](#automate-manual-or-repeatable-process-to-minimize-management-overhead)
+
+
+#### Exam preparation:
+* https://aws.amazon.com/certification/
+* https://www.aws.training/ 
+* Video: Exam Readiness: AWS Certified SysOps Administrator - Associate
+* https://acloud.guru/learn/aws-certified-sysops-administrator-associate-2019
+* https://www.udemy.com/course/aws-certified-sysops-administrator-associate-practice-exams-2/
+* https://aws.psiexams.com/#/dashboard AWS Certified SysOps Administrator - Associate - Practice
+* Systems Operations on AWS - Classroom Live (3 Days)
 
 ## Monitoring and Reporting
 ### Create and maintain metrics and alarms utilizing AWS monitoring services
