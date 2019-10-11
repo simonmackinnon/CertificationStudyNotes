@@ -1,6 +1,6 @@
 # AWS SysOps Associate
 
-    + [Exam preparation:](#exam-preparation-)
+- [Exam preparation:](#exam-preparation-)
 - [Monitoring and Reporting](#monitoring-and-reporting)
   * [Create and maintain metrics and alarms utilizing AWS monitoring services](#create-and-maintain-metrics-and-alarms-utilizing-aws-monitoring-services)
     + [CloudWatch](#cloudwatch)
