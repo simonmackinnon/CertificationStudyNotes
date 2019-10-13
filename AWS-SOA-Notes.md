@@ -120,7 +120,13 @@
     - Application Errors, messages, etc.
     - Any other virtual disk layer metrics
     - Is required to monitor disk usage activity of the ephemeral volumes of an Amazon EC2 instance
-    - Manual (Console) Steps to set up custom metrics
+    - https://docs.aws.amazon.com/en_pv/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-EC2-Instance.html
+        - Create the IAM user necessary for the CloudWatch agent to write data to CloudWatch
+        - Create the IAM user necessary to store the configuration file in Parameter Store and send information to CloudWatch
+        - Use CLI or SSM or CloudFormation to download and install the agent packages on the server (debian, rpm, msi)
+            - SSM does this all automatically for the specific OS type
+        - Create and modify an agent config file to specify what and frequencty of reporting (manual file edit, or use Cloudwatch Agent File wizard)
+    - Manual (Console) Steps to set up custom metrics (old scripts)
         - Create IAM role for EC2 to access CloudWatch
         - Provision Ec2 Instance, assign created role
         - Add Bootstrap script 
