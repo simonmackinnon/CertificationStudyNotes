@@ -107,6 +107,17 @@
 #### Cloudwatch vs. CloudTrail
 - Cloudwatch is for metrics, alarms, rules, performance monitoring and notifications
 - Cloudtrail is for auditing. Is a record of all API calls, detailed info, etc.
+#### Cost Expolorer
+- Tool to view and analyse costs, based on resource type, region, tag etc. 
+- 13 months of data retained
+- can generate reports (csv)
+- can use to predict future costs 
+- When enabled at organizations level, will show combined totals for all accounts
+#### Cost Allocation Tags
+- Use tags to tag resources
+- Need to activate particular tags to be able to use them within cost explorer
+- Can now track costs based on these activated tags
+- If you see an error when doing this, probably not in root account
     
 ### Recognize and differentiate performance and availability metrics
 #### EC2 Metrics
@@ -502,6 +513,10 @@
     - Apache Jmeter
     - Bees with Machine Guns
     - use bash 'stress' command to simulate CPU spike
+- RDS
+    - Use Multi-AZ to make HA
+    - Can only create Read-Replicas if backups are enabled
+    - Reboot with Failover, can take some time to update UI (and API) for the AZ
 
 #### Route 53
 - DNS Resoltion occurs at edge locations
