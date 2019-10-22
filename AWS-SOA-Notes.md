@@ -517,6 +517,24 @@
     - Use Multi-AZ to make HA
     - Can only create Read-Replicas if backups are enabled
     - Reboot with Failover, can take some time to update UI (and API) for the AZ
+    - Versions
+        - To find RDS version, go to DB, check Engine parameter (included version)
+            - can use 'aws rds describe-db-instances --region' command to find DB metadata
+    - Encrypting    
+        - Using Snapshots
+            - Take a snap
+            - make copy, during copy - do encryption
+            - restore the snap (is encrypted DB if snap is encrypted)
+        - Can't encrypt from free-tier instance, need to do during copy, but can do for prod/dev/test instances
+        - restoring from encrypted snap, can only create encrypted instance
+    - Sharing Encrypted snaps
+        - Create custom KMS encryption key
+        - Create RDS snap using custom key
+        - Share key with other account
+        - Use Console, API or CLI to shate the encrypted snapshot with other account
+        - Can't share encrypted snaps as public
+        - Can't share Oracle or MS SQL Server snaps encrypted using TDE
+        - Can't share encrypted snaps encrypted with default KMS key (needs to be custom)
 
 #### Route 53
 - DNS Resoltion occurs at edge locations
