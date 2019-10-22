@@ -535,6 +535,7 @@
         - Can't share encrypted snaps as public
         - Can't share Oracle or MS SQL Server snaps encrypted using TDE
         - Can't share encrypted snaps encrypted with default KMS key (needs to be custom)
+- 
 
 #### Route 53
 - DNS Resoltion occurs at edge locations
