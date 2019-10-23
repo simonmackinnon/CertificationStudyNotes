@@ -519,7 +519,7 @@
     - Reboot with Failover, can take some time to update UI (and API) for the AZ
     - Versions
         - To find RDS version, go to DB, check Engine parameter (included version)
-            - can use 'aws rds describe-db-instances --region' command to find DB metadata
+            - can use **aws rds describe-db-instances --region** command to find DB metadata
     - Encrypting    
         - Using Snapshots
             - Take a snap
@@ -555,6 +555,9 @@
     - See Monitoring section for which metrics to monitor
     - Use Redshift instead if OLAP traffic is heavy
 - Aurora
+    - MySQL and Postgres compatible
+    - Encryption at rest by default
+    - Cross region replicas - new cluster in replica region
     - Stores 6 copies of data across 3 AZs (2 per each AZ)
     - starts with 10GB and scales out by 10GB blocks up to 64TB
     - Compute scales to 64vCPUs and 488 GiB
@@ -572,6 +575,32 @@
     - then attempts to create new DB in different AZ
     - Aurora Serverless
         - pay per request
+    - Describe using **aws rds describe-db-clusters**
+    - Read replicas have failover priority, Tier 0 > teir 1 ... > tier 15
+- Troubleshooting Autoscaling Groups
+    - Key pair absent
+    - Security Group absent
+    - ASG config not correct
+    - ASG not fount
+    - instance type not supported
+    - AZ no longer supported (this would be very rare!)
+    - EBS volume mapping invalid
+    - ASG service not enabled in account
+    - attempting to attach EBS block device to instance-store AMI
+- Cloud Front and Cache Hit Ratios
+    - Cloudfront is AWS's CDN, distibuted server network that serves cached content based on fastest connection (content cached at 'Edge Locations') - reduces load on orgin server, and reduces latency for end user for cached content
+    - Origin is original content
+    - Distribution is name given to the particular CDN
+    - Cache Hit Ratio is ratio of requests served from Edge Location vs. Origin
+        - Higher the better
+        - Can view it in CloudFront
+        - **Maximise** it by:
+            - Set TTL higher and Cache-Control max-age to ensure cached for as long as possible
+            - Cache based on Query String
+            - Cache based on Cookies
+            - Cache based on Request Headers
+            - Remove Accept-Encoding Header when compression not needed
+            - Serve media content using HTTP
 
 #### Route 53
 - DNS Resoltion occurs at edge locations
