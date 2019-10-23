@@ -535,7 +535,43 @@
         - Can't share encrypted snaps as public
         - Can't share Oracle or MS SQL Server snaps encrypted using TDE
         - Can't share encrypted snaps encrypted with default KMS key (needs to be custom)
-- 
+- Maintenance Windows (which services have one)
+    - RDS
+    - Elasticache
+    - Redshift
+    - DynamoDB DAX
+    - Neptune
+    - Amazon DocumentDB
+    - (Storage Garteway)
+- Elasticache
+    - Web service, in-memory cache in the cloud
+    - used to cache commonly retrieved info from data-store
+    - improve latency for read-heavy workloads
+    - Memcached
+        - No multi AZ
+        - simple solution
+    - Redis
+        - supports Multi AZ 
+    - See Monitoring section for which metrics to monitor
+    - Use Redshift instead if OLAP traffic is heavy
+- Aurora
+    - Stores 6 copies of data across 3 AZs (2 per each AZ)
+    - starts with 10GB and scales out by 10GB blocks up to 64TB
+    - Compute scales to 64vCPUs and 488 GiB
+    - Storage is self-healing
+        - data blocks continuosly scanned and fixed (if needed)
+    ![Amazon Aurora DB Clusters](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/images/AuroraArch001.png)
+    - Can have up to 15 read replicas
+    - If CPU maxed out
+        - Scale Up (increase instance size)
+    - if reads number too high
+        - Scale out (add read replicas)
+    - Failover of primary instance:
+    - If you have replicas, flips CNAME record to the replica
+    - if no replica attempts new DB in same AZ
+    - then attempts to create new DB in different AZ
+    - Aurora Serverless
+        - pay per request
 
 #### Route 53
 - DNS Resoltion occurs at edge locations
