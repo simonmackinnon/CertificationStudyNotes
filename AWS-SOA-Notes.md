@@ -218,7 +218,8 @@
 - CloudWatch metrics (perf. metrics)
 - Access logs
     - can store data where the EC2 instance has been deleted
-- Request tracing (application LB only) - monitoring HTTP requests from users to your application
+    - on NLB, only captures TLS, not HTTP
+- Request tracing (application LB only) - monitoring HTTP requests from users to your application **TIP: ALB ONLY, NOT NLB**
 - CloudTrail logs (api call logs)
 
 #### Monitoring Elasticache
@@ -262,6 +263,7 @@
 - SCPs - service control policies
     - centrally control service access from a single policy to child accounts
     - Overrides the child account's IAM
+    - Can be applied down to account level granularity
 - Can help automation of new accounts
     - Can create new accounts via Organizations, or invite existing accounts
 - Consolidated billing
@@ -325,6 +327,13 @@
     - Shared - multiple tenants use the server
     - Dedicated - part of server, but no one else can use other parts of server
     - Dedicated Host - whole server
+- Placement Groups
+    - No cost for creating PGs
+    - Name of PG must be account level unique
+    - Spread PGs
+        - Can only have 7 running instances per AZ
+    - Cluster PGs
+        - Must be in same AZ
 - Deployment Steps
     - Pick AMI
     - Pick Type (Size, etc.)
@@ -668,6 +677,7 @@
             Principle - Who/what is attempting access
             Action - What actions are being effected (i.e. denied or allowed)
             Resource - What is being accessed (ARN - can be wildcard)
+    - IAM - used to restrict user/role/group access to S3 (or other services/resources for that matter)
     - Default all buckets and objects are private
     - Successful upload gets HTTP 200 response
     - Server Access Logging - Detailed logging of access (i.e. requester, bucket name, request time, action, status, error codes) can be obtained using S3 Server Access Logging 
@@ -827,6 +837,7 @@
     - If account compromised, detatch all policies from U/R/G 
     - Authorisation
         - Changes to policies is **immediately** applied to entities
+    - IAM entity names must be alpha-numeric, plus these characters: + = , . @ _ -
 ### Implement access controls when using AWS
 ### Differentiate between the roles and responsibility within the shared responsibility model
 - Who is responsible for what when something happens
@@ -896,7 +907,9 @@
     - Debugging
         - Is it instance issue?
         - Is there a NACL issue
-        - View Flow Logs
+        - View VPC Flow Logs
+            - Can use to inspect traffic to/from a NLB
+        - 
     
 #### Global Infra
 - No. edge locations > no. of AZ > no. of Regions
