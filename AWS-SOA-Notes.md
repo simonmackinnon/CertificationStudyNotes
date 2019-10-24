@@ -86,6 +86,8 @@
     - For any Service
     - Thresholds
     - Actions
+    - Billing and Alarm data can be accessed only from the us-east-1 region.
+        - Should use AWS Budgets instead
 - Can be used on-premise, just need to download and configure SSM agent and Cloudwatch agent
 - CloudWatch dashboards
     - International
@@ -382,6 +384,11 @@
     - If you hit IOPS limit exceeded, IO requests start queuing, may slow down your app
         - increase size of volume
         - switch to io1 from gp2 if need more than 16K IOPS
+- If volumes are impaired
+    - perform consistency check
+        - Stop applications using it
+        - Enable I/O on the volume
+        - (can also have auto-enabled I/O on the volume, which makes volume immediately available, even if impaired)
 
 #### Elastic Load Balancers
 - Targets
@@ -788,12 +795,37 @@
 - Easy to set up -> see schema conversion tool for how to convert current to AWS
 
 ## Security and Compliance
+### Artifact
+- AWS Artifact is service where compliance documentation for the relevant industries
+- Compliance Frameworks
+    - https://aws.amazon.com/compliance
+    - PCI Secrity Standards Council
+        - PCI DSS - most important for anything that takes CC payments
+    - ISO
+        - ISO/IEC 27001:2005 requirements for a Information Security Management System
+    - HIPAA
+        - Health Insurance (USA) requirements
+    - NIST
+        - cybersecurity risk framework (USA)
 ### Implement and manage security policies on AWS
 - Certificate Manager
     - Can create and deploy certificates from this service
+- DDoS
+    - Distributed Denial of Service Attacks
+    - Amplification/Reflection attacks
+        - NTP Amplification - spoof source IP in request (victim's address) and this will make server send amplified NTP response to victim
+        - Application Attack - send heaps of Get requests to a web server
+        - Sloloris - send connection requests to server, try to hold them open as long as possible
+    - Minimise attack surface area - use ALBs with WAF
+    - Scale to absorb - Use ASGs 
+    - Learn normal behaviour, plan for abnormal behaviour
+    - Whitepaper: https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf
 - AWS Shield
     - Below layer 4
+    - Protects against SYN/UDP Floods, Reflection Attacks, and other layer 3/4 attacks
     - DoS attack protection
+    - Protects on ELB, CloudFront and Route 53 for all AWS customers
+    - 
 - Shield+ 
     - Dedicated 24/7 team of engineers who help fight DDoS attacks
 - HSM 
@@ -814,6 +846,11 @@
     - Scans objects in S3, finds PID or CC info and assesses risk
 - Inspector 
     - Agent runs on instances to evaluate bad configurations
+- AWS Marketplace - Security Products
+    - Can purchase heaps of different services
+    - Penetration testing servers - Kali Linux
+    - Need to request authorization for penetration testing to occur
+    - Just because we've used a product from Marketplace, still need to ask permission to do pen testing to/from AWS
 - IAM
     - Credentials
         - email/Password - root account access
@@ -834,10 +871,26 @@
         - AWS Managed - aws created policies, commonly used permissions
         - Job function - based on what job function a user performs
         - Customer managed - custome policies that allows uncommon access
+        - Identity based: attatched to IAM identities (users, groups, roles)
+        - Resource based: attache to resources
     - If account compromised, detatch all policies from U/R/G 
     - Authorisation
         - Changes to policies is **immediately** applied to entities
     - IAM entity names must be alpha-numeric, plus these characters: + = , . @ _ -
+    - MFA & Reporting
+        - Can set up MFA for individual users
+            - CLI: **aws iam create-virtual-mfa-device**, **aws iam enable-mfa-device** commands
+        - Can get report in console under IAM "Credential Report" - field that shows this status for each user is **mfa_active**
+        - Can enforce the use of MFA
+    - Security Token Service
+        - Federated (normally AD)
+            - SSO - SAML-based authentication
+            - Can sign into AWS using AD credentials (no need to create new user)
+            ![Federated AWS Access](https://docs.aws.amazon.com/IAM/latest/UserGuide/images/saml-based-federation.diagram.png)
+        - Federated with Mobile
+            - Web authentication (Google, Facebook, etc.)
+        - Cross Account access
+            - Users from one account accessing resources in another
 ### Implement access controls when using AWS
 ### Differentiate between the roles and responsibility within the shared responsibility model
 - Who is responsible for what when something happens
@@ -909,7 +962,6 @@
         - Is there a NACL issue
         - View VPC Flow Logs
             - Can use to inspect traffic to/from a NLB
-        - 
     
 #### Global Infra
 - No. edge locations > no. of AZ > no. of Regions
