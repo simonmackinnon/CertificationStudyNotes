@@ -1,11 +1,13 @@
 # AWS SysOps Associate
 
-- [Exam preparation](#exam-preparation)
+- [Exam preparation:](#exam-preparation-)
 - [Monitoring and Reporting](#monitoring-and-reporting)
   * [Create and maintain metrics and alarms utilizing AWS monitoring services](#create-and-maintain-metrics-and-alarms-utilizing-aws-monitoring-services)
     + [CloudWatch](#cloudwatch)
     + [CloudTrail](#cloudtrail)
     + [Cloudwatch vs. CloudTrail](#cloudwatch-vs-cloudtrail)
+    + [Cost Expolorer](#cost-expolorer)
+    + [Cost Allocation Tags](#cost-allocation-tags)
   * [Recognize and differentiate performance and availability metrics](#recognize-and-differentiate-performance-and-availability-metrics)
     + [EC2 Metrics](#ec2-metrics)
     + [EBS Metrics](#ebs-metrics)
@@ -42,6 +44,7 @@
     + [DynamoDB](#dynamodb)
     + [AWS Database Migration Service](#aws-database-migration-service)
 - [Security and Compliance](#security-and-compliance)
+  * [Artifact](#artifact)
   * [Implement and manage security policies on AWS](#implement-and-manage-security-policies-on-aws)
   * [Implement access controls when using AWS](#implement-access-controls-when-using-aws)
   * [Differentiate between the roles and responsibility within the shared responsibility model](#differentiate-between-the-roles-and-responsibility-within-the-shared-responsibility-model)
@@ -63,8 +66,7 @@
   * [Employ cost-optimization strategies for efficient resource utilization](#employ-cost-optimization-strategies-for-efficient-resource-utilization)
   * [Automate manual or repeatable process to minimize management overhead](#automate-manual-or-repeatable-process-to-minimize-management-overhead)
 
-
-#### Exam preparation:
+## Exam preparation:
 * https://aws.amazon.com/certification/
 * https://www.aws.training/ 
 * Video: Exam Readiness: AWS Certified SysOps Administrator - Associate
