@@ -992,6 +992,12 @@
         - View VPC Flow Logs
             - Can use to inspect traffic to/from a NLB
     
+    - Cornell Standard VPC 1.0 (VPN)
+    ![Cornell Standard VPC 1.0](https://blogs.cornell.edu/cloudification/files/2016/04/Typical-Cornell-VPC-Configuration-1f8gtsn.png)
+    - Cornell Standard VPC 2.0 (Direct Connect)
+    ![Cornell Standard VPC 2.0 (Direct Connect)](https://blogs.cornell.edu/cloudification/files/2017/05/Cornell-Standard-VPC-Configuration-version-y4gnnx.png)
+
+    
     ### Steps to provision create a custom VPC 
     (ClickOps but...)
     - Select region
