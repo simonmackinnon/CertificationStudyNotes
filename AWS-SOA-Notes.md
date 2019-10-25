@@ -686,6 +686,7 @@
             Principle - Who/what is attempting access
             Action - What actions are being effected (i.e. denied or allowed)
             Resource - What is being accessed (ARN - can be wildcard)
+            Condition - Can be used to specifically block/allow based on conditions such as source IP address
     - IAM - used to restrict user/role/group access to S3 (or other services/resources for that matter)
     - Default all buckets and objects are private
     - Successful upload gets HTTP 200 response
@@ -743,7 +744,14 @@
         - Endpoint format - <BucketName>.s3-website-<Region>.amazonaws.com
         - Scales automatically
     - File restrictions
-        - Signed URLs to restrict individual files
+        - Pre-signed URLs to restrict individual files
+            - Uses SDKs primarily
+            - Create via CLI:
+                - Create role for access to S3
+                - Attach to EC2 instance, sign into instance
+                - use **aws s3 presign s3://<BucketName>/<filename>** to pre-sign
+                    - default 60 mins (or use --expires value (seconds))
+                - returns the pre-signed URL (can access private objects via this URL)
         - Signed Cookies to restrict multiple files
 - Glacier - Archival S3
 - AWS Storage Gateway 
@@ -860,6 +868,18 @@
     - Penetration testing servers - Kali Linux
     - Need to request authorization for penetration testing to occur
     - Just because we've used a product from Marketplace, still need to ask permission to do pen testing to/from AWS
+- Hypervisors (or Virtual Machine Montitor)
+    - Software/Firmware/Hardware that creates and runs VMs.
+    - Hypervisors run on "host" machines
+    - VMs are called "guest" machines
+    - Xen - EC2 runs on this (c5 on KVMs)
+    - Hardware Virutual Machine, fully virtualised, VMs on top of hypervisors not aware of multi-tenancy with other VMs
+    - Paravirtualisation, lighter version (used to be quicker, but not so much anymore)
+        - Choose HVM over PV
+    - Only AWS have access to Hypervisors
+    - Windows EC2 can only be HVM, Linux can be both
+    - Hypervisor "scrubs" memory/RAM before it's available to the customer
+
 - IAM
     - Credentials
         - email/Password - root account access
@@ -1010,6 +1030,10 @@
 - Parameter store 
     - Collection of account data
     - shouldn't store secret info, instead use reference to Secrets Manager entry
+    - can store confidential info such as passwords/connection strings/licence codes
+    - can store as plain text or encrypted
+    - referred to by name
+    - pass to EC2, CloudFormation, Lambda, Ec2 Run Command etc.
 #### Configuration Management
 - AMIs
 - User Data
