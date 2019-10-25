@@ -819,6 +819,13 @@
         - Application Attack - send heaps of Get requests to a web server
         - Sloloris - send connection requests to server, try to hold them open as long as possible
     - Minimise attack surface area - use ALBs with WAF
+    - WAF
+        - Monitor HTTP/HTTPS requests
+        - Cloudfront, ALB or API Gateway
+        - **NOT** CLB or NLB
+        - Anything in the http request, headers, body, ect.
+        - Can: whitelist, blacklist, or count
+        - 
     - Scale to absorb - Use ASGs 
     - Learn normal behaviour, plan for abnormal behaviour
     - Whitepaper: https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf
