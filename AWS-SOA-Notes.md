@@ -938,17 +938,17 @@
     - Physical - Data Centres
     - Network - Custom networking tech, etc. - (see [Day in the Life of a Billion Packets](https://www.youtube.com/results?search_query=A+Day+in+the+Life+of+a+Billion+Packets))
                    
-                   ------------------------> EC2 (i3.metal)
+                                        EC2 (i3.metal)
     - Hypervisor
 - Customer (Security in the Cloud)
                    
-                   ------------------------> EC2
+                                        EC2
     - Guest OS
                    
-                   ------------------------> Lambda
+                                        Lambda
     - Application
                    
-                   ------------------------> S3, RDS
+                                        S3, RDS
     - Data
 - Vulnerability scanning and pen testing
     - Need to let AWS know
