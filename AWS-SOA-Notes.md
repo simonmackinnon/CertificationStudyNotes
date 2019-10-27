@@ -933,6 +933,7 @@
             - Users from one account accessing resources in another
 ### Implement access controls when using AWS
 ### Differentiate between the roles and responsibility within the shared responsibility model
+![Shared Responsibility Model](https://d1.awsstatic.com/security-center/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg)
 - Who is responsible for what when something happens
 - AWS (Security of the Cloud)
     - Physical - Data Centres
