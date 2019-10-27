@@ -863,6 +863,17 @@
     - Scans objects in S3, finds PID or CC info and assesses risk
 - Inspector 
     - Agent runs on instances to evaluate bad configurations
+    - Steps to install and use:
+        - Tag instance(s) with the assessment target tag(s)
+        - download (wget/curl) and install (sudo bash install) the agent
+        - Define the assessment target
+            - select the tag(s) key(s)/value(s) to assess
+        - Define the assessment template:
+            - Name
+            - Rules package (what kind of tests to run)
+            - duration (longer is going to produce more complete results)
+        - Run the assessment
+        - Review the report
 - AWS Marketplace - Security Products
     - Can purchase heaps of different services
     - Penetration testing servers - Kali Linux
