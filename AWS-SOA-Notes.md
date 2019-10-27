@@ -1003,6 +1003,107 @@
         - View VPC Flow Logs
             - Can use to inspect traffic to/from a NLB
     
+    - Cornell Standard VPC 1.0 (VPN)
+    ![Cornell Standard VPC 1.0](https://blogs.cornell.edu/cloudification/files/2016/04/Typical-Cornell-VPC-Configuration-1f8gtsn.png)
+    - Cornell Standard VPC 2.0 (Direct Connect)
+    ![Cornell Standard VPC 2.0 (Direct Connect)](https://blogs.cornell.edu/cloudification/files/2017/05/Cornell-Standard-VPC-Configuration-version-y4gnnx.png)
+
+    
+    ### Steps to provision create a custom VPC 
+    (ClickOps but...)
+    - Select region
+    - Go to ‘VPC’ Dashboard
+    - Click ‘Create VPC’
+        - Give it a name
+        - Pick the cidr block (use cidr.xyz to check values) - largest is 10.0.0.0/16
+        - Use "Amazon provided IPv6 CIDR block and Default Tenancy
+        - Once created, along with the VPC, this creates the following by default:
+            - Route Table
+            - NACL
+            - Security Group
+    - Create subnet(s), we want 1 private and 1 public
+        - CIDR block is sub of CIDR for VPC - e.g. 10.0.1.0/24 and 10.0.2.0/24
+        - Give name that references AZ for readability
+        - Make one subnet public (i.e. 10.0.1.0)
+            - Select subnet - Actions - “Modify auto-assign IP settings”
+            - Check “Enable auto-assign public IPv4 address” - Save
+    - Add an internet gateway - IGW
+        - Click on “internet gateways”
+        - Click “Create Internet Gateway”
+        - Provide name
+        - Click “Create”
+        - Select IGW - click Actions - click Attach to VPC
+        - Select the VPC, click attach
+    - Configure main Route
+        - Click on “Route Tables”
+        - Click on “Create Route Table”
+        - Give name (publicRoute, etc.) and select VPC
+        - Create Route out to internet
+            - Click “Edit Routes”
+            - Click “Add Route” - 0.0.0.0/0 - select the internet gateway
+            - Click “Add Route” - ::/0 - select the internet gateway
+            - Click “Save Routes”
+        - Click on subnet associations tab - Edit subnet associations
+        - Add public subnet (10.0.1.0) to route table
+    - Create EC2 instance in public subnet
+        - Click on Ec2 Service
+        - Launch instance
+        - Select ami
+        - Select VPC
+        - Select Public subnet
+        - Give name 
+        - Add WebDMZ security group, SSH and HTTP access
+    - Create EC2 instance in private subnet
+        - Click on Ec2 Service
+        - Launch instance
+        - Select ami
+        - Select VPC
+        - Select private subnet
+        - Give name 
+        - Add default security group
+    - Create private security group
+        - “Security Groups” under EC2
+        - Click “Create Security Group”
+        - Add the following Inbound
+            - All ICMP - Source 10.0.1.0/24
+            - Http  - Source 10.0.1.0/24
+            - Https - Source 10.0.1.0/24
+            - MySQL/Aurora  - Source 10.0.1.0/24 (or whatever service you need to access)
+            - SSH - Source 10.0.1.0/24
+        - Go to private EC2 instance - change the security group to the new Private SG (Actions, Networking, Change Security Groups)
+    - Add NAT instance (should use NAT Gateway instead)
+        - Launch EC2 instance, Community AMIs, Search “nat”, select 1st instance in list, use t2.micro
+        - Launch in public subnet in custom VPC
+        - Add to WebDMZ SG
+        - Select “Make General Purpose (SSD) the boot volume for this instance.”
+        - Launch
+        - Disable Source/Destination checks
+            - Select instance, actions, networking, change Source/Dest. Check
+            - Select “Yes, Disable”
+        - Create Route from private EC2 instance to NAT Instance
+            - Click on VPC Dashboard, Route Tables, Select the main route
+            - Go to Routes tab, edit routes, add route
+            - Add internet traffic 0.0.0.0/0 targeting the NAT instance (Instance, select the NAT instance)
+            - Private instance can now access the internet
+        - Terminate the instance
+            - Private instance can NOT access the internet
+        - Remove the route on the main route table (should now be a blackhole status)
+    - Add NAT Gateway
+        - VPC Dashboard - NAT Gateways - Create NAT Gateway
+        - Select public subnet
+        - Create new Elastic IP address
+        - Click “Create a NAT Gateway”
+        - Click “Edit Route Table”
+        - Select Main route table - Routes tab - Edit routes - Add route - 0.0.0.0/0, target NAT Gateway -> select the NAT Gateway - Save, Close
+            - Once NAT GW available, Private instance can access the internet
+    - Configure NACLs (evaluated before SGs)
+        - VPC Dashboard - Network ACLs
+        - Create network ACL - give name and assign to VPC
+        - Edit subnet associations, assign to public subnet - web content not accessible
+        - Select the new NACL, edit inbound rules, add rules for port 80, 443, 22 on all sources (0.0.0.0/0)
+        - Select the new NACL, edit outbound rules, add rules for port 80, 443 and 1024 - 65535 (ephemeral ports) on all sources (0.0.0.0/0)
+
+    
 #### Global Infra
 - No. edge locations > no. of AZ > no. of Regions
 
