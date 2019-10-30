@@ -354,6 +354,7 @@
             - Max size 1-2TB (OS dependant)
             - Terminate instance by default terminates this device (can be manually disabled)
             - can be stopped
+        - ![EBS vs. Instance Store Backed Instances](http://secureservercdn.net/160.153.137.15/3d9.249.myftpupload.com/wp-content/uploads/2016/04/screen-shot-2016-04-06-at-6-36-02-am.png)
 - Deployment Steps
     - Pick AMI
     - Pick Type (Size, etc.)
@@ -542,6 +543,8 @@
     - Need to take into consideration Boot-time-to-service-time (server start-up/healthy time) to ensure no. of instances can meet traffic demand
         - Baking own AMI with application installed reduces BTTST, but decreases flexibility in what is installed/configured
     - Network / Latency a better metric for scaling than CPU utilisation, better reflection of client experience
+- Autoscaling Lifecycle
+    - ![Autoscaling Lifecycle](https://docs.aws.amazon.com/autoscaling/ec2/userguide/images/auto_scaling_lifecycle.png)
 - Testing scalability
     - TheGrinder
     - Apache Jmeter
