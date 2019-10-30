@@ -108,6 +108,9 @@
 - All API calls within the account
 - For auditing
 - Encrypted by Default with SSE
+- Enabled by default (for 7 days)
+    - can extend this manually (Create Trail)
+- Can use "digest files" to validate logfile integrity
 #### Cloudwatch vs. CloudTrail
 - Cloudwatch is for metrics, alarms, rules, performance monitoring and notifications
 - Cloudtrail is for auditing. Is a record of all API calls, detailed info, etc.
@@ -338,6 +341,19 @@
         - Can only have 7 running instances per AZ
     - Cluster PGs
         - Must be in same AZ
+- Volumes
+    - Root Volume - where OS is installed
+    - Additional Volumes - data
+        - Not deleted when root volume is deleted
+    - Instance store vs. EBS
+        - Instance store
+            - Max size 10GB
+            - Terminate instance by default terminates this device (**can't** be disabled)
+            - Instance stored backed instances can't be stopped
+        - EBS root device 
+            - Max size 1-2TB (OS dependant)
+            - Terminate instance by default terminates this device (can be manually disabled)
+            - can be stopped
 - Deployment Steps
     - Pick AMI
     - Pick Type (Size, etc.)
@@ -676,6 +692,9 @@
         - each new version needs to be made public individually
         - deleting a versioned object will create a following version which is the delete marker
         - can enable MFA delete, extra delete security
+    - MFA Delete
+        - Force users to use MFA to delete an object
+        - Force users to use MFA to change bucket versioning on bucket
     - Access Control Lists => regulate access to individual objects
     - Bucket Policies => way of regulating access to entire buckets
         - Policies written in JSON
@@ -693,13 +712,15 @@
     - Server Access Logging - Detailed logging of access (i.e. requester, bucket name, request time, action, status, error codes) can be obtained using S3 Server Access Logging 
     - 3 types: S3, S3-IA and S3-resource
     - Can be encrypted - either client or server side (own or managed)
-        - In transit
+        - In transit (encrypting data to/from buckets)
             - SSL/TLS
-        - At Rest
+        - At Rest (encrytping the stored data)
             - Server Side
                 - S3 Managed Keys - __SSE S3__ (AES256, managed by AWS)
                 - AWS KMS - __SSE-KMS__ (envelope key, audit trail when keys used and by who, and can manage own keys)
-                - Cutomer Provided Keys - __SSE-C__ - Keys managed by us
+                - Cutomer Provided Keys - __SSE-C__ - Keys managed by customer
+                - need to set x-amz-server-side-encryption header to AES256 or ams:kms for SSE-S3 or SSE-KMS, respectively
+                    - use Bucket Policy to deny requests without encryption header
             - Client Side
                 - Encrypt data on client side before uploading, decrypt client side after downloading
                 - Uses a Client-Side Master Key (never sent to AWS) so only encrypted data sent
@@ -713,7 +734,7 @@
         - To be used in conjunction with versioning
         - can have rules for current and previous versions
         - can use it to delete permanently as well
-        - transition to standard IA class
+        - transition to standard IA class, Glacier, or delete
         - archive
     - Glue - used to perform Extract, Transform and Load (ETL) operations on S3 data
     - CloudFront
@@ -849,6 +870,15 @@
     - Manage Keys
 - KMS
     - Manage Keys (multi-tenanted)
+    - Features:
+        Create Keys
+        Import Keys
+        Use IAM to manage access to keys
+        Rotate your keys
+        Disable and re-enable keys
+        Delete keys
+        View use of keys in Cloudtrail
+        Use custom Key Stores (The use of custom key stores requires CloudHSM resources to be available in your account.)
 - Guard Duty
     - Person looking at logs (CloudTrail, VPC Flow, DNS)
     - Looks for suspicious activity
@@ -951,6 +981,12 @@
                    
                                         S3, RDS
     - Data
+- Infrastructure Services (EC2, EBS, Auto-scaling, VPC)
+    - Can apply security patches
+- Container Services (RDS, EMR, Beanstalk)
+    - AWS applies security patches, but customer needs to apply measures
+- Abstracted Services
+    - Customer applies access control only
 - Vulnerability scanning and pen testing
     - Need to let AWS know
 
@@ -981,7 +1017,7 @@
         - Changes to SGs are applied immediately
         - Can have multiple SGs per instance
         - all inbound traffic blocked by default - all outbound allowed
-        - SGs are stateful, allowed inbound traffic is allowed back out, without needing to specify the outbound rule (ACLs work Stateless)
+        - SGs are **stateful**, allowed inbound traffic is allowed back out, without needing to specify the outbound rule (ACLs work Stateless)
         - Can't block specific traffic with SGs, only allow
     - Use Bastion Hosts (jumpbox) to ensure secure connections to instances
     - NAT instance (or prefer NAT gateway)
