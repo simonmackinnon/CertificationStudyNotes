@@ -355,6 +355,7 @@
             - Terminate instance by default terminates this device (can be manually disabled)
             - can be stopped
         - ![EBS vs. Instance Store Backed Instances](http://secureservercdn.net/160.153.137.15/3d9.249.myftpupload.com/wp-content/uploads/2016/04/screen-shot-2016-04-06-at-6-36-02-am.png)
+    - Upgrading EC2 Volume Types
 - Deployment Steps
     - Pick AMI
     - Pick Type (Size, etc.)
@@ -394,7 +395,6 @@
         - gp2: 
             - General Purpose 
             - boot volume 
-            - min 100 IOPS, max 16,000 IOPS (3 IOPS/GB up to 5.2TB)
         - io1: 
             - Provisioned IOPs (PIOPS)
             - I/O intensive, NoSQL, Relational DBs, latency sensitive workloads 
@@ -408,6 +408,7 @@
         - Stop applications using it
         - Enable I/O on the volume
         - (can also have auto-enabled I/O on the volume, which makes volume immediately available, even if impaired)
+
 
 #### Elastic Load Balancers
 - Targets
@@ -552,8 +553,12 @@
     - use bash 'stress' command to simulate CPU spike
 - RDS
     - Use Multi-AZ to make HA
+    - All RDS database engines support Multi-AZ database deployment.
+    - Using provisioned IOPS for RDS - 	100GB to 64TB size, 1000 to 64-80K IOPS
     - Can only create Read-Replicas if backups are enabled
     - Reboot with Failover, can take some time to update UI (and API) for the AZ
+    - Automated backups can be optionally retained
+        - up to 35 days
     - Versions
         - To find RDS version, go to DB, check Engine parameter (included version)
             - can use **aws rds describe-db-instances --region** command to find DB metadata
@@ -574,6 +579,7 @@
         - Can't share encrypted snaps encrypted with default KMS key (needs to be custom)
 - Maintenance Windows (which services have one)
     - RDS
+        - If not specified, a 30 min window for RDS in that region is selected, and on a randomly selected day of the week
     - Elasticache
     - Redshift
     - DynamoDB DAX
@@ -822,6 +828,10 @@
     - Pay per request
 #### DynamoDB
 - Managed NoSQL database
+- Supports:
+    - Scalar Types (Number, Strings, Boolean, and Binary)
+    - Document Types (lists and maps)
+    - Set Types (String Set, Number Set, and Binary Set)
 - Provide TPS and AWS scales out for you
 - Fine-grained control to data
 #### AWS Database Migration Service
