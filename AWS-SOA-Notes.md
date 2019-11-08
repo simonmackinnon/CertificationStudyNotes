@@ -766,7 +766,14 @@
         - Files chached for the Time-To-Live value (TTL), but can be invalidated with an account change
         - Should be secured using pre-signed URLs or cookies
         - Can force users to not be able to access content from origin directly
-        - **exam tip** 
+        - **exam tip** Common Errors:
+            - 400 - bad request
+            - 403 - object in s3 must be publicly accessible
+            - 404 - object doesn't exist
+            - 502 - cloudfront can't connect ot origin
+            - 503 - EC2 server perf issue
+            - 504 - EC2 server perf issue 
+            - 5XX normall due to high traffic
     - Can be configured to create acccess logs
     - Snowball -  Physical disk connected to DC, files uploaded, then sent to AWS to be uploaded on network internally
         - replaced Import Export, different disks sent to AWS, difficult to manage
