@@ -73,6 +73,7 @@
 * https://acloud.guru/learn/aws-certified-sysops-administrator-associate-2019
 * https://www.udemy.com/course/aws-certified-sysops-administrator-associate-practice-exams-2/
 * https://aws.psiexams.com/#/dashboard AWS Certified SysOps Administrator - Associate - Practice
+* https://app.linuxacademy.com/challenges/98f5c55c-edaf-441f-8f4f-4093646cce5b?redirect_uri=https:%2F%2Fapp.linuxacademy.com%2Fsearch%3Fquery%3DAWS%2520SysOps AWS Certified SysOps Administrator - Associate - Practice Exam
 * Systems Operations on AWS - Classroom Live (3 Days)
 
 ## Monitoring and Reporting
@@ -408,7 +409,15 @@
         - Stop applications using it
         - Enable I/O on the volume
         - (can also have auto-enabled I/O on the volume, which makes volume immediately available, even if impaired)
-
+- Volumes exist on EBS
+- Snapshots exist in S3 (not accessible directly)
+- Snaps are point-in-time copies of volumes, incremental
+- Stop instance before snapping a EBS volume that is the root device for EC2 (but can snap while running)
+- can create AMI from snaps and images
+- can change EBS volume sizes on the fly including changing size and storage type
+- Instance and volumes **(EC2 and EBS) always in the same availability zone**
+- can copy to another AZ or region:
+    - take snap or AMI, and copy to new AZ/region
 
 #### Elastic Load Balancers
 - Targets
@@ -757,6 +766,7 @@
         - Files chached for the Time-To-Live value (TTL), but can be invalidated with an account change
         - Should be secured using pre-signed URLs or cookies
         - Can force users to not be able to access content from origin directly
+        - **exam tip** 
     - Can be configured to create acccess logs
     - Snowball -  Physical disk connected to DC, files uploaded, then sent to AWS to be uploaded on network internally
         - replaced Import Export, different disks sent to AWS, difficult to manage
@@ -796,9 +806,28 @@
 - DataSync - managed service to sync data between on-prem and AWS
 
 ### Identify and implement data protection, encryption, and capacity planning needs
+- Encryption:
+    - for the following, can only be done at creation time:
+        - EFS
+        - EBS
+        - RDS
 - NoSQL vs SQL
     - NoSQL came about largely because of scale requirements
-#### Relational Database Service
+KMS & CloudHSM
+- Place to generate, store and manage cryptographic keys for AWS
+- HSMs (Hardware security modules) protect confidentiatily of keys
+- very secure
+- KMS:
+    - **Shared hardware**
+    - multi tentant
+    - Free tier
+    - ebs, s3, rds, dynamodb
+- CloudHSM
+    - **dedicated instances** (not shared with other tenants)
+    - no free tier
+    - FIPS 140-2 lvl 3 compliance
+    - useful for strong regulatory reqs (where dedicated h/w needed)
+#### Relational Database Services
 - Pick instance class: CPU, Memory and Network Performance
 - Pick instance storage: Magnetic, GPU (SSD) or Provisioned IOPS
 - Six different types of DB engines
@@ -837,7 +866,11 @@
 #### AWS Database Migration Service
 - Mainly used when DB size if > 5TB
 - Easy to set up -> see schema conversion tool for how to convert current to AWS
-
+#### Athena
+    - interactive service (serverless) to query S# using SQL
+    - Pay per query or TB scanned
+    - use for querying logs, clickstream data, etc.
+    - can generate reports
 ## Security and Compliance
 ### Artifact
 - AWS Artifact is service where compliance documentation for the relevant industries
@@ -1057,8 +1090,9 @@
     ![Cornell Standard VPC 1.0](https://blogs.cornell.edu/cloudification/files/2016/04/Typical-Cornell-VPC-Configuration-1f8gtsn.png)
     - Cornell Standard VPC 2.0 (Direct Connect)
     ![Cornell Standard VPC 2.0 (Direct Connect)](https://blogs.cornell.edu/cloudification/files/2017/05/Cornell-Standard-VPC-Configuration-version-y4gnnx.png)
+    - A Cloud Guru VPC overview
+    ![ Cloud Guru VPC overview](http://neonta.com/wp-content/uploads/2017/01/vpc-diagram.png)
 
-    
     ### Steps to provision create a custom VPC 
     (ClickOps but...)
     - Select region
@@ -1197,12 +1231,21 @@
     - referred to by name
     - pass to EC2, CloudFormation, Lambda, Ec2 Run Command etc.
 #### Configuration Management
+- Template for the root volume - OS, Apps
+- Launch permissions, public, private, specific
+- Block device mappings, what volumes should be attached at launch time
 - AMIs
 - User Data
 - Deployment Frameworks
 - OpsWorks
 - Cloudformation
 #### AMIs
+- If AMI is created programatically, need to register before it can be used
+    - registered on regional basis
+    - can share/copy an AMI to another AMI or account
+        - Need to allow Read access to storage of AMI to allow sharing
+        - If encrypted, need to share encryption key and snap for the AMI
+        - If there's a __billingProducts__ code, can't directly copy the AMI
 - Foundational components
 - Company-wide tools/standards - e.g. domain join and Active Directory
 - Create
@@ -1236,6 +1279,7 @@
     - **Parameters** Input parameters to be used by the template during deployments, e.g. environment, static IPs, application version, etc.
     - **Mappings** Dictionary to map to important stuff like latest AMI IDs or instances, etc. (use Fn::FindInMap)
     - **Resources** the resources to deploy
+    - **Conditions** conditionally create resources, i.e. based on environment
     - **Init** use this to deploy some stuff on EC2 instances during CFN deployments
     - **WaitCondition** Conditions that define when the resource actually is created fully
     - **Outputs** values of outputs specified by the script, normally for alerting and for other resources to consume
@@ -1245,6 +1289,21 @@
 - Template Designer shows visual editor of the template
 - Has "Drift Detect" support to show differences in resources vs. stack
 - User --on-failure DO_NOTHING to keep resources (and logs) for investigation
+
+#### ElasticBeanstalk
+- Service to deploy and scale web applications / web servers
+- Just upload code, it does deployments, load-balancing, and auto-scaling
+- service is free, but still pay for provisioned resources
+
+#### OpsWorks
+- Managed instances of Chef or Puppet
+
+#### Service Catalog
+- Catalog of approved products (products defined by CloudFormation)
+- Portfolio is collection of products, could be entire app stack
+- Control access by IAM
+- Products can be 'ordered' via a portal
+- Can share portfolios with other accounts or Organizations node
 
 #### SDK
 - Heaps of language support
