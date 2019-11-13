@@ -1103,6 +1103,21 @@ KMS & CloudHSM
         - Is there a NACL issue
         - View VPC Flow Logs
             - Can use to inspect traffic to/from a NLB
+    - VPC Flow logs
+        - Send logs to CLoudwatch, or S3 bucket. 
+        - Can stream logs to ElasticSearch or Lambda
+        - can only enable flow logs for peered VPCs if they're in the same account
+        - tags not available for Flow Logs
+        - Can't change flow log configuration after creation
+    - CIDR Calculations
+        - Need to be able to calculate number of addresses in CIDR for /XX ranges
+        - /24 - 256, etc.
+        - /28 is smallest = 16, -5 reserved, only 11 ip addresses availble.
+        - /16 is largest
+    - Direct Connect
+        - Connection between AWS region/VPC and customer private network.
+        - To connect each region/VPC together, use the Direct Connect gateway
+        - All over AWS's backbone network, much faster, not over internet
     
     - Cornell Standard VPC 1.0 (VPN)
     ![Cornell Standard VPC 1.0](https://blogs.cornell.edu/cloudification/files/2016/04/Typical-Cornell-VPC-Configuration-1f8gtsn.png)
