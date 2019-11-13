@@ -1066,6 +1066,8 @@ KMS & CloudHSM
         - default NACL allows all inbound and outbound ipv4 and ipv6 traffic
         - custom NACL denies all traffic by default, allows ipv4 by rule and ipv6 by rule (if VPC is configured with ipv6 cidr)
         - ordered rules, allows all by default, need to add explicit deny all after all the allow rules to make a whitelist
+        - default NACL allows all traffic by default
+        - custom NACLs denay all traffic by default
     - Security Groups 
         - Changes to SGs are applied immediately
         - Can have multiple SGs per instance
@@ -1079,6 +1081,11 @@ KMS & CloudHSM
         - must be in public subnet
         - create route out from private subnet to the NAT
         - Bottleneck traffic at NAT? Throughput limited by instance size, so increase type/size
+    - NAT Gateway
+        - Managed device
+        - Scales to 45Gbps (was 10Gbps)
+        - has public IP address automatically
+        - more secure (can't SSH, etc, patched automatically)
     - VPC endpoints
         - enables private connection from VPC to supported AWS services (no internet or DX required)
         - interface endpoints
