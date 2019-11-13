@@ -1075,6 +1075,10 @@ KMS & CloudHSM
     - Use Bastion Hosts (jumpbox) to ensure secure connections to instances
     - NAT instance (or prefer NAT gateway)
         - allows safe connections for instances in private subnet to the internet without exposing them to the incoming traffic
+        - require disabled Source/Destination check
+        - must be in public subnet
+        - create route out from private subnet to the NAT
+        - Bottleneck traffic at NAT? Throughput limited by instance size, so increase type/size
     - VPC endpoints
         - enables private connection from VPC to supported AWS services (no internet or DX required)
         - interface endpoints
