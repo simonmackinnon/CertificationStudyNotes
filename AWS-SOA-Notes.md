@@ -84,6 +84,7 @@
 - Retrieved using GetMetricStatistics API
 - Most default metric granularity is 1, 3 or 5 minutes
 - Detailed monitoring minimum granularity is 1sec (previously 1 minute) - needs high resolution monitoring enabled
+    - for metric with 1 minute granularity, data stored for 15 days
 - AWS Metrics prefixed with "AWS" this is reserved namespace
 - Alarms
     - For any Service
@@ -348,15 +349,20 @@
         - Not deleted when root volume is deleted
     - Instance store vs. EBS
         - Instance store
+            - High performance - physically attached to host computer
             - Max size 10GB
             - Terminate instance by default terminates this device (**can't** be disabled)
             - Instance stored backed instances can't be stopped
+            - Reboot commands do not effect instance store backed EC2 instances
         - EBS root device 
             - Max size 1-2TB (OS dependant)
             - Terminate instance by default terminates this device (can be manually disabled)
             - can be stopped
         - ![EBS vs. Instance Store Backed Instances](http://secureservercdn.net/160.153.137.15/3d9.249.myftpupload.com/wp-content/uploads/2016/04/screen-shot-2016-04-06-at-6-36-02-am.png)
     - Upgrading EC2 Volume Types
+- Can store copies of on-prem VMs in EC2 by launching instances and using VM import/export
+- Instance unlimited
+    - A burstable performance instance configured as unlimited can sustain high CPU performance for any period of time whenever required
 - Deployment Steps
     - Pick AMI
     - Pick Type (Size, etc.)
@@ -420,6 +426,7 @@
     - take snap or AMI, and copy to new AZ/region
 
 #### Elastic Load Balancers
+- Can only direct load within a single region
 - Targets
     - where traffic gets routed, EC2, lambda, IP address
 - Listeners
@@ -488,6 +495,9 @@
 - host located in public subnet that allows access to instances in private subnet (via SSH or RDP)
 - allows access to instances without having to grant them internet access
 - Carefully limit port access to reduce attack surface (if Bastion Host compromised)
+
+#### LDAP
+- Launching a second LDAP server that replicates the on-premises LDAP server in your VPC will give your applications on AWS the desired low latency while retaining low latency for your on-premises applications.
 
 ### Identify and remediate deployment issues
 #### Potential EC2 Launch Issues
@@ -563,11 +573,15 @@
 - RDS
     - Use Multi-AZ to make HA
     - All RDS database engines support Multi-AZ database deployment.
+    - Must enable automated backups of RDS before enabling Read Replicas
     - Using provisioned IOPS for RDS - 	100GB to 64TB size, 1000 to 64-80K IOPS
     - Can only create Read-Replicas if backups are enabled
     - Reboot with Failover, can take some time to update UI (and API) for the AZ
     - Automated backups can be optionally retained
-        - up to 35 days
+        - up to 35 days.
+    - Automated snapshots are deleted when the database is terminated by default.
+    - Manual snapshots persist even after a database is terminated. 
+        - No expiration period for manual snapshots.
     - Versions
         - To find RDS version, go to DB, check Engine parameter (included version)
             - can use **aws rds describe-db-instances --region** command to find DB metadata
@@ -604,6 +618,15 @@
         - simple solution
     - Redis
         - supports Multi AZ 
+        - Use Cases:
+            - session management
+            - gaming
+            - leaderboards
+            - real-time analytics
+            - geospatial
+            - chat/messaging
+            - media streaming
+            - pub/sub apps
     - See Monitoring section for which metrics to monitor
     - Use Redshift instead if OLAP traffic is heavy
 - Aurora
@@ -655,7 +678,25 @@
             - Serve media content using HTTP
 
 #### Route 53
+- DNS
+    - To use your own DNS server
+        - configure a DHCP option set with DNS Servers 
+        - replace the DHCP option set in the VPC with the new option set
 - DNS Resoltion occurs at edge locations
+- DNS Record Types:
+    -A (address record) - resolves IPV4 address to domain name
+    -AAAA (IPv6 address record)
+    -CNAME (canonical name record)
+    -CAA (certification authority authorization)
+    -MX (mail exchange record)
+    -NAPTR (name authority pointer record)
+    -NS (name server record)
+    -PTR (pointer record) (reverse DNS, resolves IP to FQDN)
+    -SOA (start of authority record)
+    -SPF (sender policy framework)
+    -SRV (service locator)
+    -TXT (text record)
+
 - Routing Policies available:
     - Simple
         - Default - no complex smarts, just send requests to a endpoint
@@ -676,7 +717,7 @@
 ### Create and manage data retention
 - EBS - Block store, hard drives, attach to VMS
     - Network attached
-    - Tied to Availability Zones
+    - Tied to Availability Zones (replicated within AZ)
     - Stop disk writes before snapshot
 - EFS - File System, share across EC2 instances
     - Elastic
@@ -709,6 +750,7 @@
         - pay for each version
         - each new version needs to be made public individually
         - deleting a versioned object will create a following version which is the delete marker
+            - this can be used to undelete th object, by restoring the version marker to the previous version
         - can enable MFA delete, extra delete security
     - MFA Delete
         - Force users to use MFA to delete an object
@@ -724,6 +766,7 @@
             Action - What actions are being effected (i.e. denied or allowed)
             Resource - What is being accessed (ARN - can be wildcard)
             Condition - Can be used to specifically block/allow based on conditions such as source IP address
+        - **Exam TIP: Explicit Deny statements overrides Explicit Allow statements**
     - IAM - used to restrict user/role/group access to S3 (or other services/resources for that matter)
     - Default all buckets and objects are private
     - Successful upload gets HTTP 200 response
@@ -807,8 +850,8 @@
         - Encrypted by default
         - File Gateway (NFS) - flat files
         - Volume Gateways (iSCSI) - block storage - incremental volume backups
-            - Stored Volumes
-            - Cached Voumes
+            - Stored Volumes -  has point-in-time snapshots of on-prem local data, stored in S3. Asynch backups
+            - Cached Voumes - store data in s3 and keep frequently accessed data locally in cache
         - Tape Gateway (VTL) - Archive data
 - DataSync - managed service to sync data between on-prem and AWS
 
@@ -829,11 +872,13 @@ KMS & CloudHSM
     - multi tentant
     - Free tier
     - ebs, s3, rds, dynamodb
+    - Symmetric (same for encr and decr)
 - CloudHSM
     - **dedicated instances** (not shared with other tenants)
     - no free tier
     - FIPS 140-2 lvl 3 compliance
     - useful for strong regulatory reqs (where dedicated h/w needed)
+    - Asymmetric (can be different or same for encr and decr)
 #### Relational Database Services
 - Pick instance class: CPU, Memory and Network Performance
 - Pick instance storage: Magnetic, GPU (SSD) or Provisioned IOPS
@@ -844,7 +889,7 @@ KMS & CloudHSM
     - OLTP
 - Automated backups
 - RDS and Multi-AZ Failover
-    - RDS is for DR, not for performance, exact copy of DB in another AZ, fails over (automatically) to that DB if the primary isn't usable
+    - Multi-AZ is for DR, not for performance, exact copy of DB in another AZ, fails over (automatically) to that DB if the primary isn't usable
     - takes about 1 minute to fail over RDS
     - backups/restored taken from secondary, no I/O suspensions of primary
     - NOT a scaling solution
@@ -852,6 +897,8 @@ KMS & CloudHSM
     - read-only copy of DB to channel read-throughput traffic away from primary DB
     - really good for business reporting (BI) queries rather than primary DB
     - supported: (native async) MySQL, PosgreSQL, MariaDB, (SSD backed virtualised storage layer) Aurora
+- Regional DR
+    - DR for RDS should be to create Multi-AZ read replica in a separate region. For regional outage, promote to primary and update DNS to new primary endpoint
 #### Aurora
 - In-house build Relational Database
 - You can create custom endpoints (load balanced) to handle criteria other and RO or RW
@@ -922,6 +969,7 @@ KMS & CloudHSM
 - HSM 
     - Manage Keys
 - KMS
+    - Symmetric Keys only
     - Manage Keys (multi-tenanted)
     - Features:
         Create Keys
@@ -1330,6 +1378,19 @@ KMS & CloudHSM
 
 #### OpsWorks
 - Managed instances of Chef or Puppet
+- Coded in Ruby
+
+#### Elastic MapReduce (Amazon EMR)
+- managed cluster/platform for big data analysis
+- Apache Hadoop, etc.
+- Persistent 
+    - stays alice after job complete
+- Transient 
+    - is shut down automatically after job complete
+
+#### SQS
+- Max SQS long pooling timeout is 20 seconds
+
 
 #### Service Catalog
 - Catalog of approved products (products defined by CloudFormation)
