@@ -510,8 +510,8 @@
 
 ### Identify and remediate deployment issues
 #### Potential EC2 Launch Issues
-    - InstanceLimitExceeded error - too many instances in the region (soft limit is 20 instances per region, can request to get this raised)
-    - InsufficientInstanceCapacity error - AWS doesn't have enough hardware to meet request (wait some time and try again, or request less instances, different instance type, or reserved instances, non specific AZ request)
+- InstanceLimitExceeded error - too many instances in the region (soft limit is 20 instances per region, can request to get this raised)
+- InsufficientInstanceCapacity error - AWS doesn't have enough hardware to meet request (wait some time and try again, or request less instances, different instance type, or reserved instances, non specific AZ request)
 
 #### Containers and Serverless
 - Containers
