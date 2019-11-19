@@ -81,7 +81,7 @@
 * https://acloud.guru/learn/aws-certified-sysops-administrator-associate-2019
 * https://www.udemy.com/course/aws-certified-sysops-administrator-associate-practice-exams-2/
 * https://aws.psiexams.com/#/dashboard AWS Certified SysOps Administrator - Associate - Practice
-* https://app.linuxacademy.com/challenges/98f5c55c-edaf-441f-8f4f-4093646cce5b?redirect_uri=https:%2F%2Fapp.linuxacademy.com%2Fsearch%3Fquery%3DAWS%2520SysOps AWS Certified SysOps Administrator - Associate - Practice Exam
+* https://app.linuxacademy.com/challenges/98f5c55c-edaf-441f-8f4f-4093646cce5b AWS Certified SysOps Administrator - Associate - Practice Exam
 * https://udemy.com/course/ultimate-aws-certified-sysops-administrator-associate Practice exam and Cloudformation for SysOps section 
 * Systems Operations on AWS - Classroom Live (3 Days)
 
