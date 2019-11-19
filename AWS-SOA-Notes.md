@@ -1047,7 +1047,7 @@ KMS & CloudHSM
         - Order:
             - collect policy rules for entity 
             - is there an explicit deny? if so, not authorised (http 403 error)
-            - is there an explicit allow? if so, authorised, otherwised not denied
+            - is there an explicit allow? if so, authorised, otherwised not authorised
         - AWS Managed - aws created policies, commonly used permissions
         - Job function - based on what job function a user performs
         - Customer managed - custome policies that allows uncommon access
