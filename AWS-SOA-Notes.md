@@ -74,6 +74,7 @@
 * https://www.udemy.com/course/aws-certified-sysops-administrator-associate-practice-exams-2/
 * https://aws.psiexams.com/#/dashboard AWS Certified SysOps Administrator - Associate - Practice
 * https://app.linuxacademy.com/challenges/98f5c55c-edaf-441f-8f4f-4093646cce5b?redirect_uri=https:%2F%2Fapp.linuxacademy.com%2Fsearch%3Fquery%3DAWS%2520SysOps AWS Certified SysOps Administrator - Associate - Practice Exam
+* https://udemy.com/course/ultimate-aws-certified-sysops-administrator-associate Practice exam and Cloudformation for SysOps section 
 * Systems Operations on AWS - Classroom Live (3 Days)
 
 ## Monitoring and Reporting
@@ -1370,6 +1371,15 @@ KMS & CloudHSM
 - Template Designer shows visual editor of the template
 - Has "Drift Detect" support to show differences in resources vs. stack
 - User --on-failure DO_NOTHING to keep resources (and logs) for investigation
+- cfn-init used to run scripts on server, script is CFN metadata, passed to userdata
+- cfn-signal used to alert CFN that the cfn-init script has run successfully
+- WaitCondition resource specifies how long the CFN run should wait to receive signal, otherwise errors
+- **EXAM TIP** If CFN fails to receive cfn-signal
+    - does AMI have helper scripts? If not, need to download them
+    - did the cfn-init and cfn-signal scripts run? check /var/log/cfn-init.log and /var/log/cloud-init.log
+    - is there internet connection? instance will need to talk to CFN service via internet to return cfn-signal 
+- Deleting parent stacks - deletes nested stacks
+- 
 
 #### ElasticBeanstalk
 - Service to deploy and scale web applications / web servers
