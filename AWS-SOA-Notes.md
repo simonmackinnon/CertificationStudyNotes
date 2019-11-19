@@ -1387,7 +1387,7 @@ KMS & CloudHSM
     - did the cfn-init and cfn-signal scripts run? check /var/log/cfn-init.log and /var/log/cloud-init.log
     - is there internet connection? instance will need to talk to CFN service via internet to return cfn-signal 
 - Deleting parent stacks - deletes nested stacks
-- 
+- Change Sets are useful to see pending changes without applying them (very good to see if a resource will be replaced)
 
 #### ElasticBeanstalk
 - Service to deploy and scale web applications / web servers
