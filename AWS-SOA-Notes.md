@@ -1,6 +1,6 @@
 # AWS SysOps Associate
 
-- [Exam preparation:](#exam-preparation-)
+- [Exam preparation](#exam-preparation)
 - [Monitoring and Reporting](#monitoring-and-reporting)
   * [Create and maintain metrics and alarms utilizing AWS monitoring services](#create-and-maintain-metrics-and-alarms-utilizing-aws-monitoring-services)
     + [CloudWatch](#cloudwatch)
@@ -74,7 +74,7 @@
   * [Employ cost-optimization strategies for efficient resource utilization](#employ-cost-optimization-strategies-for-efficient-resource-utilization)
   * [Automate manual or repeatable process to minimize management overhead](#automate-manual-or-repeatable-process-to-minimize-management-overhead)
 
-## Exam preparation:
+## Exam preparation
 * https://aws.amazon.com/certification/
 * https://www.aws.training/ 
 * Video: Exam Readiness: AWS Certified SysOps Administrator - Associate
