@@ -512,6 +512,12 @@
 #### Potential EC2 Launch Issues
 - InstanceLimitExceeded error - too many instances in the region (soft limit is 20 instances per region, can request to get this raised)
 - InsufficientInstanceCapacity error - AWS doesn't have enough hardware to meet request (wait some time and try again, or request less instances, different instance type, or reserved instances, non specific AZ request)
+- If instance goes from pending to terminated immediately
+    - EBS Volume Limit reached
+    - EBS Snapshot is corrupt
+    - Root EBS volume encrypted, and we don't have permission to the KMS key
+    - instance store backed AMI is missing a required part
+    - Can check all of these via the Description Tab - State Transition reason label
 
 #### Containers and Serverless
 - Containers
