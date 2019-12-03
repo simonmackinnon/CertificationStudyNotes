@@ -701,18 +701,18 @@
         - replace the DHCP option set in the VPC with the new option set
 - DNS Resoltion occurs at edge locations
 - DNS Record Types:
-    -A (address record) - resolves IPV4 address to domain name
-    -AAAA (IPv6 address record)
-    -CNAME (canonical name record)
-    -CAA (certification authority authorization)
-    -MX (mail exchange record)
-    -NAPTR (name authority pointer record)
-    -NS (name server record)
-    -PTR (pointer record) (reverse DNS, resolves IP to FQDN)
-    -SOA (start of authority record)
-    -SPF (sender policy framework)
-    -SRV (service locator)
-    -TXT (text record)
+    - A (address record) - resolves IPV4 address to domain name
+    - AAAA (IPv6 address record)
+    - CNAME (canonical name record)
+    - CAA (certification authority authorization)
+    - MX (mail exchange record)
+    - NAPTR (name authority pointer record)
+    - NS (name server record)
+    - PTR (pointer record) (reverse DNS, resolves IP to FQDN)
+    - SOA (start of authority record)
+    - SPF (sender policy framework)
+    - SRV (service locator)
+    - TXT (text record)
 
 - Routing Policies available:
     - Simple
