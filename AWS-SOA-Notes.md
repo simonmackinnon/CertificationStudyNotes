@@ -777,12 +777,12 @@
         - Policies written in JSON
         - Can be used to make entire buckets public
         - Statement
-            Sid - Statement Id
-            Effect - Allow or Deny
-            Principle - Who/what is attempting access
-            Action - What actions are being effected (i.e. denied or allowed)
-            Resource - What is being accessed (ARN - can be wildcard)
-            Condition - Can be used to specifically block/allow based on conditions such as source IP address
+            - Sid - Statement Id
+            - Effect - Allow or Deny
+            - Principle - Who/what is attempting access
+            - Action - What actions are being effected (i.e. denied or allowed)
+            - Resource - What is being accessed (ARN - can be wildcard)
+            - Condition - Can be used to specifically block/allow based on conditions such as source IP address
         - **Exam TIP: Explicit Deny statements overrides Explicit Allow statements**
     - IAM - used to restrict user/role/group access to S3 (or other services/resources for that matter)
     - Default all buckets and objects are private
