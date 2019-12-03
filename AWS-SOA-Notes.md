@@ -889,13 +889,13 @@ KMS & CloudHSM
     - multi tentant
     - Free tier
     - ebs, s3, rds, dynamodb
-    - Symmetric (same for encr and decr)
+    - Symmetric (same for encr and decr) (As of Nov 2019, AWS Announced KMS will suppoer Asymmetric keys)
 - CloudHSM
     - **dedicated instances** (not shared with other tenants)
     - no free tier
     - FIPS 140-2 lvl 3 compliance
     - useful for strong regulatory reqs (where dedicated h/w needed)
-    - Asymmetric (can be different or same for encr and decr)
+    - Asymmetric (can be different or same for encr and decr) 
 #### Relational Database Services
 - Pick instance class: CPU, Memory and Network Performance
 - Pick instance storage: Magnetic, GPU (SSD) or Provisioned IOPS
@@ -938,10 +938,10 @@ KMS & CloudHSM
 - Mainly used when DB size if > 5TB
 - Easy to set up -> see schema conversion tool for how to convert current to AWS
 #### Athena
-    - interactive service (serverless) to query S# using SQL
-    - Pay per query or TB scanned
-    - use for querying logs, clickstream data, etc.
-    - can generate reports
+- interactive service (serverless) to query S# using SQL
+- Pay per query or TB scanned
+- use for querying logs, clickstream data, etc.
+- can generate reports
 ## Security and Compliance
 ### Artifact
 - AWS Artifact is service where compliance documentation for the relevant industries
