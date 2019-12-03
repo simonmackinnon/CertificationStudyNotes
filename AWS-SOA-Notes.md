@@ -499,6 +499,8 @@
     - register instance(s) to group
     - access via created DNS for ALB
     - can see ELB specific metrics in CloudWatch
+    - Delete an ALB
+        - You can delete an ALB and it will leave the instances in attached in the running state
 
 #### Bastion Hosts (Jumpbox)
 - host located in public subnet that allows access to instances in private subnet (via SSH or RDP)
