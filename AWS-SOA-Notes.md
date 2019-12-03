@@ -938,7 +938,7 @@ KMS & CloudHSM
 - Mainly used when DB size if > 5TB
 - Easy to set up -> see schema conversion tool for how to convert current to AWS
 #### Athena
-- interactive service (serverless) to query S# using SQL
+- interactive service (serverless) to query S3 using SQL
 - Pay per query or TB scanned
 - use for querying logs, clickstream data, etc.
 - can generate reports
