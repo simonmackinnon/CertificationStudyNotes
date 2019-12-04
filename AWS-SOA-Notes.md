@@ -82,7 +82,7 @@
 * https://www.udemy.com/course/aws-certified-sysops-administrator-associate-practice-exams-2/
 * https://aws.psiexams.com/#/dashboard AWS Certified SysOps Administrator - Associate - Practice
 * https://app.linuxacademy.com/challenges/98f5c55c-edaf-441f-8f4f-4093646cce5b AWS Certified SysOps Administrator - Associate - Practice Exam
-* https://udemy.com/course/ultimate-aws-certified-sysops-administrator-associate Practice exam and Cloudformation for SysOps section 
+* https://udemy.com/course/ultimate-aws-certified-sysops-administrator-associate 
 * Systems Operations on AWS - Classroom Live (3 Days)
 
 ## Monitoring and Reporting
@@ -986,7 +986,7 @@ KMS & CloudHSM
 - HSM 
     - Manage Keys
 - KMS
-    - Symmetric Keys only
+    - Symmetric Keys only (As of Nov 2019, AWS Announced KMS will suppoer Asymmetric keys)
     - Manage Keys (multi-tenanted)
     - Features:
         Create Keys
