@@ -17,6 +17,22 @@
         - add new application directories to PATH or add executable to /bin directory to enable use 
     - `-i` flag keeps stdin open
     - `-t` flag allocates a pseudo-TTY
+- default container command 
+    - executes with PID 1
+    - is defined with the CMD directive in the dockerfile
+    - override by:
+        - altering dockerfile and create new image to run container from
+        - alter at runtime i.e. `docker container run -d nginx sleep 500`
+- restart policies
+    - docker containers don't automatically start on host daemon restart
+    - docker has restart policies which allows this to be controlled
+        `--restart` flag controls this
+- disk usage metrics
+    - run `docker system df` to get docker level disk usage
+    - run `docker system df -v` to get per component (images/repos/containers) level metrics
+- use `--rm` flag to automatically delete containers when it exits, i.e. `docker container run -dt --rm --name testcontainer01 busybox ping -c10 google.com`
+
+
 
 ## Image Creation, Management & Registry
 
