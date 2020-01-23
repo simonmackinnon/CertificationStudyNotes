@@ -1,6 +1,6 @@
 # Certified Docker Associate
 
-## Image Creation, Management & Registry
+## Basic Information
 - Can indentify a container my UUID, short ID, or name
 - Can run containers in attached or detatched mode
     - advantage of detatched is retaining terminal control, no issues if command is interupted
@@ -17,6 +17,8 @@
         - add new application directories to PATH or add executable to /bin directory to enable use 
     - `-i` flag keeps stdin open
     - `-t` flag allocates a pseudo-TTY
+
+## Image Creation, Management & Registry
 
 ## Networking
 - By default, Docker containers can make egress connections, but ingress connections don't work.
