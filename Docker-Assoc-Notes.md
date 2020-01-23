@@ -31,10 +31,34 @@
     - run `docker system df` to get docker level disk usage
     - run `docker system df -v` to get per component (images/repos/containers) level metrics
 - use `--rm` flag to automatically delete containers when it exits, i.e. `docker container run -dt --rm --name testcontainer01 busybox ping -c10 google.com`
-
-
-
+ 
 ## Image Creation, Management & Registry
+- Image creation
+    - Instructions for docker images contained in a file called Dockerfile
+    - Images are built using `docker build .` 
+    - The new image can be viewd in the `docker images` output
+- Dockerfile
+    - text file that has series of Instructions and arguments followed by the daemon to build a new image
+    - Starts with the `FROM` instruction which is the base image the new one should be based on - required
+    - Comments have a `#` at the start of the line
+    - Simple use case:
+        ```
+        # base image is the ubuntu image
+        FROM ubuntu
+
+        # run/install the OS updates
+        RUN apt-get update
+
+        # install nginx package silently
+        RUN apt-get install -y nginx
+
+        # copy the host file to the image location
+        COPY index.nginx-debian.html /var/www/html/
+
+        # specify the command to be run as the default 
+        #   process when the container starts
+        CMD nginx -g 'daemon off;'
+        ```
 
 ## Networking
 - By default, Docker containers can make egress connections, but ingress connections don't work.
