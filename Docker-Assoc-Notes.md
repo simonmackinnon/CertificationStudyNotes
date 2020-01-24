@@ -59,6 +59,24 @@
         #   process when the container starts
         CMD nginx -g 'daemon off;'
         ```
+    - COPY vs. ADD commands
+        - Serve similar purposes - both can copy a file to the image
+        - COPY has `src` and `destination`
+            - source is file on host directory
+        - ADD also supports 2 other sources
+            - URL (doesn't need to be local)
+                - recommend using wget or curl for internet sourced files, multiple instructions create additional image layers
+            - Extract compressed file to the destination
+                `ADD compress.tar.gz /tmp` - performs decompression then moves them to the container
+    - EXPOSE instruction
+        - informs user about what port a specific app/service is running on the container which `-p` value needs to be set up
+        - doesn't actually publish the port
+        - example of `EXPOSE 9324` means the service will be running on port 9324, host would need to bind to this, e.g. `-p 8001:9324`
+    - HEALTHCHECK instruction
+        -
+    - ENTRYPOINT instruction
+        -
+
 
 ## Networking
 - By default, Docker containers can make egress connections, but ingress connections don't work.
