@@ -73,7 +73,11 @@
         - doesn't actually publish the port
         - example of `EXPOSE 9324` means the service will be running on port 9324, host would need to bind to this, e.g. `-p 8001:9324`
     - HEALTHCHECK instruction
-        -
+        - how to test that the application is healthy
+        - if the healthcheck command returns non-zero exit code, status is unhealthy,
+        - if exit code is zero, status is healthy
+        - before healthcheck has run, status is pending
+        - specify `--interval` (default 30s), `--timeout` (default 30s), `--start-period` (default 0s)  and number of `--retries` (default 3)
     - ENTRYPOINT instruction
         -
 
