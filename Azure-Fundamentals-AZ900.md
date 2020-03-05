@@ -1,8 +1,21 @@
 # AZ900 Azure Fundamentals
 
 ## Cloud Concepts
-- Econonmy of Scale
-    - Since Azure owns and runs so much hardware, they can do so more efficiently, and pass on the savings to the customer
+- Benefits if using Cloud Services
+    - High Availability
+    - Scalability
+    - Elasticity
+    - Agility
+    - Fault Tolerance
+    - Disaster Recovery
+    - Econonmy of Scale
+        - Since Azure owns and runs so much hardware, they can do so more efficiently, and pass on the savings to the customer
+    - CapEx vs. OpEx,
+    - Consumption-based model
+
+- Paradigms for hosting apps - IaaS, PaaS, SaaS
+    
+- Public, private and hybrid clouds
 
 ## Azure Architecture
 - Regions
@@ -11,6 +24,10 @@
         - Some services can replicate
         - Patch/update one region at a time
         - Can failover from one region to the other when there's an outage
+- Availability Zones
+- Resource Groups
+- Azure Resource Manager
+- Benefits / Usage of core Azure architectural components
 
 ## Compute
 - Virtual Machines
@@ -31,16 +48,18 @@
     - Can manage multiple VMs easily w/ the same config
     - Auto scaling, run what you need, up or down
 - App Services
-- Containers
-- Kubernetes Service
+- Azure Container Instances 
+- Azure Kubernetes Service
 - Functions
 
 ## Networking
+- Virtual Network
 - Load Balancers
     - Network LB
         - Can be used for any traffic (internal or external)
-        
-
+- VPN Gateway
+- Application Gateway
+- Content Delivery Network
 
 ## Storage
 - Blob
@@ -51,29 +70,110 @@
     - uses SMB protocol
     - allows multiple VMs to R/W the files
 - Archive
-    - Cold 
+    - Cold, infrequently accessed data, cheap storage, slow/expensive access
 
 ## Database
 - CosmosDB
     - PaaS DB offering
 - Azure SQL DB
     - PaaS DB offering
+- Azure DB for MySQL
+- Azure DB for PostgreSQL
+- Azure DB Migration service
 
-## Authentication and Authorization
+## Marketplace
 
 ## Azure Solutions
-- IoT Central
+- IoT
     - IoT Central is a Software-as-a-Service solution that can help ease the costs and effort of developing a whole IoT solution from scratch.
-- IoT Hub
     - IoT Hub provides a managed and secure backend for millions of IoT devices.
+- Big Data / Analytics
+    - SQL Data Warehouse
+    - HDInsight
+    - Azure Databricks
 - Artificial Intelligence
-    - an ML model defines what you want your machine learning implementation to learn
+    - Machine Learning service
+        - an ML model defines what you want your machine learning implementation to learn
+    - Machine Learning Studio
+- Serverless
+    - Azure Functions
+    - Logic Apps
+    - Event Grid
+- DevOps
+    - Azure Devops
+    - Azure DevTest Labs
+- Benefits/Outcomes of using Azure solutions
+- Tools
+    - Azure Portal
+    - Azure PowerShell
+    - Azure CLI
+    - Cloud Shell
+- Azure Adviser
 
 ## Security
+- Network Security Groups
+- Application Security Groups
+- User Defined Rules
+- Azure Firewall
+- Azure DDoD Protection
+- security solution appropriateness
+- Security Tools
+    - Azure Security Center
+    - Azure Security Center usage scenarios
+    - Key Vault
+    - Azure Information Protection (AIP)
+    - Azure Advanced Threat Protection (ATP)
+
+## Identity Services
+- Authentication and Authorization
+- Azure Active Directory
+- Azure Multi-Factor Authentication
+
+## Governance
+- policies and initiatives with Azure Policy
+- Role-Based Access Control (RBAC)
+- Locks
+- Azure Advisor security assistance
+- Azure Blueprints
+
+## Monitoring & Reporting
+- Azure Monitor
+- Azure Service Health
+- Use cases and benefits of Azure Monitor and Azure Service Health
 
 ## Privacy, Compliance and Trust
+- Compliance 
+    - GDPR
+    - ISO
+    - NIST
+- Microsoft Privacy Statement
+- Trust center
+- Service Trust Portal
+- Compliance Manager
+- Azure Compliance
+- Azure Government
+- Azure China
 
 ## Pricing
+- Subscriptions
+    - access control
+    - offer types
+    - Management groups
+- Cost management
+    - Purchase options
+    - Azure Free account
+    - resource types, services, locations, ingress/egress traffic
+    - Zones for billing purposes
+    - Pricing calculator
+    - Total Cost of Ownership (TCO) calculator
+    - Cost Minimisation best practices
+        - performing cost analysis
+        - spending limits 
+        - quotas
+        - using tags to identify cost owners, 
+        - Azure reservations 
+        - Azure Advisor
+    - Azure Cost Management
 
 ## Support
 - Levels
@@ -85,5 +185,17 @@
         - Max 2 hour response time for Cat B incidents
     - Premier
         - Fastest response time
+- Support Tickets
+- Support Channels
+- Knowledge Centre
+- Service Level Agreements (SLA)
+    - Composite SLAs
+    - determin appropriate SLA for an app
+- Service Lifecycle
+    - Previews
+        - Private
+        - Public
+    - General Availability
+    - Monitor feature/service updates 
 
 ## Exam Preparation
