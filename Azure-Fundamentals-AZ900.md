@@ -61,6 +61,7 @@
     - Not available in all regions
 - Resource Groups
     - Way of organisiging resources
+    
 ![Resource Hierachy](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/media/organize-resources/scope-levels.png)
 - Azure Resource Manager
 - Benefits / Usage of core Azure architectural components
