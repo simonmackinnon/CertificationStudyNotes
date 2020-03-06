@@ -55,9 +55,16 @@
         - Patch/update one region at a time
         - Can failover from one region to the other when there's an outage
 - Availability Zones
+    - Datacentre, separated by distance
+    - 3 AZs per Region
+    - Allows for maximum amount of availability
+    - Not available in all regions
 - Resource Groups
+    - Way of organisiging resources
+![Resource Hierachy](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/media/organize-resources/scope-levels.png)
 - Azure Resource Manager
 - Benefits / Usage of core Azure architectural components
+    - Put 
 
 ## Compute
 - Virtual Machines
@@ -221,7 +228,7 @@
 - Knowledge Centre
 - Service Level Agreements (SLA)
     - Composite SLAs
-    - determin appropriate SLA for an app
+    - determine appropriate SLA for an app
 - Service Lifecycle
     - Previews
         - Private
