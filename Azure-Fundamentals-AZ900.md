@@ -61,11 +61,13 @@
     - Not available in all regions
 - Resource Groups
     - Way of organisiging resources
-    
+    - Can perform operations on resource groups
 ![Resource Hierachy](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/media/organize-resources/scope-levels.png)
 - Azure Resource Manager
+    - Model of deployments
+    - API layer for functionality provisioning and configuring all services/features/resources
 - Benefits / Usage of core Azure architectural components
-    - Put 
+    - Put resources close to users
 
 ## Compute
 - Virtual Machines
