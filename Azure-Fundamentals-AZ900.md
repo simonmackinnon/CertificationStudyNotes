@@ -31,7 +31,7 @@
         - Provider runs your application, don't have access to hardware, but you provide the software/code
     - SaaS
         - Software available to use within the cloud, only configuration access only
-    - ![Compare paradigms](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bmc.com%2Fblogs%2Fsaas-vs-paas-vs-iaas-whats-the-difference-and-how-to-choose%2F&psig=AOvVaw2BoUKGEKrfvodEtuIKhY6o&ust=1583546507710000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiun8vghOgCFQAAAAAdAAAAABAD)
+    - ![Compare paradigms](https://blogs.bmc.com/wp-content/uploads/2017/09/saas-vs-paas-vs-iaas.png)
     
 - Cloud Types
     - Public
