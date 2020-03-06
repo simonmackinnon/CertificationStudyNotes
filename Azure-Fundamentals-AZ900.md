@@ -31,7 +31,7 @@
         - Provider runs your application, don't have access to hardware, but you provide the software/code
     - SaaS
         - Software available to use within the cloud, only configuration access only
-    - ![Compare paradigms](https://stack247.files.wordpress.com/2015/05/azure-on-premises-vs-iaas-vs-paas-vs-saas.png)
+    ![Compare paradigms](https://stack247.files.wordpress.com/2015/05/azure-on-premises-vs-iaas-vs-paas-vs-saas.png)
     
 - Cloud Types
     - Public
