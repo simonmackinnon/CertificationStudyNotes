@@ -48,7 +48,7 @@
 ## Azure Architecture
 - Regions
     - 58 regions
-![Azure Regions](https://azurecomcdn.azureedge.net/cvt-92799112b92ce1432ee2e938fe2233012be6a469ece7c4743b538ebd039395e4/images/shared/regions-map-large.svg)
+    ![Azure Regions](https://azurecomcdn.azureedge.net/cvt-92799112b92ce1432ee2e938fe2233012be6a469ece7c4743b538ebd039395e4/images/shared/regions-map-large.svg)
     - Region Pairs 
         - A region that is linked with another region in the same geography (at least 300 miles apart)
         - Some services can replicate
@@ -62,7 +62,8 @@
 - Resource Groups
     - Way of organisiging resources
     - Can perform operations on resource groups
-![Resource Hierachy](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/media/organize-resources/scope-levels.png)
+
+    ![Resource Hierachy](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/media/organize-resources/scope-levels.png)
 - Azure Resource Manager
     - Model of deployments
     - API layer for functionality provisioning and configuring all services/features/resources
