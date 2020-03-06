@@ -3,19 +3,40 @@
 ## Cloud Concepts
 - Benefits if using Cloud Services
     - High Availability
+        - ability of system to respond to users (% of time)
     - Scalability
+        - abilty of system/website to handle grown of users/demand/requests
     - Elasticity
+        - ability to automatically grow/shrink resources based on demand
     - Agility
+        - ability to respond to changes in the market or environment
+        - can test things cheaply/experiment
     - Fault Tolerance
+        - abiltiy of a system to handle faults like power, networking or hardware failures
     - Disaster Recovery
+        - ability of a system toi recover from a failure within a period of time, and how much data is lost
     - Econonmy of Scale
         - Since Azure owns and runs so much hardware, they can do so more efficiently, and pass on the savings to the customer
-    - CapEx vs. OpEx,
+    - CapEx vs. OpEx
+        - CapEx is money invested (upfront) in assets (like computers) that return investment over time
+        - OpEx is the cost of doing business on daily bases, ongoing expenses
     - Consumption-based model
+        - Pay per time used (minute, hour)
+        - Pay for resources used (size, number)
 
-- Paradigms for hosting apps - IaaS, PaaS, SaaS
+- Paradigms for hosting apps
+    - IaaS
+        - Infrastructure such as VMs, networking, LBs, firewalls that you can get in a Cloud environment
+    - PaaS
+        - Provider runs your application, don't have access to hardware, but you provide the software/code
+    - SaaS
+        - Software available to use within the cloud, only configuration access only
+    - ![Compare paradigms](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bmc.com%2Fblogs%2Fsaas-vs-paas-vs-iaas-whats-the-difference-and-how-to-choose%2F&psig=AOvVaw2BoUKGEKrfvodEtuIKhY6o&ust=1583546507710000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiun8vghOgCFQAAAAAdAAAAABAD)
     
-- Public, private and hybrid clouds
+- Cloud Types
+    - Public
+    - Private
+    - Hybrid
 
 ## Azure Architecture
 - Regions
@@ -82,6 +103,7 @@
 - Azure DB Migration service
 
 ## Marketplace
+- Service where external vendors can sell their Azure products and solutions
 
 ## Azure Solutions
 - IoT
@@ -199,3 +221,6 @@
     - Monitor feature/service updates 
 
 ## Exam Preparation
+- https://learn.acloud.guru/course/az-900-microsoft-azure-fundamentals
+- https://www.udemy.com/course/az900-azure/
+- https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE3VwUY
