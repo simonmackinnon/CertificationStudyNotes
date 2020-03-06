@@ -47,6 +47,8 @@
 
 ## Azure Architecture
 - Regions
+    - 58 regions
+![Azure Regions](https://azurecomcdn.azureedge.net/cvt-92799112b92ce1432ee2e938fe2233012be6a469ece7c4743b538ebd039395e4/images/shared/regions-map-large.svg)
     - Region Pairs 
         - A region that is linked with another region in the same geography (at least 300 miles apart)
         - Some services can replicate
