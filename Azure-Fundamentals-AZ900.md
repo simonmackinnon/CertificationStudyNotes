@@ -66,11 +66,13 @@
 - Azure Resource Manager
     - Model of deployments
     - API layer for functionality provisioning and configuring all services/features/resources
+    - Can use ARM templates to build stacks consistently multiple times
 - Benefits / Usage of core Azure architectural components
     - Put resources close to users
 
 ## Compute
 - Virtual Machines
+    - Not a real machine, normally part of a real machine using virtualisation software to appear as a single/individual machine
     - Is your machine to install/control
     - IaaS - including networking
     - Tooling to manage VMs
@@ -87,49 +89,81 @@
     - Way of ensuring High Availability, if a machine stops, app keeps working
     - Can manage multiple VMs easily w/ the same config
     - Auto scaling, run what you need, up or down
-- App Services
-- Azure Container Instances 
-- Azure Kubernetes Service
+- App Service
+    - Upload code / software, Azure will provision required hardware and run it for us
 - Functions
+    - upload code, no configuration of software needed
+- Azure Container Instances 
+    - fast/easy way to deploy containers
+    - containers
+        - package entire software environment into container
+
+- Azure Kubernetes Service
+    - like ACI, but has ability to scale
+
 
 ## Networking
 - Virtual Network
+    - Network to connect resources to to use them/connect to other services
+    - done via software
 - Load Balancers
     - Network LB
         - Can be used for any traffic (internal or external)
 - VPN Gateway
+    - create private link between own network and virtual network
+    - requires connection on both sides
+    - provided by Azure
+    - blocks public traffic
 - Application Gateway
+    - Load balancer that operates at http request level (application LB)
 - Content Delivery Network
-
+    - servers not controlled by us
+    - serves content (static files) to users
+    - closer to users
+    - removes traffic from origin(s)
 ## Storage
 - Blob
     - used for storing large amount of unstructured data
 - Disk
     - allows data to be stored persistently and attached as a virtual hard disk
+    - can mount them to a VM
 - File
     - uses SMB protocol
     - allows multiple VMs to R/W the files
 - Archive
     - Cold, infrequently accessed data, cheap storage, slow/expensive access
+    - normally for recovery
 
 ## Database
 - CosmosDB
+    - NoSQL database
+    - Globally availably
+    - Very fast 
     - PaaS DB offering
 - Azure SQL DB
     - PaaS DB offering
+    - Managed service
+    - Scales easily
+    - Relational DB
 - Azure DB for MySQL
+    - Managed version of MySQL (open source DB)
 - Azure DB for PostgreSQL
+    - Managed version of PostgreSQL (open source DB)
+    - MySQL compatible
 - Azure DB Migration service
+    - Service to help migrate existing DB (on prem, other cloud) to Azure
 
 ## Marketplace
 - Service where external vendors can sell their Azure products and solutions
+- Simple catalog based portal
 
 ## Azure Solutions
 - IoT
     - IoT Central is a Software-as-a-Service solution that can help ease the costs and effort of developing a whole IoT solution from scratch.
     - IoT Hub provides a managed and secure backend for millions of IoT devices.
 - Big Data / Analytics
-    - SQL Data Warehouse
+    - Synapse Analytics (formerly SQL Data Warehouse) 
+        - Reporting service, large reports/data store
     - HDInsight
     - Azure Databricks
 - Artificial Intelligence
