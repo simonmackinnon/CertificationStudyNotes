@@ -35,8 +35,15 @@
     
 - Cloud Types
     - Public
+        - Computing services offered over the public internet
+        - anyone can sign up
     - Private
+        - Computing services offered to only select users
+        - internal or corporate cloud
+        - can be hosted on own or leased hardware
     - Hybrid
+        - Combination of public and private clouds
+        - scale private infrastructure to the cloud
 
 ## Azure Architecture
 - Regions
