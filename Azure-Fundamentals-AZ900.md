@@ -254,16 +254,36 @@
     - Security through layers
         - ensure multiple layers of security exists in case of single layer breaches
 - Security Tools
+    - Physical vs. Digital
+        - Physical - computer logged into application, no access to Azure DCs
+        - Security responsibility maps to shared responsibility architecture
     - Azure Security Center
     - Azure Security Center usage scenarios
     - Key Vault
+        - 
     - Azure Information Protection (AIP)
     - Azure Advanced Threat Protection (ATP)
 
 ## Identity Services
 - Authentication and Authorization
+    - Authentication is a user proving who they are, user ID and password
+    - Authorisation is ensuring a user is permitted to perform an action
+    - Least Priviliges - Enasure minimum user granted as are needed
 - Azure Active Directory
+    - Designed for web technologies primarily
+    - Identity as a Service - IDaaS
+    - MS's preferred solution for ID managment
+    - Mange users/groups/roles
+    - Enables SSO - use company username/password to allow access to all applications
+    - Can synchronise with the corporate AD, allow users/passwords to be used in the AAD
+    - Not the same as MS Active Directory
 - Azure Multi-Factor Authentication
+    - Users are forced to use a second method of authentication
+    - E.g. Username/Password/Mobile
+    - Made of:
+        - Something you are (voice, face, thumbprint)
+        - Something you know (username, password, secret question)
+        - Something you have (phone, app, ATM card)
 
 ## Governance
 - policies and initiatives with Azure Policy
