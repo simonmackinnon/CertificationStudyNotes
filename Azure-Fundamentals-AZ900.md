@@ -260,7 +260,7 @@
     - Azure Security Center
     - Azure Security Center usage scenarios
     - Key Vault
-        - 
+        - All secrets in Azure should be managed in Azure Key Vault
     - Azure Information Protection (AIP)
     - Azure Advanced Threat Protection (ATP)
 
