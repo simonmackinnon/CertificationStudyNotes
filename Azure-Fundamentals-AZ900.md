@@ -84,32 +84,45 @@
     - Pricing
         - hourly
         - More compute/memory, more cost
+    - Windows or Linux
+    - Hypervisor run on host machine, allows VM to run on part of a machine
 - Scale Sets
     - Group of identical, load balanced VMs
     - Controlled by a scaling policy, e.g. when CPU is > X%, add another VMs or scheduled
     - Way of ensuring High Availability, if a machine stops, app keeps working
     - Can manage multiple VMs easily w/ the same config
     - Auto scaling, run what you need, up or down
+    - Elasticity - add/remove machines
 - App Service
-    - Upload code / software, Azure will provision required hardware and run it for us
+    - Upload code / software, Azure will provision required hardware and run it for us as a web service
+    - no need to provision infrastructure
+    - PaaS
 - Functions
+    - serverless
+    - Can edit in browser
+    - meant for small pieces of execution
+    - 1M executions free
     - upload code, no configuration of software needed
 - Azure Container Instances 
     - fast/easy way to deploy containers
     - containers
         - package entire software environment into container
-
+    - reduce overheads on promoting software/changes through environments
+    - ACI 
+        - quickest way to get a container created (under a minute)
+        - Not great scalability
 - Azure Kubernetes Service
     - like ACI, but has ability to scale
-
+    - based on Google's Kubernetes
 
 ## Networking
 - Virtual Network
-    - Network to connect resources to to use them/connect to other services
+    - Network to connect resources (VMs, functions, etc.) to to use them/connect to other services
     - done via software
 - Load Balancers
     - Network LB
         - Can be used for any traffic (internal or external)
+        - traffic controlled via some defined (user or default) algorithm
 - VPN Gateway
     - create private link between own network and virtual network
     - requires connection on both sides
@@ -117,11 +130,12 @@
     - blocks public traffic
 - Application Gateway
     - Load balancer that operates at http request level (application LB)
+    - Can direct traffic based on URL, query params, http headers, etc.
 - Content Delivery Network
     - servers not controlled by us
-    - serves content (static files) to users
-    - closer to users
+    - serves content (static files) to users at Edge locations, generally closer to users than the origin
     - removes traffic from origin(s)
+
 ## Storage
 - Blob
     - used for storing large amount of unstructured data
@@ -160,20 +174,29 @@
 
 ## Azure Solutions
 - IoT
-    - IoT Central is a Software-as-a-Service solution that can help ease the costs and effort of developing a whole IoT solution from scratch.
-    - IoT Hub provides a managed and secure backend for millions of IoT devices.
+    - IoT Central 
+        - a SaaS solution that can help ease the costs and effort of developing a whole IoT solution from scratch.
+    - IoT Hub 
+        - provides a managed and secure backend for millions of IoT devices.
+        - Supports Millions of records per seconds
 - Big Data / Analytics
     - Synapse Analytics (formerly SQL Data Warehouse) 
         - Reporting service, large reports/data store
     - HDInsight
+        - Hadoop managaged service by Azure
     - Azure Databricks
+        - Centalised service to pull in data from many services, perform transfromations, create reports
 - Artificial Intelligence
     - Machine Learning service
+        - Vision API, Speech API, etc.
         - an ML model defines what you want your machine learning implementation to learn
     - Machine Learning Studio
 - Serverless
     - Azure Functions
+        - upload code to be run, no server configuration needed
+        - performance guaranteed
     - Logic Apps
+        - tie functions together
     - Event Grid
 - DevOps
     - Azure Devops
@@ -181,10 +204,20 @@
 - Benefits/Outcomes of using Azure solutions
 - Tools
     - Azure Portal
+        - Manually configure using click configurations
     - Azure PowerShell
+        - Use the SDK for Powershell to connect to Azure from PS to perform management tasks
     - Azure CLI
+        - based on bash, mainly for Linux, connect to Azure
     - Cloud Shell
+        - Can run CLI or Powershell in the browser from the portal
 - Azure Adviser
+    - Analyses your use of resources using AI/ML
+    - Offer recommendations on:
+        - High Availability
+        - Security
+        - Performance
+        - Cost
 
 ## Security
 - Network Security Groups
