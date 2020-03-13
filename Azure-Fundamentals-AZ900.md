@@ -116,7 +116,7 @@
     - based on Google's Kubernetes
 
 ## Networking
-- Virtual Network
+- Virtual Network (VNet)
     - Network to connect resources (VMs, functions, etc.) to to use them/connect to other services
     - done via software
 - Load Balancers
@@ -221,11 +221,38 @@
 
 ## Security
 - Network Security Groups
+    - Series of rule that allow inbound or outbound traffic
+    - e.g. block all traffic except on a particular IP range
+    - Enabled at a subnet level
 - Application Security Groups
-- User Defined Rules
+    - Can apply resource based rules (e.g. All VMs, all SQL Servers etc.)
+- User Defined Routes
+    - Specify an exact path that some traffic needs to travel over your network
+    - e.g. force all internet traffic via a firewall device, or for to ensure all outbound traffic goes via a corporate network before going out to the internet
 - Azure Firewall
-- Azure DDoD Protection
-- security solution appropriateness
+    - Analyse traffic being directed to it, and either reject or allow it based on a pattern
+    - Web Application Firewall
+        - Can recognise patterns at http level, look for common attack signature such as XSS, SQL injection and reject, otherwise load balance
+- Azure DDoS Protection
+    - Basic
+        - Monitoring
+        - Mitigation for L3/L4 attacks
+        - L7 protection with Gateway WAF
+        - Globally deployed
+    - Standard
+        - Basic features +
+        - tuned policies in our Virtual Network
+        - Logging/Alerting & Telemetry
+        - Resource cost scale protection
+- Security Solution appropriateness
+    - All virtual network subnets should use NSGs
+        - make the rules fairly tight
+        - i.e. lock the doors that are never used
+    - DDoS only use as needed or after attacked, cost can be prohibative
+    - Application Gateway with WAF
+        - Mainly useful for high traffic enterprise applications
+    - Security through layers
+        - ensure multiple layers of security exists in case of single layer breaches
 - Security Tools
     - Azure Security Center
     - Azure Security Center usage scenarios
