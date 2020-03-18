@@ -1,6 +1,10 @@
 # AZ900 Azure Fundamentals
 
 ## Cloud Concepts
+- On-demand / Self-service
+- Can access anywhere in the world
+- Rapid elasticity
+- Only Pay for what you use (resource based/time based)
 - Benefits if using Cloud Services
     - High Availability
         - ability of system to respond to users (% of time)
@@ -18,11 +22,22 @@
     - Econonmy of Scale
         - Since Azure owns and runs so much hardware, they can do so more efficiently, and pass on the savings to the customer
     - CapEx vs. OpEx
-        - CapEx is money invested (upfront) in assets (like computers) that return investment over time
+        - CapEx is money invested (upfront) in assets (like computers or other hardware) that return investment over time
+            - Value reduces over time
         - OpEx is the cost of doing business on daily bases, ongoing expenses
+            - As needed spend
+            - immediate billing
+            - deduct expence from tax bill in same year (no depreciation)
+    - Global Reach 
+        - can use resources in various regions around the world
+    - Customer latency capabilities
+        - Can deploy applications closer to users, reduces latency
+    - Security
+        - Majority of security rquirements are managed by vendor instead of customer 
     - Consumption-based model
         - Pay per time used (minute, hour)
         - Pay for resources used (size, number)
+        - Can predict costs
 
 - Paradigms for hosting apps
     - IaaS
@@ -37,10 +52,14 @@
     - Public
         - Computing services offered over the public internet
         - anyone can sign up
+        - publicly accessible
+        - Personal users, organisations
     - Private
         - Computing services offered to only select users
         - internal or corporate cloud
         - can be hosted on own or leased hardware
+        - Still need to purchase infrastructure
+        - need skills to manage the DC as well as the cloud
     - Hybrid
         - Combination of public and private clouds
         - scale private infrastructure to the cloud
