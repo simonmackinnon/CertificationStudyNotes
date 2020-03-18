@@ -40,12 +40,15 @@
         - Can predict costs
 
 - Paradigms for hosting apps
-    - IaaS
+    - On-Premises (Manage)
+        - Manage everything, include networking, compute resources purchase and powering
+    - IaaS (Host)
         - Infrastructure such as VMs, networking, LBs, firewalls that you can get in a Cloud environment
-    - PaaS
+    - PaaS (Develop)
         - Provider runs your application, don't have access to hardware, but you provide the software/code
-    - SaaS
+    - SaaS (Consume)
         - Software available to use within the cloud, only configuration access only
+        - Subscription based cost
 ![Compare paradigms](https://stack247.files.wordpress.com/2015/05/azure-on-premises-vs-iaas-vs-paas-vs-saas.png)
     
 - Cloud Types
@@ -58,14 +61,18 @@
         - Computing services offered to only select users
         - internal or corporate cloud
         - can be hosted on own or leased hardware
+        - "Cloud" means the self-service access to resources
         - Still need to purchase infrastructure
         - need skills to manage the DC as well as the cloud
     - Hybrid
         - Combination of public and private clouds
         - scale private infrastructure to the cloud
+        - Greatest flexibility - can keep difficult to migrate apps on-prem, new or modern apps to cloud
 
 ## Azure Architecture
 - Regions
+    - collection of DCs
+    - Some service regionally independent
     - 58 regions
     ![Azure Regions](https://azurecomcdn.azureedge.net/cvt-92799112b92ce1432ee2e938fe2233012be6a469ece7c4743b538ebd039395e4/images/shared/regions-map-large.svg)
     - Region Pairs 
@@ -81,6 +88,8 @@
 - Resource Groups
     - Way of organisiging resources
     - Can perform operations on resource groups
+- Geographies
+    -  discrete market typically containing two or more regions that preserves data residency and compliance boundaries
 
     ![Resource Hierachy](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/media/organize-resources/scope-levels.png)
 - Azure Resource Manager
@@ -342,9 +351,12 @@
 
 ## Pricing
 - Subscriptions
-    - access control
+    - access control boundaries
+    - billing boundaries
     - offer types
     - Management groups
+    - Accounts can have multiple subscriptions, or one subscriptions
+    - Can have subscriptions for departments (i.e. Finance, Marketing), or environment (Dev, Prod)
 - Cost management
     - Purchase options
     - Azure Free account
