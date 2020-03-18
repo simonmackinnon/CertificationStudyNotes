@@ -253,6 +253,15 @@
         - Mainly useful for high traffic enterprise applications
     - Security through layers
         - ensure multiple layers of security exists in case of single layer breaches
+        - Data - i.e. virtual network enpoint - restrict access to data to a particular VNet
+        - Application - i.e. API Management
+        - Compute - i.e. Limit Remote Desktop access, Windows Update
+        - Network - i.e. NSG, use subnets, deny by default
+        - Perimeter - i.e. DDoD, firewalls
+        - Identity & access - i.e. Azure AD
+        - Physical - i.e. Door locks and key cards
+    - Use Azure AD instead of building your own, SaaS vs. IaaS
+    - Use MFA, more secure
 - Security Tools
     - Physical vs. Digital
         - Physical - computer logged into application, no access to Azure DCs
@@ -288,6 +297,8 @@
 ## Governance
 - policies and initiatives with Azure Policy
 - Role-Based Access Control (RBAC)
+    - Recommended authentication mechanism
+    - Used to grant access to Azure, rather than granting access to users directly, assign/remove users from role
 - Locks
 - Azure Advisor security assistance
 - Azure Blueprints
