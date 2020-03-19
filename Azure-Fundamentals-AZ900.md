@@ -184,6 +184,7 @@
     - removes traffic from origin(s)
 
 ## Storage
+- Storage account can be replicated based on user choice, default is Geo Redundant Storage
 - Blob
     - used for storing large amount of unstructured data
     - Block blobs
@@ -231,9 +232,10 @@
     - MySQL compatible
 - Azure DB Migration service
     - Service to help migrate existing DB (on prem, other cloud) to Azure
+- Can deploy DBs onto existing Azure DB servers or create new DBs
 
 ## Marketplace
-- Service where external vendors can sell their Azure products and solutions
+- Service where Microsoft or external vendors can sell their Azure products and solutions
 - Simple catalog based portal
 
 ## Azure Solutions
