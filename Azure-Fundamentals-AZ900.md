@@ -289,7 +289,7 @@
         - Can run CLI or Powershell in the browser from the portal
 - Azure Adviser
     - Analyses your use of resources using AI/ML
-    - Offer recommendations on:
+    - Offer proactive, actionable recommendations on:
         - High Availability
         - Security
         - Performance
