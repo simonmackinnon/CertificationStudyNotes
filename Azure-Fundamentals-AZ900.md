@@ -80,21 +80,35 @@
         - Some services can replicate
         - Patch/update one region at a time
         - Can failover from one region to the other when there's an outage
+- Availability Sets
+    - Separate Domains in the AZ to ensure things like hardware failures or patches don't take out the whole AZ at once
+    - Update Domains
+        - digital level domains 
+    - Fault Domains
+        - physical level domain
 - Availability Zones
     - Datacentre, separated by distance
     - 3 AZs per Region
     - Allows for maximum amount of availability
     - Not available in all regions
+- Availability options:
+    - Single VM (SLA 99.9%)
+    - Availability Set (SLA 99.95%)
+    - Availabilty Zones (SLA 99.99%)
+    - Region Pairs (Full DR)
 - Resource Groups
     - Way of organisiging resources
     - Can perform operations on resource groups
+    - Container for resources
+    - Resources can only be in one RG
+    - Can secure at RG level, using RBAC
 - Geographies
     -  discrete market typically containing two or more regions that preserves data residency and compliance boundaries
 
     ![Resource Hierachy](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/media/organize-resources/scope-levels.png)
 - Azure Resource Manager
     - Model of deployments
-    - API layer for functionality provisioning and configuring all services/features/resources
+    - API layer for functionality provisioning and configuring ALL services/features/resources
     - Can use ARM templates to build stacks consistently multiple times
 - Benefits / Usage of core Azure architectural components
     - Put resources close to users
@@ -107,7 +121,7 @@
     - Tooling to manage VMs
     - Bluepirnts
         - Used to configure the entire stack of resources to be used
-    - Azure recommentations
+    - Azure recommendations
     - Many different OS types
     - Pricing
         - hourly
@@ -118,7 +132,7 @@
     - Group of identical, load balanced VMs
     - Controlled by a scaling policy, e.g. when CPU is > X%, add another VMs or scheduled
     - Way of ensuring High Availability, if a machine stops, app keeps working
-    - Can manage multiple VMs easily w/ the same config
+    - Can manage multiple (identical) VMs easily w/ the same config
     - Auto scaling, run what you need, up or down
     - Elasticity - add/remove machines
 - App Service
@@ -355,6 +369,9 @@
     - billing boundaries
     - offer types
     - Management groups
+        - Groups of Subscriptions (or further management groups)
+        - MGs not mandatory, subscriptions are
+        - Way of simplifying organisational structure
     - Accounts can have multiple subscriptions, or one subscriptions
     - Can have subscriptions for departments (i.e. Finance, Marketing), or environment (Dev, Prod)
 - Cost management
