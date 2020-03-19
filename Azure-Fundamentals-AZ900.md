@@ -140,6 +140,8 @@
     - Upload code / software, Azure will provision required hardware and run it for us as a web service
     - no need to provision infrastructure
     - PaaS
+    - Automatic scalability 
+    - Integrates with many other Azure servives
 - Functions
     - serverless
     - Can edit in browser
@@ -242,12 +244,16 @@
 - IoT
     - IoT Central 
         - a SaaS solution that can help ease the costs and effort of developing a whole IoT solution from scratch.
+        - SaaS solution
     - IoT Hub 
         - provides a managed and secure backend for millions of IoT devices.
+        - bi-directional message hub
         - Supports Millions of records per seconds
+        - Paas Solution
 - Big Data / Analytics
     - Synapse Analytics (formerly SQL Data Warehouse) 
         - Reporting service, large reports/data store
+        - Integrated heavily with Power BI
     - HDInsight
         - Hadoop managaged service by Azure
     - Azure Databricks
@@ -257,6 +263,8 @@
         - Vision API, Speech API, etc.
         - an ML model defines what you want your machine learning implementation to learn
     - Machine Learning Studio
+        - Drag-and-Drop visual workspace to build/test/deploy ML solutions
+        - no need to write code (but can)
 - Serverless
     - Azure Functions
         - upload code to be run, no server configuration needed
@@ -266,7 +274,9 @@
     - Event Grid
 - DevOps
     - Azure Devops
+        - dev collaboration, pipelines, repos, kanban board, automated testing, load testing
     - Azure DevTest Labs
+        - create environments on the fly - minimise cost
 - Benefits/Outcomes of using Azure solutions
 - Tools
     - Azure Portal
@@ -424,6 +434,7 @@
         - Max 2 hour response time for Cat B incidents
     - Premier
         - Fastest response time
+    ![Support Plans](https://gxcuf89792.i.lithium.com/t5/image/serverpage/image-id/27485i429F8B7D7E5D1961?v=1.0)
 - Support Tickets
 - Support Channels
 - Knowledge Centre
