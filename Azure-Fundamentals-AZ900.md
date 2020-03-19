@@ -123,6 +123,7 @@
         - Used to configure the entire stack of resources to be used
     - Azure recommendations
     - Many different OS types
+        - Defined by Image (HyperV images)
     - Pricing
         - hourly
         - More compute/memory, more cost
@@ -142,20 +143,24 @@
 - Functions
     - serverless
     - Can edit in browser
-    - meant for small pieces of execution
+    - meant for small pieces of code execution
     - 1M executions free
     - upload code, no configuration of software needed
 - Azure Container Instances 
     - fast/easy way to deploy containers
     - containers
         - package entire software environment into container
+        - Virtualised environment, reference to OS
+        - Unlike VM, don't manage OS
     - reduce overheads on promoting software/changes through environments
     - ACI 
         - quickest way to get a container created (under a minute)
         - Not great scalability
+        - Supports Docker containers
 - Azure Kubernetes Service
     - like ACI, but has ability to scale
     - based on Google's Kubernetes
+        - complete orchestration service for containers with distributed architectures and large volumes of containers
 
 ## Networking
 - Virtual Network (VNet)
@@ -181,15 +186,32 @@
 ## Storage
 - Blob
     - used for storing large amount of unstructured data
+    - Block blobs
+    - Page blobs
+    - Append blobs
 - Disk
+    - persistant disk
     - allows data to be stored persistently and attached as a virtual hard disk
     - can mount them to a VM
+    - options
+        - SSD, high IOPs, low latency
 - File
-    - uses SMB protocol
+    - uses SMB / REST protocol
     - allows multiple VMs to R/W the files
+    - Access from anywhere
+    - Secure access
 - Archive
     - Cold, infrequently accessed data, cheap storage, slow/expensive access
     - normally for recovery
+- Table
+    - NoSQL data store
+    - Dynamic scaling based on load
+    - scales to PBs
+    - Fast key/value lookup
+- Queue
+    - Store / retreive messages
+    - highly scalable
+    - process messages asynchronously
 
 ## Database
 - CosmosDB
