@@ -434,7 +434,7 @@
         - Max 2 hour response time for Cat B incidents
     - Premier
         - Fastest response time
-    ![Support Plans](https://gxcuf89792.i.lithium.com/t5/image/serverpage/image-id/27485i429F8B7D7E5D1961?v=1.0)
+    ![Support Plans](https://cdn.substack.com/image/fetch/c_limit,f_auto,q_auto:good/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fdc1924b6-32bb-4f9b-84b0-83b0a502614d_1172x816.png)
 - Support Tickets
 - Support Channels
 - Knowledge Centre
