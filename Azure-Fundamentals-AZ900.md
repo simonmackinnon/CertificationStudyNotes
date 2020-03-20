@@ -297,16 +297,21 @@
 
 ## Security
 - Network Security Groups
-    - Series of rule that allow inbound or outbound traffic
+    - Series of rule that allow (filter) inbound or outbound traffic
+    - Both Inbound and Outbound rules
+    - Prioritised rules
     - e.g. block all traffic except on a particular IP range
     - Enabled at a subnet level
 - Application Security Groups
     - Can apply resource based rules (e.g. All VMs, all SQL Servers etc.)
+    - Reuse server level security across many VMs (port/IP filtering)
 - User Defined Routes
     - Specify an exact path that some traffic needs to travel over your network
     - e.g. force all internet traffic via a firewall device, or for to ensure all outbound traffic goes via a corporate network before going out to the internet
 - Azure Firewall
     - Analyse traffic being directed to it, and either reject or allow it based on a pattern
+    - Built in HA
+    - Firewall as a Service
     - Web Application Firewall
         - Can recognise patterns at http level, look for common attack signature such as XSS, SQL injection and reject, otherwise load balance
 - Azure DDoS Protection
@@ -327,32 +332,57 @@
     - DDoS only use as needed or after attacked, cost can be prohibative
     - Application Gateway with WAF
         - Mainly useful for high traffic enterprise applications
-    - Security through layers
+    - Security through layers (Defence In Depth)
+        - Shared Responsability maps to Shared Security, if we manage the layer, we need to secure the layer
         - ensure multiple layers of security exists in case of single layer breaches
-        - Data - i.e. virtual network enpoint - restrict access to data to a particular VNet
-        - Application - i.e. API Management
-        - Compute - i.e. Limit Remote Desktop access, Windows Update
-        - Network - i.e. NSG, use subnets, deny by default
-        - Perimeter - i.e. DDoD, firewalls
-        - Identity & access - i.e. Azure AD
-        - Physical - i.e. Door locks and key cards
+            - Data - i.e. virtual network enpoint - restrict access to data to a particular VNet
+            - Application - i.e. API Management
+            - Compute - i.e. Limit Remote Desktop access, Windows Update
+            - Network - i.e. NSG, use subnets, used for different tiers of the app, deny by default
+            - Perimeter - i.e. DDoD, firewalls
+            - Identity & access - i.e. Azure AD + MFA
+            - Physical - i.e. Door locks and key cards
     - Use Azure AD instead of building your own, SaaS vs. IaaS
     - Use MFA, more secure
 - Security Tools
     - Physical vs. Digital
         - Physical - computer logged into application, no access to Azure DCs
-        - Security responsibility maps to shared responsibility architecture
+        - Security responsibility maps to shared security architecture
     - Azure Security Center
+        - Monitoring service for Azure (and on-prem) services
+        - Dashboard of policy/compliance
+        - Different tiers (free/standard)
+        - provides security recommendations
+        - Automaticsllty applies your chosen security policies to new services you provision
     - Azure Security Center usage scenarios
+        - Detect - review first indication (dashboard)
+        - Assess - can find more info
+        - Diagnose - e.g. follow the remediation steps described by Security Center in that particular security alert.
     - Key Vault
+        - Authorised access to secrets store
+        - Can import or create
         - All secrets in Azure should be managed in Azure Key Vault
+        - Secrets management
+        - Key management
+        - Certificate management
+        - Storing secrets backed by Hardware Security Modules (HSMs)
+        - Can import keys, signed keys
     - Azure Information Protection (AIP)
+        - classify and (optionally) protect its documents and emails by applying labels.
+        - labels can map to access permissions (e.g. Confidential, Private, Public) -
     - Azure Advanced Threat Protection (ATP)
+        - identifies, detects, and helps you investigate advanced threats, compromised identities, and malicious insider actions directed at your organization
+            - e.g. if a user that only logs in from internal network suddenly logs in as this person from outside the network, can react to it
+        - Reduces attack surface (e.g. stops brute force attacks)
+        - ATP Portal
+            - Can modify dashboard to see relevant data
+        - ATP Sensor
+        - ATP Cloud Service
 
 ## Identity Services
 - Authentication and Authorization
-    - Authentication is a user proving who they are, user ID and password
-    - Authorisation is ensuring a user is permitted to perform an action
+    - Authentication is a user proving who they are, user ID and password (Auth-N)
+    - Authorisation is ensuring a user is permitted to perform an action (Auth-Z)
     - Least Priviliges - Enasure minimum user granted as are needed
 - Azure Active Directory
     - Designed for web technologies primarily
@@ -371,37 +401,91 @@
         - Something you have (phone, app, ATM card)
 
 ## Governance
-- policies and initiatives with Azure Policy
+- Azure Policy
+    - create rules across specicfic RGs, Subscriptions, etc.
+    - evaluate compliance to the rules
+    - E.g. 
+        - Require SQL Server 12.0
+        - Apply tag and its default value
+        - Allowed locations
+        - Specific resource types
+    - Custom policies with JSON
+    - Initiatives
+        - groups of policies, apply to Resource/RG/Subscriptions, etc.
 - Role-Based Access Control (RBAC)
     - Recommended authentication mechanism
+    - Create roles that represent the common task of the job
+    - Many pre-built roles
+    - make role permissions fine-grained, can add users to multiple roles if greater permissions needed
     - Used to grant access to Azure, rather than granting access to users directly, assign/remove users from role
 - Locks
+    -
 - Azure Advisor security assistance
 - Azure Blueprints
 
 ## Monitoring & Reporting
+- Tags
+    - Assign tags to resources (Key-Value pairs) to identify resources
+    - can use for billing filtering (roll-up the billing)
+    - Tags at RG level not inherited by resources
+    - Maximum 15 tags (512 char Key, 256 char Value)
 - Azure Monitor
+    - Monitoring service to get telemerty from Azure (or other cloud/on-prem) environments
+    - App Data
+    - OS level data
+    - Azure resource monitoring
+    - Azure subscription monitoring
+    - Azure tenant monitoring
+    - Can install monitor agent to collect operational data from VM
+    - Can use Monitor metrics to trigger autoscaling
 - Azure Service Health
+    - place to go to get personalised guidance and support/notifications anout our services
+    - Status 
+        - provides overview of Azure service's health
+    - Service Health 
+        - cusotmisables dashboard for service state in out region
+    - Azure Resource Health 
+        - helps you diagnose and obtain support when an Azure service issue affects your resources
+
 - Use cases and benefits of Azure Monitor and Azure Service Health
+    - Analyse
+    - Respond
+    - Visualise
+    - Integrate
 
 ## Privacy, Compliance and Trust
-- Compliance 
+- Compliance (91 compliance requirements that Azure meets) 
+    - go to full list (https://docs.microsoft.com/en-us/microsoft-365/compliance/offering-home?view=o365-worldwide)
     - GDPR
     - ISO
     - NIST
 - Microsoft Privacy Statement
+    - https://privacy.microsoft.com/en-us/privacystatement
 - Trust center
+    - details of how it implements security, privacy, compliance offerings, policies, features, and practices at Microsoft
 - Service Trust Portal
+    - download audit reports produced by external auditors 
+    - gain insight from Microsoft-authored operational reports
 - Compliance Manager
+    - Manage our compliance activities and repositort for compliance
 - Azure Compliance
 - Azure Government
+    - separate instance of Azure
+    - physical isolation from non-US government deployments 
+    - screened US personnel
 - Azure China
+    - specifically for China
+    - operated by 21Vianet
 
 ## Pricing
 - Subscriptions
     - access control boundaries
     - billing boundaries
     - offer types
+        - dev/test
+        - enterprise
+        - VS professional
+        - Free
     - Management groups
         - Groups of Subscriptions (or further management groups)
         - MGs not mandatory, subscriptions are
@@ -410,9 +494,17 @@
     - Can have subscriptions for departments (i.e. Finance, Marketing), or environment (Dev, Prod)
 - Cost management
     - Purchase options
+        - enterprise - EA - commitment to spend
+        - Web direct - sign up online
+        - Cloud solution providers (Partners, billed via customer's CSP)
     - Azure Free account
-    - resource types, services, locations, ingress/egress traffic
+    - Cost Factors
+        - resource types, ingress/egress traffic
+        - services
+        - locations
     - Zones for billing purposes
+        - Inbound data free
+        - Outbound data cost based on location (3 Zones)
     - Pricing calculator
     - Total Cost of Ownership (TCO) calculator
     - Cost Minimisation best practices
