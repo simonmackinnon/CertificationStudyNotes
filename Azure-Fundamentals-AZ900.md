@@ -419,9 +419,17 @@
     - make role permissions fine-grained, can add users to multiple roles if greater permissions needed
     - Used to grant access to Azure, rather than granting access to users directly, assign/remove users from role
 - Locks
-    -
+    - Tie down resources to flag they can't be changes
+    - Read Only lock - can't modify
+    - Cannot delete lock - can't delete
+    - To perform modify/delete, delete the lock first
+    - Can use RBAC to control who can access locks
 - Azure Advisor security assistance
+    - runs every few hours, makes recommendations about what you can do to improve security in account
+    - results in security center dashboard
 - Azure Blueprints
+    - subscription template, roles/policies defined
+    - use this to create new subscriptions
 
 ## Monitoring & Reporting
 - Tags
@@ -430,7 +438,7 @@
     - Tags at RG level not inherited by resources
     - Maximum 15 tags (512 char Key, 256 char Value)
 - Azure Monitor
-    - Monitoring service to get telemerty from Azure (or other cloud/on-prem) environments
+    - Monitoring service to get telemerty from Azure (or other cloud/on-prem) environments, logfiles or other metrics
     - App Data
     - OS level data
     - Azure resource monitoring
@@ -443,10 +451,13 @@
     - Status 
         - provides overview of Azure service's health
     - Service Health 
+        - not customer specific
         - cusotmisables dashboard for service state in out region
+        - service issues
+        - planned maintenence
     - Azure Resource Health 
+        - customer/application resource specific
         - helps you diagnose and obtain support when an Azure service issue affects your resources
-
 - Use cases and benefits of Azure Monitor and Azure Service Health
     - Analyse
     - Respond
@@ -456,26 +467,46 @@
 ## Privacy, Compliance and Trust
 - Compliance (91 compliance requirements that Azure meets) 
     - go to full list (https://docs.microsoft.com/en-us/microsoft-365/compliance/offering-home?view=o365-worldwide)
-    - GDPR
-    - ISO
-    - NIST
+    - GDPR 
+        - General Data Protection Regulation
+        - EU citizens get more control over their data
+        - Applies to any company that handles EU citizens' data
+    - ISO 
+        - International Organization for Standardization
+        - Azure in compliance with many of the tech related ones 
+        - e.g. ISO 9001:2015 Quality Management Systems
+    - NIST 
+        - National Institute of Standards and Technology
+        - CyberSecurity Framework (CSF)
+        - Need to be audited to be compliant
+    - PCI - Payments/credit-card information standard
 - Microsoft Privacy Statement
     - https://privacy.microsoft.com/en-us/privacystatement
+    - how microsoft collects your data, stores, protects, handles and what they do with it
 - Trust center
     - details of how it implements security, privacy, compliance offerings, policies, features, and practices at Microsoft
+    - microsofts stance on compliance/privacy etc.
 - Service Trust Portal
     - download audit reports produced by external auditors 
     - gain insight from Microsoft-authored operational reports
+    - pen test reports, blueprints, whitepapers, compliance guides
 - Compliance Manager
     - Manage our compliance activities and repositort for compliance
-- Azure Compliance
+    - risk assessment tool
+    - workflow based
+    - see how well you rate against compliance standards
 - Azure Government
     - separate instance of Azure
     - physical isolation from non-US government deployments 
-    - screened US personnel
+    - screened US personnel, no public access
+    - specifically for US Government
+    - separate region for Department of Defence (DoD) again
+    - different standards compared to public
 - Azure China
     - specifically for China
     - operated by 21Vianet
+    - separate implementation of Azure services
+    - disconnected from normal Azure, data retained in China
 
 ## Pricing
 - Subscriptions
@@ -490,47 +521,90 @@
         - Groups of Subscriptions (or further management groups)
         - MGs not mandatory, subscriptions are
         - Way of simplifying organisational structure
+        - Heirachial manner of organising subs
     - Accounts can have multiple subscriptions, or one subscriptions
     - Can have subscriptions for departments (i.e. Finance, Marketing), or environment (Dev, Prod)
+    - Single user account can be set up to access multiple subscriptions
 - Cost management
     - Purchase options
         - enterprise - EA - commitment to spend
-        - Web direct - sign up online
+            - large spend, negotiated, custom prices
+        - Web direct - sign up online (Pay as you go)
         - Cloud solution providers (Partners, billed via customer's CSP)
     - Azure Free account
+        - $200 credit for 30 days
+        - after that, heaps of free services for 12 months
+        - some services always free
     - Cost Factors
-        - resource types, ingress/egress traffic
-        - services
-        - locations
-    - Zones for billing purposes
+        - resource types (bigger performance, higher cost)
+        - ingress/egress traffic (egress traffic has cost, inter-Zone egress has cost)
+        - services (IaaS < PaaS < SaaS)
+        - locations (some locations charge more for same service/resource)
+        - Time running (per second billing means billing stops when VM is stopped)
+    - Reserved Instances (VMs)
+        - Discounts for 1 or 3 year commitments
+    - Bandwidth
+        - Outbound data (5GB free)
+        - Inbound free
+    - Zones for billing purposes (geographical grouping of regions)
         - Inbound data free
         - Outbound data cost based on location (3 Zones)
     - Pricing calculator
+        - put expected resources into calculated
+        - estimate only
+        - Export and share
     - Total Cost of Ownership (TCO) calculator
+        - compare current on-prem data centre (total cost) vs. cloud migrated architecure (total cost)
+        - on-prem has power, security, rent, server costs, cooling, backup, networking, maintenance, skilled labour
+        - cloud has less requirements, per unit price covers this
     - Cost Minimisation best practices
         - performing cost analysis
         - spending limits 
+        - alerts when billing exceeds an expected level
+        - Use Azure policy to restrict access to higher level servers (tailor to environment)
+        - use autoscaling to expand/contract number of resources running to match use
         - quotas
-        - using tags to identify cost owners, 
-        - Azure reservations 
-        - Azure Advisor
+        - Auto-shutdown dev/qa resources
+        - use cool/archive storage where possible (archive 90% cheaper)
+        - using tags to identify cost owners, ensure we can contact owners to know what resources are actually being used
+        - Azure reservations - discounts for 1 or 3 year VM commitments (RIs)
+        - Azure Advisor - follow cost reduction recomendations, right size VMs, downsize storage
     - Azure Cost Management
-
+        - free tool to analyse spending
+        - break down by 
+            - resource type
+            - time period
+        - set budgets
+        - schedule / create reports
+        
 ## Support
 - Levels
     - Basic
-    - Developer
+        - free and included in all plans
+    - Developer ($29 / month)
         - For trial and non-production environments
-    - Standard
-    - Professional Direct 
+    - Standard ($100 / month)
+        - production environments
+    - Professional Direct ($1000 / month)
+        - Get a delivery manager
+        - business critical
         - Max 2 hour response time for Cat B incidents
-    - Premier
+    - Premier ("contact us for price")
+        - Get a TAM
+        - multiple products, including Azure
         - Fastest response time
     ![Support Plans](https://cdn.substack.com/image/fetch/c_limit,f_auto,q_auto:good/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fdc1924b6-32bb-4f9b-84b0-83b0a502614d_1172x816.png)
 - Support Tickets
+    - Raise via Help + Support area in portal
+    - Select issue type
 - Support Channels
+    - Phone / Email (depending on plan)
+    - Developer forums
 - Knowledge Centre
+    - FAQ for different services
 - Service Level Agreements (SLA)
+    - (Financial) guarantee of the performance of a product
+    - Different SLAs for different resources
     - Composite SLAs
     - determine appropriate SLA for an app
 - Service Lifecycle
