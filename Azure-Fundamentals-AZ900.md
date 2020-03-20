@@ -606,9 +606,14 @@
     - (Financial) guarantee of the performance of a product
     - Different SLAs for different resources
     - Composite SLAs
+        - Combination of SLAs for overall application
+        - multiply SLA together, more services in critical path, lower SLA
+        - Add redundancy, increase SLA
     - determine appropriate SLA for an app
 - Service Lifecycle
-    - Previews
+    - Services/features are released in a lifecycle, previewed first, offered to specific customers first, then beta (for all), then GA
+    - Announcements as service/feature moves through the different stages on updates page (RSS page)
+    - Previews (services may not release to GA)
         - Private
         - Public
     - General Availability
