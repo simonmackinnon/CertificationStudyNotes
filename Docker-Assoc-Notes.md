@@ -79,7 +79,13 @@
         - before healthcheck has run, status is pending
         - specify `--interval` (default 30s), `--timeout` (default 30s), `--start-period` (default 0s)  and number of `--retries` (default 3)
     - ENTRYPOINT instruction
-        - 
+        - set the image's main command
+        - doesn't allow you to override the command
+            - can append arguments or further commands to the entry point command
+    - Tagging Docker Images
+        - tag images during build with '-t' command switch `docker build -t demo:v1 .`
+        - tag untagged images post build wit 'tag' command `docker tag 30fba3457cd3a demo:v2`
+        - tag existing tagged images with 'tag' command `docker tag ubuntu:latest myubuntu:v1`
 
 
 ## Networking
