@@ -1,7 +1,7 @@
 # Certified Docker Associate
 
 ## Basic Information
-- Can indentify a container my UUID, short ID, or name
+- Can indentify a container by UUID, short ID, or name
 - Can run containers in attached or detatched mode
     - advantage of detatched is retaining terminal control, no issues if command is interupted
 - Stop all containers with command `docker container stop $(docker container ls -aq)`
@@ -79,7 +79,7 @@
         - before healthcheck has run, status is pending
         - specify `--interval` (default 30s), `--timeout` (default 30s), `--start-period` (default 0s)  and number of `--retries` (default 3)
     - ENTRYPOINT instruction
-        -
+        - 
 
 
 ## Networking
