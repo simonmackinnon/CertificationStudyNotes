@@ -86,6 +86,16 @@
         - tag images during build with '-t' command switch `docker build -t demo:v1 .`
         - tag untagged images post build wit 'tag' command `docker tag 30fba3457cd3a demo:v2`
         - tag existing tagged images with 'tag' command `docker tag ubuntu:latest myubuntu:v1`
+    - Docker Commit
+        - commit changes to a running container back to a (new) image
+        - `docker container commit CONTAINER-ID myimage01`
+        - `--change` option allows Dockerfile instruction changes to the image that gets created
+            - CMD, ENTRYPOINT, ENV, EXPOSE, LABEL, ONBUILD, USER, VOLUME, WORKDIR
+        - container and processes are paused while the new image is being committed
+    - Layers of Docker Image
+        - Docker images are made from a series of layers
+        - Layers represent Dockerfile instructions
+        ![Docker Layers](https://blog.florianlopes.io/content/images/2016/04/Docker-layers.png)
 
 
 ## Networking
