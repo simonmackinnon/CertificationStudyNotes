@@ -30,7 +30,35 @@
 	- Security
 		- resource based (object ACLs, Bucket policy)
 		- user based (IAM policies)
-
+	- Versions
+		- Each write is a new version, including a delete (delete marker)
+		- Each version is billable
+		- Can integrate with Lifecycle Management, e.g. move old versions to different tiers or delete
+	- MFA protection 
+		- protection against accidental deletes or enabling/disabling versioning
+	- Replication
+		- Security
+		- Compliance
+		- Latency - Object requests can be served from a closer location
+	- Storage Classes
+		- Intelligent Tiering: 
+			- moves data around to other storage classes
+			- pay premium
+			- Provides cost-optimal storage based on how frequently an object is accessed
+			- Archive
+				- Automatically move data to Glacier/DeepGlacier
+	- Lifecycle Management
+		- Optimize storage costs
+		- Rules to move objects to different storage tiers or delete based on timestamp, tags or prefix
+	- S3 Analytics
+		- Data Lake - Athena, Redshift Spectrum, QuickSight - offer the enablement of a Data Lake Concept
+		- IoT Streaming - Kinesis Firehose can spool directly to S3 Buckets
+		- ML/AI Storage - Rekognition, Lex, MXNet, etc. can reference s3
+		- Storage Class Analysis - S3 Management Analytics - Generate reports on data access frequency.
+	- Encryption
+		- SSE-S3 - Use AWS's existing encryption key for AES-256
+		- SSE-C
+		
 ## Networking
 
 ## Security
