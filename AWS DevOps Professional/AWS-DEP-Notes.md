@@ -1,6 +1,64 @@
 # Domain 1: SDLC Automation
 ## Apply concepts required to automate a CI/CD pipeline
+- Continuous Integration 
+	- constantly merging code to ensure all new software is added
+	- all new code built/tested on build server (devs notified about failures)
+	- allows bugs to be found/fixed early
+	- deliver code faster
+	- can deploy quicker
+	- CodeCommit
+		- Git-based version control system.
+		- Private repositories
+		- No size limit on repos
+		- Fully managed, HA
+		- In AWS Account - security and compliance posture increase
+		- Integrated with Jenkins/CodeBuild/Other CI tools
+	- CodeBuild
+- Continuous Delivery
+	- Deliver software reliably when needed
+	- Deployments are easy/quick
+	- Can deploy many times per day vs. long release cycles (months, etc.)
+	- Automated Deployments - CodeDeploy, Jenkins CD, Spinnaker
+- Continuous Deployment
+- Tech stack for CI/CD
+	- Stages
+		- Code
+			- AWS CodeCommit
+			- GitHub
+			- Bitbucket
+		- Build
+			- AWS CodeBuild
+			- Jenkins CI
+		- Test
+			- AWS CodeBuild
+			- Jenkins CI
+		- Deploy
+			- AWS Elastic Beanstalk
+			- AWS CodeDeploy
+		- Provision
+			- AWS Elastic Beanstalk
+			- User managed EC2 Instances fleet (CloudFormation)
+	- All can be managed using AWS CodePipeline
+	
+	- CodeDeploy
+	- CodePipeline
+	- CodeStar
+	- Jenkins on EC2
+- Continuous Delivery vs. Continuous Deployment
+	- Continuous Delivery:
+		- Ability to deploy often using automation
+		- May involve a manual step to "approve" a deployment
+		- Deployments still automated
+	- Continuous Deployment
+		- Full automation. All code changes deployed to production
+		- No manual intervention of approvals
+		- Bugs are automatically detected
+	
 ## Determine source control strategies and how to implement them
+- Branches useful to allow developers to divert from a main branch of code. 
+- Allows development of code without impacting master code
+- Merge code when it's ready (use Pull Request)
+	- Pull Requests allow team to review code before it's integrated
 ## Apply concepts required to automate and integrate testing
 ## Apply concepts required to build and manage artifacts securely
 ## Determine deployment/delivery strategies (e.g., A/B, Blue/green, Canary, Red/black) and how to implement them using AWS Services
@@ -35,3 +93,4 @@
 ## Determine the right services based on business needs (e.g., RTO/RPO, cost)
 ## Determine how to design and automate disaster recovery strategies
 ## Evaluate a deployment for points of failure
+
