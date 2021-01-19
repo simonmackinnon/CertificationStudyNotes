@@ -14,7 +14,20 @@
 		- In AWS Account - security and compliance posture increase
 		- Integrated with Jenkins/CodeBuild/Other CI tools
 	- CodeBuild
-		- 
+		- Fully managed build service in AWS
+		- Basically an alternative to other build tools like Jenkins
+		- Elastic Scaling, no servers needed, no queue
+		- Pay for usage, time to complete builds
+		- Uses Docker under the hood, very reproducable
+		- Can use own Docker images to extend capabilities
+		- Security - Natively integrates with KMS for artifacts, IAM for build permissions, VPC for network security, CloudTrail for logging API calls
+		- Gets code from version control repo
+		- build instructions defined in code
+		- logs output to S3 and CloudWatch
+		- Metrics monitor in CodeBuild statistics
+		- CloudWatch events to detect failed builds/tests - trigger notifications -  can go to Lambda
+		- CloudWatch Alarms for failures threshold nofifications
+		- Can output to SNS
 - Continuous Delivery
 	- Deliver software reliably when needed
 	- Deployments are easy/quick
