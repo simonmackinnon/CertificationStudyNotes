@@ -22,12 +22,18 @@
 		- Can use own Docker images to extend capabilities
 		- Security - Natively integrates with KMS for artifacts, IAM for build permissions, VPC for network security, CloudTrail for logging API calls
 		- Gets code from version control repo
-		- build instructions defined in code
+		- build instructions defined in code (buildspec.yml)
+			- Build projects are split into separate phases  https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
+				- install
+				- post_build
+			- can specify artifacts to store/use after job finishes (and container is destroyed)
 		- logs output to S3 and CloudWatch
 		- Metrics monitor in CodeBuild statistics
 		- CloudWatch events to detect failed builds/tests - trigger notifications -  can go to Lambda
 		- CloudWatch Alarms for failures threshold nofifications
 		- Can output to SNS
+		- Docker, ECR & buildspec.yml https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker.html
+		
 - Continuous Delivery
 	- Deliver software reliably when needed
 	- Deployments are easy/quick
