@@ -60,6 +60,7 @@
 - Merge code when it's ready (use Pull Request)
 	- Pull Requests allow team to review code before it's integrated
 ## Apply concepts required to automate and integrate testing
+- Use CodeCommit Nofifications and Triggers or CloudWatch events/rules to automate actions from events in our repositories; Triggers like SNS or SQS, Lambda, etc.
 ## Apply concepts required to build and manage artifacts securely
 - Use IAM policies to restict pushes to master (or other production branches). This helps protect master branches from unwanted commits. IAM policy should have explicit deny on GitPush, etc. See https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-conditional-branch.html
 ## Determine deployment/delivery strategies (e.g., A/B, Blue/green, Canary, Red/black) and how to implement them using AWS Services
