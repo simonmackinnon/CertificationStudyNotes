@@ -35,11 +35,20 @@
 				- "runtime-versions" (install phase only) list of runtimes to install on the build image
 			- Can set up environment variables and parameters
 			- Can output objects as "artifacts" of the job
+				- Specify what to output in the buildspec "artifacts" section
+				- Specify where to store it in the build project artifacts settings (S3 Bucket)
+					- Ensure the option to modify service role for s3 access is enabled, or modify IAM policy manually to allow access	 
 			- subsequent stages to not run if previous stage doesn't succeed
 				- make things that are likely to fail (authenticated actions, network actions) happen earlier (don't want to do expensive/time-consuming commands if the whole job will fail)
 			- can specify artifacts to store/use after job finishes (and container is destroyed)
-		- Environement Variables available to each job (e.g. AWS_DEFAULT_REGION, CODEBUILD_BUILD_ID)
-			- Full list here: https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html
+		- Environement Variables 
+			- available to each job (e.g. AWS_DEFAULT_REGION, CODEBUILD_BUILD_ID)
+				- Full list here: https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html
+				- Output them using the 'printenv' command
+			- Can add to env variables list (via buildspec, or override during build)
+			- For sensitive values, use SSM parameters (specify 'Parameter' for the codebuild Env variable Type)
+				- Ensure SSM readonly access to the codebuild service role to use this 
+				- Can also use Secrets Manager for more complex object (DB Credentials, API keys, etc.)
 		- logs output to S3 and CloudWatch
 		- Metrics monitor in CodeBuild statistics
 		- CloudWatch events to detect failed builds/tests - trigger notifications -  can go to Lambda
