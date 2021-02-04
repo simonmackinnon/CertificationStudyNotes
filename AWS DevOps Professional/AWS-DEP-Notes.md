@@ -25,14 +25,27 @@
 		- build instructions defined in code (buildspec.yml)
 			- Build projects are split into separate phases  https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
 				- install
+				- pre_build
+				- build
 				- post_build
+			- specify the commands to run/install for each stage. each stage has the 
+				- "run-as" - specify a different linux user to run the phase as
+				- "commands" - run commands for the phase
+				- "finally" - Use to perform phase clean-up actions
+				- "runtime-versions" (install phase only) list of runtimes to install on the build image
+			- Can set up environment variables and parameters
+			- Can output objects as "artifacts" of the job
+			- subsequent stages to not run if previous stage doesn't succeed
+				- make things that are likely to fail (authenticated actions, network actions) happen earlier (don't want to do expensive/time-consuming commands if the whole job will fail)
 			- can specify artifacts to store/use after job finishes (and container is destroyed)
+		- Environement Variables available to each job (e.g. AWS_DEFAULT_REGION, CODEBUILD_BUILD_ID)
+			- Full list here: https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html
 		- logs output to S3 and CloudWatch
 		- Metrics monitor in CodeBuild statistics
 		- CloudWatch events to detect failed builds/tests - trigger notifications -  can go to Lambda
 		- CloudWatch Alarms for failures threshold nofifications
 		- Can output to SNS
-		- Docker, ECR & buildspec.yml https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker.html
+		- Docker, ECR & buildspec.yml (Likely exam question on this setup) https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker.html
 		
 - Continuous Delivery
 	- Deliver software reliably when needed
