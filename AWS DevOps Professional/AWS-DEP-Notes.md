@@ -41,6 +41,7 @@
 			- subsequent stages to not run if previous stage doesn't succeed
 				- make things that are likely to fail (authenticated actions, network actions) happen earlier (don't want to do expensive/time-consuming commands if the whole job will fail)
 			- can specify artifacts to store/use after job finishes (and container is destroyed)
+			    - these can be output to S3 (useful for pipeline jobs, i.e. deploy a built artifact)
 		- Environement Variables 
 			- available to each job (e.g. AWS_DEFAULT_REGION, CODEBUILD_BUILD_ID)
 				- Full list here: https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html
@@ -51,7 +52,10 @@
 				- Can also use Secrets Manager for more complex object (DB Credentials, API keys, etc.)
 		- logs output to S3 and CloudWatch
 		- Metrics monitor in CodeBuild statistics
-		- CloudWatch events to detect failed builds/tests - trigger notifications -  can go to Lambda
+		- CloudWatch events to detect failed builds/tests - trigger notifications 
+		    - can go to Lambda, SNS or any other eventbridge target
+		    - can create scheduled rules or triggers to start project build (i.e. when changes to repo occur, trigger the build: CloudWatch -> Rules)
+		    - can use it to validate pull requests (i.e. build and test code on each commit)
 		- CloudWatch Alarms for failures threshold nofifications
 		- Can output to SNS
 		- Docker, ECR & buildspec.yml (Likely exam question on this setup) https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker.html
