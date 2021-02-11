@@ -87,6 +87,18 @@
 	- All can be managed using AWS CodePipeline
 	
 	- CodeDeploy
+	    - agent-based deployments
+	        - polls for "work to do"
+	        - sends the appspec.yml to the instance
+	        - app is pulled from source (s3 or github) (can use `aws deploy push` command to create deployment artifact)
+	        - instance then runs the instructions
+	        - reports back to CodeDeploy on the status of the deployment (success/failure)
+	    - Can group instances by deployment group (dev/test/prod)
+	    - can integrate with CodePipeline, use artifacts from CodeBuild or source from CodeCommit
+	    - Can use existing OS config tools, applications, integrates with ASG
+	    - Blue/Green deployments woth only with Ec2 instances (not on-premises)
+	    - Support for AWS Lambda deployments as well as EC2
+	    - Only in charge of deployment (won't do infra creation)
 	- CodePipeline
 	- CodeStar
 	- Jenkins on EC2
