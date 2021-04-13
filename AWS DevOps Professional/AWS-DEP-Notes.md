@@ -127,7 +127,18 @@
 			    sed -i -e 's/LogLevel warn/LogLevel debug/g' /etc/httpd/conf/httpd.conf
 			fi
 			```
-	    		
+	    - CloudWatch events to detect failed deployments 
+		    - can go to Lambda, Kinesis, SNS or any other eventbridge target	
+		    - Can also trigger instance reboot after a successful deployment (if the application requires that)
+	    - trigger notifications - Directly send messages to SNS from CodeDeploy
+	    - View logs in CloudWatch (need CodeDeploy and CloudWatch Logs agent)
+	    - Rollbacks (what to do if deployment fails)
+	    	    - Manual Rollback (if the deployment fails, just run the deployment again with a previously working version of the app)
+	    	    - Automated Rollback 
+	    	    	- Roll back when deployment fails (if any lifecycle event has failure, roll back)
+	    	    	- Roll back when alarm thresholds are met:
+	    	    	    	- E.g. Deployment succeeds but CPU alarm spikes, causing a Cloudwatch alarm to trigger, we want to roll-back
+	    	    	    	- E.g. Deployment succeeds but application errors encountered is above acceptable value, we can define custom logs metric/alarm, trigger this when above the value and roll-back
 	- CodePipeline
 	- CodeStar
 	- Jenkins on EC2
