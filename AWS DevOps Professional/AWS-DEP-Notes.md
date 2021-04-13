@@ -119,7 +119,14 @@
 				- ApplicationStart: define how to start the service (e.g. start the httpd service)
 				- ValidateService: run a healthcheck (i.e. run unit tests, UI tests). if this fails the deployment fails
 			- View the lifecycle events in "View Events" link in deployment record (in console) - details not available via CLI/API
-			- Different hooks for Lambda vs. ECS vs. EC2/On-Prem (https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html)
+			- Different hooks for Lambda vs. ECS vs. EC2/On-Prem (different hooks available if using Load Balancer, or not) (https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html)
+			- Some Deployment specific environment variables available to Hooks, Can be useful to have branched code for Production vs. Non-Production code in appspec.yml
+			```
+			if [ "$DEPLOYMENT_GROUP_NAME" == "Staging" ]
+			then
+			    sed -i -e 's/LogLevel warn/LogLevel debug/g' /etc/httpd/conf/httpd.conf
+			fi
+			```
 	    		
 	- CodePipeline
 	- CodeStar
