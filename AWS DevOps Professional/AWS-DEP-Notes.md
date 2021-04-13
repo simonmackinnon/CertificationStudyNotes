@@ -93,10 +93,15 @@
 	        - app is pulled from source (s3 or github) (can use `aws deploy push` command to create deployment artifact)
 	        - instance then runs the instructions
 	        - reports back to CodeDeploy on the status of the deployment (success/failure)
-	    - Can group instances by deployment group (dev/test/prod)
+	    - Can group instances by deployment group (dev/test/prod) - Use Tags for this
 	    - can integrate with CodePipeline, use artifacts from CodeBuild or source from CodeCommit
 	    - Can use existing OS config tools, applications, integrates with ASG
-	    - Blue/Green deployments woth only with Ec2 instances (not on-premises)
+	    - Blue/Green deployments with only with Ec2 instances (not on-premises)
+	    	- Can do without ASG, but is much easier with ASG (copies existing ASG to new group)
+	    	- Requires a Load Balancer
+	    - Deployment Configs 
+	    	- Replace all at once okay for non-production, service has unavailability
+	    	- Can do 1 at a time, half at a time, or custom (number of healthy hosts, % of healthy hosts)
 	    - Support for AWS Lambda deployments as well as EC2
 	    - Only in charge of deployment (won't do infra creation)
 	- CodePipeline
