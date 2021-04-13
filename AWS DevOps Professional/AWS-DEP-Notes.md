@@ -97,8 +97,8 @@
 	    - can integrate with CodePipeline, use artifacts from CodeBuild or source from CodeCommit
 	    - Can use existing OS config tools, applications, integrates with ASG
 	    - Blue/Green deployments with only with Ec2 instances (not on-premises)
-	    	- Can do without ASG, but is much easier with ASG (copies existing ASG to new group)
-	    	- Requires a Load Balancer
+	    	- Can do without ASG (i.e. manually provision instances, not good devops practice), but is much easier with ASG (copies existing ASG to new group)
+	    	- Requires a Load Balancer (can be classic or ALB)
 	    - Deployment Configs 
 	    	- Replace all at once okay for non-production, service has unavailability
 	    	- Can do 1 at a time, half at a time, or custom (number of healthy hosts, % of healthy hosts)
