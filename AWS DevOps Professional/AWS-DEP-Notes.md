@@ -108,14 +108,18 @@
 	    	- files: 
 	    		- source: where a file is coming from in repository 
 	    		- destination: where it should go on server
+	    		- The copying part is performed during the Install lifecycle event (can't specify the scripts to run in Install event)
 	    	- hooks: 
 	    		- ![LifeCycle](https://k2y3h8q6.stackpathcdn.com/wp-content/uploads/2020/08/Lifecycle-Event-Hooks-in-CodeDeploy1.png):
 	    		- Scripts that will be run during the deployment (different stages)
-				- ApplicationStop:
-				- AfterInstall:
-				- BeforeInstall:
-				- ApplicationStart:
-				- ValidateService:
+	    		- Can specify the timeout for different step (max 3600 sec, https://docs.aws.amazon.com/codedeploy/latest/userguide/limits.html)
+				- ApplicationStop: define how to stop the service (e.g stop the httpd service)
+				- BeforeInstall: install dependecies (e.g. install httpd service)
+				- AfterInstall: script to run after install, potentially do some application re-configuration (e.g. update a config with instance meta-data values, etc.)
+				- ApplicationStart: define how to start the service (e.g. start the httpd service)
+				- ValidateService: run a healthcheck (i.e. run unit tests, UI tests). if this fails the deployment fails
+			- View the lifecycle events in "View Events" link in deployment record (in console) - details not available via CLI/API
+			- Different hooks for Lambda vs. ECS vs. EC2/On-Prem (https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html)
 	    		
 	- CodePipeline
 	- CodeStar
