@@ -108,7 +108,7 @@
 	    	- files: 
 	    		- source: where a file is coming from in repository 
 	    		- destination: where it should go on server
-	    	- hooks [LifeCycle](https://k2y3h8q6.stackpathcdn.com/wp-content/uploads/2020/08/Lifecycle-Event-Hooks-in-CodeDeploy1.png):
+	    	- hooks ![LifeCycle](https://k2y3h8q6.stackpathcdn.com/wp-content/uploads/2020/08/Lifecycle-Event-Hooks-in-CodeDeploy1.png):
 	    		- Scripts that will be run during the deployment (different stages)
 	    		- ApplicationStop:
 	    		- AfterInstall:
