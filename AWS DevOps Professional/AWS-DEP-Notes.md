@@ -101,7 +101,7 @@
 	    	- Requires a Load Balancer (can be classic or ALB)
 	    - Deployment Configs 
 	    	- Replace all at once okay for non-production, service has unavailability
-	    	- Can do 1 at a time, half at a time, or custom (number of healthy hosts, % of healthy hosts)
+	    	- Can do 1 at a time, half at a time, or custom (number of healthy hosts, % of healthy hosts, % setting not good for small number of hosts)
 	    - Support for AWS Lambda deployments as well as EC2
 	    - Only in charge of deployment (won't do infra creation)
 	- CodePipeline
