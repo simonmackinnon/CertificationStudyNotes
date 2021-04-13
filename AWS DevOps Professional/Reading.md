@@ -55,6 +55,8 @@ https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configuration
 
 https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html#appspec-hooks-lambda
 
+https://docs.aws.amazon.com/codedeploy/latest/userguide/limits.html
+
 #### CodePipeline
 
 https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#action-requirements
