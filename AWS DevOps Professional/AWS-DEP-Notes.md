@@ -139,6 +139,11 @@
 	    	    	- Roll back when alarm thresholds are met:
 	    	    	    	- E.g. Deployment succeeds but CPU alarm spikes, causing a Cloudwatch alarm to trigger, we want to roll-back
 	    	    	    	- E.g. Deployment succeeds but application errors encountered is above acceptable value, we can define custom logs metric/alarm, trigger this when above the value and roll-back
+	    - On Premises Instance registration
+	    	- Needs an IAM identity to authenticate requests (user/role)
+	    	- Role for lots of instances
+	    	- User(s) for few instances
+	    	- about 11 steps to configure for user, 8 for role
 	- CodePipeline
 	- CodeStar
 	- Jenkins on EC2
