@@ -144,7 +144,28 @@
 	    	- Role for lots of instances
 	    	- User(s) for few instances
 	    	- about 11 steps to configure for user, 8 for role
+	    - Deploying to Lambda
+	    	- Configuration can be linear, canary or all-at-once:
+	    		- linear: traffic hits new version at specified percentage for specified time, growing at linear rate, after 10 increments all traffic hits new function
+ 	    		- canary: traffic hits new version at specified percentage for specified time. if all is okay, then the rest of traffic hits new version of function 
+ 	    		- all-at-once: all traffic hits new version of function immediately
+		- Hooks available:
+		    - BeforeAllowTraffic: Run *another* Lambda Function. E.g. to make sure everything is fine (potentially database is available, etc.)
+		    - AfterAllowTraffic: Run *another* Lambda Function. useful to see if the new version of the function is working correctly (healthchecks & other monitoring)
 	- CodePipeline
+		- Continuous Delivery and Deployment Visualisation tool
+		- Can orchestrate the entire CI/CD flow
+		- Source can be in Github / CodeCommit / S3
+		- Build using AWS native (CodeBuild) or other services (e.g. Jenkins)
+		- Can then run 3rd party tools for testing
+		- Can Deploy using CodeDeploy, ECS, Beanstalk, CloudFormation ...
+		- Made up of stages
+		    - Stages can have sequencial or parallel steps
+		    - Stages define the steps to perform, like build, test, deploy
+		    - Can build in manual approval to any stage
+		    - Each stage is integrated via *artifacts*
+		    	- Artifacts are the output of each stage, stored in S3, the subsequent steps have access to these
+		    	- e.g. codecommit puts source into S3, used by build step to build package, package deployed by deploy step, to server, test step validate the deployment  
 	- CodeStar
 	- Jenkins on EC2
 - Continuous Delivery vs. Continuous Deployment
