@@ -166,6 +166,7 @@
 		    - Each stage is integrated via *artifacts*
 		    	- Artifacts are the output of each stage, stored in S3, the subsequent steps have access to these
 		    	- e.g. codecommit puts source into S3, used by build step to build package, package deployed by deploy step, to server, test step validate the deployment  
+		    	- Can retry failed stages in deployments, although this uses the existing artifact from the previous stage. (i.e. if you need the source to be up to date, need to do whole deployment, not just stage).
 	- CodeStar
 	- Jenkins on EC2
 - Continuous Delivery vs. Continuous Deployment
