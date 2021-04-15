@@ -167,6 +167,21 @@
 		    	- Artifacts are the output of each stage, stored in S3, the subsequent steps have access to these
 		    	- e.g. codecommit puts source into S3, used by build step to build package, package deployed by deploy step, to server, test step validate the deployment  
 		    	- Can retry failed stages in deployments, although this uses the existing artifact from the previous stage. (i.e. if you need the source to be up to date, need to do whole deployment, not just stage).
+		- Artifacts
+		    - Role used in each stage needs IAM access to the relevant artifacts bucket   
+		    - Can store in default S3 location. This make setup simpler, but a new bucket is created for each new pipeline
+		    - Can use a custom bucket (useful when you have many pipelines
+		    - Each pipeline has a folder in the bucket
+		    - Each Stage has a folder under that
+		    - Each deployment of each stage has an artifact (if specified)
+	    	    - Encryption Key
+	    	    	- Can use default AWS KMS Key
+	    	    	- Can use Customer Managed Key
+		- If you want to output to a different bucket within a stage, or at end of deployment, Can add an additional action to upload to another S3 bucket 
+		- Note, CodeBuild artifacts are different than CodePipeline artifacts (although the former can be used for the latter)
+		- Manual Approval Steps:
+		    - Needs to be configured sequencial order (i.e. before the step that needs approval)
+		    - Max time out for approval action is 7 days (https://docs.aws.amazon.com/codepipeline/latest/userguide/limits.html)
 	- CodeStar
 	- Jenkins on EC2
 - Continuous Delivery vs. Continuous Deployment
