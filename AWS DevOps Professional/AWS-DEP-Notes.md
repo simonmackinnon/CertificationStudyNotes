@@ -182,6 +182,7 @@
 		- Manual Approval Steps:
 		    - Needs to be configured sequencial order (i.e. before the step that needs approval)
 		    - Max time out for approval action is 7 days (https://docs.aws.amazon.com/codepipeline/latest/userguide/limits.html)
+		    - 
 	- CodeStar
 	- Jenkins on EC2
 - Continuous Delivery vs. Continuous Deployment
