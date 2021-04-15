@@ -161,6 +161,9 @@
 - Can Deploy using CodeDeploy, ECS, Beanstalk, CloudFormation ...
 - Made up of stages
     - Stages can have sequencial or parallel steps
+	- where a stage runs is defined (in code) by the 'runOrder' parameter. 
+	- the higher a runOrder value, the later the action occurs. 
+	- Actions with the same runOrder value are in the same Action Group, i.e. they will run in parallel
     - Stages define the steps to perform, like build, test, deploy
     - Can build in manual approval to any stage
     - Each stage is integrated via *artifacts*
@@ -182,7 +185,7 @@
 - Manual Approval Steps:
     - Needs to be configured sequencial order (i.e. before the step that needs approval)
     - Max time out for approval action is 7 days (https://docs.aws.amazon.com/codepipeline/latest/userguide/limits.html)
-    - 
+
 #### CodeStar
 #### Jenkins on EC2
 #### Continuous Delivery vs. Continuous Deployment
