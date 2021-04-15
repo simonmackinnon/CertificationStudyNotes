@@ -1,6 +1,6 @@
 # Domain 1: SDLC Automation
 ## Apply concepts required to automate a CI/CD pipeline
-- Continuous Integration 
+### Continuous Integration 
 	- constantly merging code to ensure all new software is added
 	- all new code built/tested on build server (devs notified about failures)
 	- allows bugs to be found/fixed early
@@ -60,7 +60,7 @@
 		- Can output to SNS
 		- Docker, ECR & buildspec.yml (Likely exam question on this setup) https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker.html
 		
-- Continuous Delivery
+### Continuous Delivery
 	- Deliver software reliably when needed
 	- Deployments are easy/quick
 	- Can deploy many times per day vs. long release cycles (months, etc.)
