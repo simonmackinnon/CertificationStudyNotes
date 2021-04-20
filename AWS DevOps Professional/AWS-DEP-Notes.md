@@ -188,6 +188,8 @@
 - All Integrations (https://docs.aws.amazon.com/codepipeline/latest/userguide/best-practices.html#use-cases)
     - Heaps of different services to integrate with natively. Noteworthy ones:
     	  - Lambda
+    	      - Useful for full control over action steps, success/faulure state (use codepipeline.putJobSuccessResult etc. to indicate job success, etc.)
+    	      - Really useful to connect to 3rd-party applications in Pipeline (i.e. Slack, or other email client, write to enterprise system)
     	  - Cloudformation (deploy a new stack when code changes)
           - CodeBuild/Deploy
           - Jenkins
