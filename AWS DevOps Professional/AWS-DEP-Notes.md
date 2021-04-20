@@ -191,10 +191,17 @@
     	      - Useful for full control over action steps, success/faulure state (use codepipeline.putJobSuccessResult etc. to indicate job success, etc.)
     	      - Really useful to connect to 3rd-party applications in Pipeline (i.e. Slack, or other email client, write to enterprise system)
     	  - Cloudformation (deploy a new stack when code changes)
+    	      - Can deploy a stack for testing then delete it once done, can be repeated in different stages (like test, prod, etc.)
+    	      - Can also create CodePipelines using CloudFormation, which can in turn create CloudFormation stacks (https://github.com/aws-samples/codepipeline-nested-cfn)
           - CodeBuild/Deploy
           - Jenkins
           - But many other, including test platforms/services    
 #### CodeStar
+- Abstraction / Quickstart service for settng up CodeCommit/Deploy/Pipeline, as well us compute/hosting infrastructure (i.e. Lambda/EC2/Beanstalk) for a project using templates (i.e. Express.js app or plain HTML app)
+- Select Project Type, how it will be deployed/run, and the infrastructure is provisioned for you automatically
+- Integrtes with Github/Jira
+- Gives you a Wiki for the project/team
+- What is the difference between CodeStar and Proton? (https://acloudguru.com/blog/engineering/what-you-need-to-know-about-the-new-aws-proton-service)
 #### Jenkins on EC2
 #### Continuous Delivery vs. Continuous Deployment
 - Continuous Delivery:
