@@ -81,6 +81,8 @@ https://aws.amazon.com/blogs/devops/implementing-gitflow-using-aws-codepipeline-
 
 https://docs.aws.amazon.com/codestar/latest/userguide/templates.html
 
+https://acloudguru.com/blog/engineering/what-you-need-to-know-about-the-new-aws-proton-service
+
 #### Jenkins
 
 https://aws.amazon.com/getting-started/projects/setup-jenkins-build-server/
