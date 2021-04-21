@@ -202,7 +202,7 @@
 - Integrtes with Github/Jira
 - Gives you a Wiki for the project/team
 - What is the difference between CodeStar and Proton? (https://acloudguru.com/blog/engineering/what-you-need-to-know-about-the-new-aws-proton-service)
-#### Jenkins on EC2
+
 #### Continuous Delivery vs. Continuous Deployment
 - Continuous Delivery:
 	- Ability to deploy often using automation
