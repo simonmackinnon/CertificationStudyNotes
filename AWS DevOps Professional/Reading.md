@@ -1,4 +1,15 @@
 # Reading:
+
+#### Whitepapers
+* AWS Blue Green Deployments
+* AWS DevOps
+* AWS Development Test Environments
+* Infrastructure as Code
+* Jenkins on AWS
+* Microservices on AWS
+* Practicing Continuous Integration Continuous Delivery on AWS
+* Running Containeriszed Microservices on AWS
+
 #### CodeCommit
 
 https://www.atlassian.com/git/tutorials/using-branches
