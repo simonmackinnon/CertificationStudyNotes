@@ -100,7 +100,7 @@
 
 ## Networking
 - By default, Docker containers can make egress connections, but ingress connections don't work.
-- To enable inbourn connections, need to bind the container to a host port
+- To enable inbound connections, need to bind the container to a host port
 
 ## Orchestration
 
