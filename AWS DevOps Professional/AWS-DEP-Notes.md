@@ -225,6 +225,15 @@
 ## Determine deployment/delivery strategies (e.g., A/B, Blue/green, Canary, Red/black) and how to implement them using AWS Services
 
 # Domain 2: Configuration Management and Infrastructure as Code
+### CloudFormation
+- Can use cfn-init instead of EC2 user-data for setting up instances. Cfn-init is desired state, rather than script
+- Use cfn-signal to make CloudFormation service wait for EC2 service to be set up before completing
+- Can turn off rollbacks on failure if you need to debug an issue in a stack
+- Nested stacks useful for code-reuse, especially across teams or stacks
+- Can create a Change-set separate from stack creation, this allows for a manual review of what will change prior to applying the changes
+- Deletion policy: Default is to delete (except DB instance, DB cluster - snapshot). To retain or create snapshot, change the DeletionPolicy attribute on the resource.
+- Can stop stacks from being terminated termination protection. To delete a stack, need to turn this off first
+
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
 ## Apply security concepts in the automation of resource provisioning
