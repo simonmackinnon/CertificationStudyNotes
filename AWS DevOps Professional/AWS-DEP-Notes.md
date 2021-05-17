@@ -233,6 +233,10 @@
 - Can create a Change-set separate from stack creation, this allows for a manual review of what will change prior to applying the changes
 - Deletion policy: Default is to delete (except DB instance, DB cluster - snapshot). To retain or create snapshot, change the DeletionPolicy attribute on the resource.
 - Can stop stacks from being terminated termination protection. To delete a stack, need to turn this off first
+- Using params from SSM
+	- Advantage is that updating stacks after param value updates means the inputs are update automatically
+	- Need to trigger stack update to do this
+	- 
 
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
