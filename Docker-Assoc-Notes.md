@@ -31,6 +31,7 @@
     - run `docker system df` to get docker level disk usage
     - run `docker system df -v` to get per component (images/repos/containers) level metrics
 - use `--rm` flag to automatically delete containers when it exits, i.e. `docker container run -dt --rm --name testcontainer01 busybox ping -c10 google.com`
+- general container info: `docker inspect <container name>`, i.e. get IP, etc.
  
 ## Image Creation, Management & Registry
 - Image creation
