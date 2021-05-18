@@ -236,8 +236,17 @@
 - Using params from SSM
 	- Advantage is that updating stacks after param value updates means the inputs are update automatically
 	- Need to trigger stack update to do this
-	- 
-
+	- Public parameters available
+		- can reference things like the latest AMI for a linux distro automatically, i.e. no need to add an SSM Param Store parameter and manually update when new images released, this is available through a puplic param value 
+- DependsOn
+	- Ensures dependecy of resource creation order, e.g. ensure a DB is created before creating the web-server that will connect to it
+- Lambda Function deployments
+	- Can be inline, or reference an S3 object (or object version)
+	- Inline limited to about 4KB characters, no packaging (reference libraries, etc.)
+- Custom Resources - Usefule for AWS services not covered by CFN, or non-AWS resource, empty an S3 bucket prior to deleting, fetch an AMI ID, or anything really that you'd like (super powerful)
+	- Create / Update / Delete event type and event properties, passed to lambda, as well as response URL (presigned URL). Lambda repsonds back to service via the response URL a success/failed status after running whatever code is needed, plus any additional resource properties (which as suggested, are then properties of the custom resource)
+- Drift Detection
+	- Shows modified/deleted/in-sync resources within a stack. To fix, need to rebuild the stack, or manually fix the resources
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
 ## Apply security concepts in the automation of resource provisioning
