@@ -246,7 +246,7 @@
 - Custom Resources - Usefule for AWS services not covered by CFN, or non-AWS resource, empty an S3 bucket prior to deleting, fetch an AMI ID, or anything really that you'd like (super powerful)
 	- Create / Update / Delete event type and event properties, passed to lambda, as well as response URL (presigned URL). Lambda repsonds back to service via the response URL a success/failed status after running whatever code is needed, plus any additional resource properties (which as suggested, are then properties of the custom resource)
 - Drift Detection
-	- Shows modified/deleted/in-sync resources within a stack. To fix, need to rebuild the stack, or manually fix the resources
+	- Shows modified/deleted/in-sync resources within a stack. To fix, need to rebuild the stack, or manually fix the resources where you don't want to replace the resources -> remove drifted resources from stack (with retain deletion policy) then import the resources back into the stack with the desired state
 - Update\_rollback\_failed status: 
 	- need to either continue the rollback (manually fix the resources that caused the failure) or skip the resources (status of those will be Update_complete)
 	- Potentially need to contact AWS support, if cause was service limitation, etc.
