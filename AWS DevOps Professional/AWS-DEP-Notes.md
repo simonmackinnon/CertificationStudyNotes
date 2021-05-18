@@ -268,7 +268,7 @@
 	- Set environment variables using `eb setenv` command
 	- Upload saved configs using `eb config put <config-name>` (i.e. saves the local config file to eb environment remote)
 	- Update env to use saved config using `eb config <env-name> --cfg prod` (uses remote config, not local)
-	- Saved configs can be applied in other environments, not just the one it was created in. Can be moved into another region, which can be good for DR
+	- Saved configs can be loaded in other environments, not just the one it was created in. Can be loaded into another region, which can be good useful for multi-region DR strategy
 - .ebextensions
 	- define options settings for the environment
 	- sits at project root level, so is automatically included when running an `eb deploy` command
