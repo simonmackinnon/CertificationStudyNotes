@@ -247,6 +247,18 @@
 	- Create / Update / Delete event type and event properties, passed to lambda, as well as response URL (presigned URL). Lambda repsonds back to service via the response URL a success/failed status after running whatever code is needed, plus any additional resource properties (which as suggested, are then properties of the custom resource)
 - Drift Detection
 	- Shows modified/deleted/in-sync resources within a stack. To fix, need to rebuild the stack, or manually fix the resources
+- Update\_rollback\_failed status: 
+	- need to either continue the rollback (manually fix the resources that caused the failure) or skip the resources (status of those will be Update_complete)
+	- Potentially need to contact AWS support, if cause was service limitation, etc.
+- InsufficientCapabilitiesException - Error occurs when you don't acknowledge that CFN needs to create IAM resources. You need to allow cloudformation the capability to create IAM resources
+- cfn-hup
+	- default recheck timeout is 15min, can be modified using "interval" config
+	- put change hooks configs in hooks.d directory, these specify what should run if the metadata Init section has changed (provide path, action, resource, etc.)
+	- essentially, can update EC2 instances when the init section changes (e.g. an input param changes) without needing to replace the instance
+- Stack Policies 
+	- Used to lock down specific resources within a stack (resource rather than IAM principal). Uses allow/deny statements. Can deny updates on particular resources/patterns. 
+	- from CLI, add inline using `--stack-policy-body` or reusable using `--stack-policy-url` (s3 object URL)
+	- To update a resource that's blocked by a policy, need to update the policy during the update command to ensure the action can be carried out (it's automatically reverted once the update is complete)
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
 ## Apply security concepts in the automation of resource provisioning
