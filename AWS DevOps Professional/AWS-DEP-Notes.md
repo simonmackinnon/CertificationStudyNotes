@@ -266,7 +266,7 @@
 	- `eb config save <env-name> -cfg <config-name>` 
 	- this stores the non-default settings in a yaml file
 	- Set environment variables using `eb setenv` command
-	- Apply saved configs using `eb config put <config-name>` (i.e. saves the local config file to eb environment remote)
+	- Upload saved configs using `eb config put <config-name>` (i.e. saves the local config file to eb environment remote)
 	- Update env to use saved config using `eb config <env-name> --cfg prod` (uses remote config, not local)
 	- Saved configs can be applied in other environments, not just the one it was created in. Can be moved into another region, which can be good for DR
 - .ebextensions
