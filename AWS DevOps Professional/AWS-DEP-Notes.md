@@ -259,6 +259,19 @@
 	- Used to lock down specific resources within a stack (resource rather than IAM principal). Uses allow/deny statements. Can deny updates on particular resources/patterns. 
 	- from CLI, add inline using `--stack-policy-body` or reusable using `--stack-policy-url` (s3 object URL)
 	- To update a resource that's blocked by a policy, need to update the policy during the update command to ensure the action can be carried out (it's automatically reverted once the update is complete)
+### Elastic Beanstalk
+- Use Elastic Beanstalk to bootstrap your application. Create Environments using console/cli, this creates all the infra needed for a scalable app (ASGs/LCs,ELBs, etc.) `eb create <env-name>`
+- Deploy changes using eb cli command `eb deploy`
+- Save EB configs as code (native to Elastic Beanstalk) 
+	- `eb config save <env-name> -cfg <config-name>` 
+	- this stores the non-default settings in a yaml file
+	- Set environment variables using `eb setenv` command
+	- Apply saved configs using `eb config put <config-name>` (i.e. saves the local config file to eb environment remote)
+	- Update env to use saved config using `eb config <env-name> --cfg prod` (uses remote config, not local)
+	- Saved configs can be applied in other environments, not just the one it was created in. Can be moved into another region, which can be good for DR
+- .ebextensions
+	- define options settings for the environment
+	- sits at project root level, so is automatically included when running an `eb deploy` command
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
 ## Apply security concepts in the automation of resource provisioning
