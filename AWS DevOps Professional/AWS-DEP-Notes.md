@@ -269,7 +269,7 @@
 	- Upload saved configs using `eb config put <config-name>` (i.e. saves the local config file to eb environment remote)
 	- Update env to use saved config using `eb config <env-name> --cfg prod` (uses remote config, not local)
 	- Saved configs can be loaded in other environments, not just the one it was created in. Can be loaded into another region, which can be good useful for multi-region DR strategy
-- .ebextensions
+- .ebextensions for configs
 	- define options settings for the environment
 	- General Options for all environments here: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html
 	- See the format of the options settings here: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ebextensions-optionsettings.html
@@ -279,6 +279,10 @@
 		- Saved Configurations, then
 		- .ebextensions, executed in filename alphabetical order, then
 		- default Elastic Beanstalk values 
+- .ebextensions for resources
+	- Can add CloudFormation resources into a .ebextensions template using the Resources block 
+	- Can also add in Outputs, but these are outputs of the CloudFormation stack, not the EB environment
+	- Can create environment variables from CloudFormation instrinsic functions (e.g. ref a resource) in the options_settings section
 
 
 ## Determine deployment services based on deployment needs
