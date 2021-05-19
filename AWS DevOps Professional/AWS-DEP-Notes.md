@@ -283,6 +283,19 @@
 	- Can add CloudFormation resources into a .ebextensions template using the Resources block 
 	- Can also add in Outputs, but these are outputs of the CloudFormation stack, not the EB environment
 	- Can create environment variables from CloudFormation instrinsic functions (e.g. ref a resource) in the options_settings section
+		- unresolved when viewing in the EB environment configs, but are resolved at runtime on instance(s)
+		- check the values by running `/opt/elasticbeanstalk/bin/get-config environment` (pipe to jq for pretty view)
+		- view the whole options settings using `/opt/elasticbeanstalk/bin/get-config optionsettings` (useful for debugging)
+	- For resources that must persist outside of the Elastic Beanstalk environment (e.g. an RDS DB that will be shared between environments):
+		- Create resource as part of separate app (manually or using CloudFormation)
+		- Reference the resource using environment variables in the options settings 
+	- Commands (server commands):
+		- Commands are executed on the E2 instance, before the application is set up
+		- Useful to install applications needed for the app to run, etc.
+	- Container Commands (application pre-deployment config commands):
+		- Commands are run after the application is set up, but before the app is deployed  
+		- Useful for replacing config values, set connection strings, etc.
+		- `leader_only` parameter ensures the command is only executed once (i.e. on the master node)
 
 
 ## Determine deployment services based on deployment needs
