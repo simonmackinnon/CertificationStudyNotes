@@ -353,6 +353,15 @@
 				- Validation can be done over time
 				- Rollback is simple
 				- use DNS (e.g. Route53) to set the traffic flow (can use weighted traffic policies to test little traffic to new app first) 
+		- Can use the Swap Environment URL feature to perform Blue/Green DNS Switch. Takes some time to propogate DNS / Browser cache TTL to expire
+		- Perform CPU intensive / Scheduled / Long running tasks
+			- work to be performed sent from web server to SQS queue, the queue to use is an environment configuration
+			- scheduled tasks are performed as per the cron.yaml 
+		- Multi-Docker Integration
+			- Uses ECS cluster under the hood as tasks on EC2 
+			- Dockerrun.aws.json is an Elastic Beanstalk specific JSON file that describes how to deploy a set of Docker containers as an Elastic Beanstalk application (used if there is a complex Muli-container Docker application)
+### Lambda
+- For purposes of DevOps pro exam, service is used for operations / glue services together
 
 
 ## Determine deployment services based on deployment needs
