@@ -296,6 +296,63 @@
 		- Commands are run after the application is set up, but before the app is deployed  
 		- Useful for replacing config values, set connection strings, etc.
 		- `leader_only` parameter ensures the command is only executed once (i.e. on the master node)
+			- useful for one-off commands (some non-idempotent database commands, notification commands)
+	- Good features to know:
+		- Configuration presets: set up different level of HA infra based on cost/environment requirements: single instance in dev, LB and multiple instances in prod, etc.
+		- Application version lifecycle settings
+			- Each deployment means a new application version is stored
+			- Elastic Beanstalk only allows 1000 versions to be stored, need to clean up versions after many deployments
+			- Lifecycle policy can be enabled
+				- keeps based on number of versions, or version age.  
+				- Sets if version bundle should be retained or deleted
+				- Which IAM role to use to perform version lifecycle actions
+			- Won't delete currently deployed versions
+		- Clone environment
+			- Creates a copy of an existing environment (can change some basic settings like IAM role, env name/url)
+		- Terminate environment
+			- destroys all the resources/configs 
+		- Rebuild an environment
+			- destroys the environment, then builds it from scratch using the configs/extensions
+			- Need to be careful of datastores (back up DBs or file systems if data required after rebuild)
+		- Managed Updates:
+			- Set an update window for updates to be applied automatically on a weekly basis
+			- can perform instance replacement 
+			- Using rolling deployment to do it
+	- Rolling Updates stratagies:
+		- If using an HA configuration (ELB, ASG, etc.) how to deploy new versions?
+			- All at once 
+				- fast
+				- but downtime
+			- Rolling 
+				- updates a few at a time
+				- no downtime
+				- app runs below max capacity
+				- number of instances to update is determined by batch size
+				- once batch is deployed/healthy, moves onto next batch
+				- runs both version of application at the same time
+				- no additional cost
+				- slow if bucket size is small
+			- Rolling with additional batches
+				- creates instances to match batch size
+				- spin up new instances to move the batch
+				- old application still available
+				- small additional cost
+				- app runs above max capacity temporarily
+				- slow if bucket size is small
+			- Immutable
+				- spin up new temporary ASG/instances
+				- deploy to instances
+				- swaps to the new instances once healthy
+					- merges instances to existing ASG
+					- terminates the old instances
+					- removes the temporary ASG 
+				- expensive (double capacity)
+				- very quick rollback in case of failures
+			- Blue/Green
+				- Separate environment for new version of app
+				- Validation can be done over time
+				- Rollback is simple
+				- use DNS (e.g. Route53) to set the traffic flow (can use weighted traffic policies to test little traffic to new app first) 
 
 
 ## Determine deployment services based on deployment needs
