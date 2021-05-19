@@ -271,7 +271,16 @@
 	- Saved configs can be loaded in other environments, not just the one it was created in. Can be loaded into another region, which can be good useful for multi-region DR strategy
 - .ebextensions
 	- define options settings for the environment
+	- General Options for all environments here: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html
+	- See the format of the options settings here: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ebextensions-optionsettings.html
 	- sits at project root level, so is automatically included when running an `eb deploy` command
+	- Settings Precendence: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options.html#configuration-options-precedence
+		- Client, then
+		- Saved Configurations, then
+		- .ebextensions, executed in filename alphabetical order, then
+		- default Elastic Beanstalk values 
+
+
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
 ## Apply security concepts in the automation of resource provisioning
