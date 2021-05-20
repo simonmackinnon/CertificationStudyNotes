@@ -406,7 +406,23 @@
 			- Dockerrun.aws.json is an Elastic Beanstalk specific JSON file that describes how to deploy a set of Docker containers as an Elastic Beanstalk application (used if there is a complex Muli-container Docker application)
 ### Lambda
 - For purposes of DevOps pro exam, service is used for operations / glue services together
-
+- Triggers:
+	- API Gateway, external API can invoke function (serverless API, http interface)
+	- ALB - can put a load balancer in front of function (lose native security integrations, but can route based on path or other layer 7 attributes)
+	- CloudWatch events - glue of all of our DevOps automation
+		- react to any event in our infrastructure
+		- Cron event can regularly schedule the run of lambda
+	- Cloudwatch logs - alerting based on log patterns in cloudwatch logs  (abstracts creating custom log metric / alarm / CW Event)
+	- CodeCommit - react to CC hooks, if code is committed, notify, or monitor changes
+	- DynamoDB - streams, can react to new data in table (i.e. run lambda to sign up a new user if a record added to user table, etc.)
+	- Kinesis - RT processing of data, incoming data, lambda can process the data
+	- S3 
+		- trigger lambda when new object added to bucket 
+		- can use prefix patterns
+		- need to be careful about recursion (don't have a lambda write to a bucket that triggers the lambda)
+	- SNS - lambda can react to notifications, lambda is the subscriber to a topic. if it can't handle a notification 3x, message goes to a DLQ
+	- SQS - like normal queue message processing, marks message processed, or puts back on the queue
+-  
 
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
