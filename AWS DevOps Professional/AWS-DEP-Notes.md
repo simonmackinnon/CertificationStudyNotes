@@ -439,6 +439,15 @@
 		}
 		```
 		- (KMS Key Policy needs to allow function to use it too)
+	- Can also use secure parameters via SSM Parameter store (access via API calls in code, no via Env variables) needs IAM permissions
+	- Can alsom use secrets manager (access via API calls in code, no via Env variables) needs IAM permissions
+- Versions
+	- default is $LATEST version (which is pointer to the most recent version, version returned if no version specified)
+	- each deployment makes a new version (we can alias versions, blue, green, live, new-feature, etc.) 
+	- Access to aliases is better, as we can switch where the alias points without backend/front-end change (eventBridge rule might target a particualr function alias)
+	- Can create weighted alias 
+		- (% of traffic to two versions, e.g. 5% to v2, 95% to v1, useful for Blue/Green deployments)
+		- Logs indicate which 
 
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
