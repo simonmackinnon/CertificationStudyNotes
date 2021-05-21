@@ -422,7 +422,23 @@
 		- need to be careful about recursion (don't have a lambda write to a bucket that triggers the lambda)
 	- SNS - lambda can react to notifications, lambda is the subscriber to a topic. if it can't handle a notification 3x, message goes to a DLQ
 	- SQS - like normal queue message processing, marks message processed, or puts back on the queue
--  
+-  Environment variables
+	- Encryption in transit, 
+		- use "Enable helpers for encryption in transit" option in the console. (Supply KmsKeyArn to encrypt with KMS key in CloudFormation)
+		- Code needs to decrypt using KMS key (execution role needs access to KMS key and decrypt calls)
+		```
+		{
+		    "Version": "2012-10-17",
+		    "Statement": [
+			{
+			    "Effect": "Allow",
+			    "Action": "kms:Decrypt",
+			    "Resource": "arn:aws:kms:ap-southeast-2:955966247963:key/30b5b72f-9a13-499c-a184-d899a5999c83"
+			}
+		    ]
+		}
+		```
+		- (KMS Key Policy needs to allow function to use it too)
 
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
