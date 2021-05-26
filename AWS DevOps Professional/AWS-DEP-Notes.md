@@ -513,6 +513,15 @@
 		- To get the result, need to poll the step function DescribeExecution action until it's not "RUNNING" 
 
 ### ECS
+- Docker 
+ 	- Run "Containers" (app + runtime + dependencies packaged together) - Runs the same on any OS
+	- Containers created from Images (can find many public images on dockerhub.com, can store private images on ECR, etc.)
+	- Can run many containers on a machine
+	- VMs run on Guest OS on Hypervisor on Host OS, Containers run on Daemon on Host OS directly
+- ECS Clusters 
+	- Grouping of EC2 instances running the ECS agent
+	- Run special ECS AMI
+	-  
 
 ### OpsWorks
 
