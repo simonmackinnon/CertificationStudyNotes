@@ -475,6 +475,29 @@
 - CloudWatch can natively target StepFunctions, i.e. schedule a step-function to run daily, or trigger step-functions in event-based manner
 - API Gateway can now directly invoke Step-Functions https://aws.amazon.com/blogs/compute/introducing-amazon-api-gateway-service-integration-for-aws-step-functions/
 
+### API Gateway
+- Can integrate with Lambda Functions, or other AWS services
+- Functions need to be in the same region as th API
+- API Keys - Can provide them to clients to connect (easy to track, but not best solution for security - use Authorizers instead)
+- Can log API calls to CloudWatch, need to assign IAM role that has permissions to write to CW
+- Private Endpoints - deploy API internal to a VPC - Available internally to other services, API can only use functions/endpoints in the VPC
+- LAMBDA_PROXY: Entire request is proxied over to the function
+- LAMBDA: use request/response mapping template 
+	- modify the event that passed to the function (requires scripting in Velocity Template Language - VTL)
+	- Can use API Gateway to modify the output with a mapping template at the response layer (e.g. sort json object before serving response)
+- Lambda endpoint
+	- API method can point to Lambda, Lambda alias, or Lambda version 
+	- Can use weighted routing at Lambda alias
+- Deployments are done to Stages
+	- Each stage can be rolled-back to previous version
+	- Each stage has it's own URL, and can point to specific version/alias of function
+	- Stage variables used to change often changing config values e.g. lambda ARN, http endpoint, mapping templates
+		- passed to the "context" object in Lambda, so using the variables is done at runtime (not API/Lambda config level)
+		- Can map to an event attribute, or transform using mapping template, e.g. { "name" : "$stageVariables.<variable_name>"}
+		- we can also map directly to a function name/alias/version, by declaring it as a stage variable (e.g. "myfunction", then specifying ${stageVariables.myfunction} in the "Lambda Function" parameter in the Integration Request section (need to ensure the API has permissions to invoke all values of the lambda)
+- Canary Deployment
+	- Adding a Canary to a stage allows a variable amount of requests to be directed to a canary. New deployments are automatically directed to the canary, and canary % is whatever it was set to. Can alter the value incrementally, or promote the canary to move the deployment to the stage 
+
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
 ## Apply security concepts in the automation of resource provisioning
