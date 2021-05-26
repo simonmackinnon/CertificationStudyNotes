@@ -463,6 +463,17 @@
 		- When `sam deploy` runs, it triggers a new Code Deploy deployment (which utilises an alias with weighted routing etc.)
 		- Can run pre and post traffic commands to validate the function using PreTraffic/PostTraffic Hooks (references other Lambda functions)
 	- Can't delete a SAM deployment using the CLI, delete the CloudFormation stack instead
+- Step Functions
+	- Workflow orchestration of separate Lambda/Batches. Can have wait steps defined. Runs up to 1 year for each execution. State Machine definition 
+	- JSON document defines the state-machine. This can be viewed in Step Functions console (or with IDE plugins, e.g. VSCode)
+	- Useful for separating RT functionality (i.e. Website request responses) from Non-RT functionality (i.e sign up messaging, other back-end reporting, etc.)
+	- Useful for initiating retries when a function fails (i.e. retry a deployment, etc. X no. of times before ending)
+	- Useful to run parallel tasks (e.g. send notification and store message data, etc.)
+	- Useful to run DevOps tasks (notifications, post-deploy test tasks, etc.)
+	- Can view execution history, which provides details of success/failure, as well as the reason/state/function it failed in
+	- CloudWatch can monitor for status-changes natively (especially for failed status), target a specific function or SNS topic, etc.
+	- CloudWatch can natively target StepFunctions, i.e. schedule a step-function to run daily, or trigger step-functions in event-based manner
+	- API Gateway can now directly invoke Step-Functions https://aws.amazon.com/blogs/compute/introducing-amazon-api-gateway-service-integration-for-aws-step-functions/
 
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
