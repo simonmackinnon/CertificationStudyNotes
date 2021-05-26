@@ -512,6 +512,12 @@
 		- makes sense: Step function can run for a year
 		- To get the result, need to poll the step function DescribeExecution action until it's not "RUNNING" 
 
+### ECS
+
+### OpsWorks
+
+
+
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
 ## Apply security concepts in the automation of resource provisioning
