@@ -497,6 +497,20 @@
 		- we can also map directly to a function name/alias/version, by declaring it as a stage variable (e.g. "myfunction", then specifying ${stageVariables.myfunction} in the "Lambda Function" parameter in the Integration Request section (need to ensure the API has permissions to invoke all values of the lambda)
 - Canary Deployment
 	- Adding a Canary to a stage allows a variable amount of requests to be directed to a canary. New deployments are automatically directed to the canary, and canary % is whatever it was set to. Can alter the value incrementally, or promote the canary to move the deployment to the stage 
+	- Other way of doing this is to use an alias with weighted routing
+	- Which to use? Former means doing API deployment, and altering the traffic direction at API layer, latter deploys to Lambda and directs traffic at Lambda layer. If we use SAM, we can use CodeDeploy to automate this in Linear fashion at Lambda layer, but it would need to be manaully scripted to do this at API layer
+- Throttling
+	- API calls limted on account level to 10,000 per second (irrespective of region, VPC, etc.)
+	- Can create "Usage Plan" which defines usage of an API stage and/or method (Rate/Burst), and this is associated with an API key (which is given to users).
+	- Throttling at Lambda level (so how many can be concurrently executed, if this happens: increase function's reserved capacity)
+- Step Function integration
+	- Can trigger an execution using "AWS Service" as Integration Type for an API method
+		- Define Service as "Step Functions"
+		- Define the Action (i.e. "StartExecution")
+		- Assign an execution role that has permission to perform the chosen action against the specified Step Function
+	- Note: result of the Step Function Execution is not returned the the API (only whether the exection start invocation succeeded)
+		- makes sense: Step function can run for a year
+		- To get the result, need to poll the step function DescribeExecution action until it's not "RUNNING" 
 
 ## Determine deployment services based on deployment needs
 ## Determine application and infrastructure deployment models based on business needs
