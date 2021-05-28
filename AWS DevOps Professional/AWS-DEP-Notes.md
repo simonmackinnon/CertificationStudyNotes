@@ -544,7 +544,8 @@
 		- Instance state change or task state change
 		- Schedule running tasks (using cron) by setting ECS TD as CW Event rule target
 - CodePipeline CICD & ECS 
-	- 
+	- Can define a buildspec.yml file to build and push an image to ECR and have CodeBuild or CodeDeploy to deploy to ECS (update Task Definition and update the cluster using Blue/Green deployment option)
+	- As the tag of an image is not immutable (i.e. can be overwritten), we can use the digest instead, which uniquely identifies an image (i.e. is immutable identifier), i.e. `docker run 955966247963.dkr.ecr.ap-southeast-2.amazonaws.com/demo@sha256:32412343bfacd3242bda43543fe324fe12ac3424`
 
 ### OpsWorks
 
