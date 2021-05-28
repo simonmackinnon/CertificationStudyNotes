@@ -480,9 +480,6 @@
 	- Needs an IAM role attached to it
 - Task Definition: 
 	- Configuration (JSON) of how to launch and run a container
-	- Task Definition Role vs Task Execution Role
-		- The execution role is the IAM role that executes ECS actions such as pulling the image and storing the application logs in cloudwatch
-		- The TaskRole is the IAM role used by the task itself. E.g. to call S3, SQS
 - Service:
 	- 1 or more Task Definitions running 
 	- Run on instances in the Cluster
@@ -501,7 +498,27 @@
 		- `docker tag demo:latest 955966247963.dkr.ecr.ap-southeast-2.amazonaws.com/demo:latest`
 		- `docker push 955966247963.dkr.ecr.ap-southeast-2.amazonaws.com/demo:latest`
 	- To use image in Task, need to ensure IAM role has sufficient permissions to pull from the repo
-
+- Fargate - Serverless container orchestration (place tasks without instances)
+	- Just uses Task Definitions - Scale is at task level only (no need to scale underlying infrastructure)
+	- No Host port mapping (because there's no host!) so dynamic mapping is handled by Fargate
+	- Can run Fargate task definition on EC2, but can't run EC2 task definition on Fargate  
+- Elastic Beanstalk & ECS
+	- Multi-Docker Beanstalk - EB creates a Load Balancer, ECS Cluster & ASG, Task Definition(s) and runs the tasks (containers) on the instance(s)
+		- E.g. php container, nginx container, other container
+		- Replicated across each instance in the cluster
+		- Load balancer set up for dynamic port mapping for all required ports  
+		- Doesn't run it as service, just runs Tasks, each task runs the containers
+- IAM Roles
+	- Instance Execution Role 
+		- IAM role that attached to the cluster instances 
+		- executes ECS actions such as pulling the image and storing the application logs in cloudwatch
+	- Task Role 
+		- IAM role used by the task itself 
+		- (has trust to ecs-tasks.awsamazon.com, i.e. can only be attached to tasks). 
+		- Used to call applications required AWS API (i.e. perform S3 actions, or read from a DynamoDB database, etc.)
+	- Service Role
+		- Attached to services
+		- Permissions to add/remove instances from an ELB (if the service has one) 
 
 
 ### OpsWorks
