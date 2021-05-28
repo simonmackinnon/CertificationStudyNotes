@@ -509,9 +509,12 @@
 		- Load balancer set up for dynamic port mapping for all required ports  
 		- Doesn't run it as service, just runs Tasks, each task runs the containers
 - IAM Roles
-	- Instance Execution Role 
+	- Instance Role 
 		- IAM role that attached to the cluster instances 
-		- executes ECS actions such as pulling the image and storing the application logs in cloudwatch
+		- 
+	- Task Execution Role
+		- Permits container to write to CloudWatch
+		- Pull images from 
 	- Task Role 
 		- IAM role used by the task itself 
 		- (has trust to ecs-tasks.awsamazon.com, i.e. can only be attached to tasks). 
@@ -519,17 +522,31 @@
 	- Service Role
 		- Attached to services
 		- Permissions to add/remove instances from an ELB (if the service has one) 
-
+	- AutoScaling Role
+		- Used by services
+		- Permission to perform task scaling actions 
+- Auto-Scaling
+	- Service Auto-Scaling
+		- Scales the number of running tasks in a cluster
+		- Scales based on defined rules (policies) (CW alarms, scheduled rules, etc.)
+		- **Doesn't** scale the underlying instances in a cluster
+	- Instance Auto-Scaling 
+		- Uses Capacity providers to associate the cluster with an autoscaling group
+		- OR separate ASG rules (can create CW rules or custom-metrics/alarms to perform instance scaling based on ECS events
+- CloudWatch Integrations
+	-  Task Executiion role allows application logs to be sent to Cloudwatch directly
+	-  Instances can install the awslogs agent and send specific logs via the log config (i.e. specify which files to send to CloudWatch)
+	-  ECS Metrics
+		- Cluster level or service level
+		- Can enable container insights (paid option) sets up metrics for each container
+	- CloudWatch Events
+		- Normally look for state changes
+		- Instance state change or task state change
+		- Schedule running tasks (using cron) by setting ECS TD as CW Event rule target
+- CodePipeline CICD & ECS 
+	- 
 
 ### OpsWorks
-
-
-
-## Determine deployment services based on deployment needs
-## Determine application and infrastructure deployment models based on business needs
-## Apply security concepts in the automation of resource provisioning
-## Determine how to implement lifecycle hooks on a deployment
-## Apply concepts required to manage systems using AWS configuration management tools and services
 
 # Domain 3: Monitoring and Logging
 ## Determine how to set up the aggregation, storage, and analysis of logs and metrics
