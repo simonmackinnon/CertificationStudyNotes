@@ -477,7 +477,32 @@
 - ECS Clusters 
 	- Grouping of EC2 instances running the ECS agent
 	- Run special ECS AMI
-	-  
+	- Needs an IAM role attached to it
+- Task Definition: 
+	- Configuration (JSON) of how to launch and run a container
+	- Task Definition Role vs Task Execution Role
+		- The execution role is the IAM role that executes ECS actions such as pulling the image and storing the application logs in cloudwatch
+		- The TaskRole is the IAM role used by the task itself. E.g. to call S3, SQS
+- Service:
+	- 1 or more Task Definitions running 
+	- Run on instances in the Cluster
+- Load Balancing  
+	- Don't specify the host port on the Container Definition (within the Task Definition)
+	- Host port is randomly allocated
+	- Requires an IAM role to perform the registering of targets, etc.
+	- Security group for ALB needs to allow all ports on the cluster instance SG
+		- ALB incoming on port 80 will dynamically route to random port on instance(s)
+- ECR - Private Image Repository
+	- Access is controlled via IAM (if access error, need to check IAM)
+	- build image locally using `docker build` command   
+	- Commands to push to repo:
+		- `aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 955966247963.dkr.ecr.ap-southeast-2.amazonaws.com`
+		- `docker build -t demo .`
+		- `docker tag demo:latest 955966247963.dkr.ecr.ap-southeast-2.amazonaws.com/demo:latest`
+		- `docker push 955966247963.dkr.ecr.ap-southeast-2.amazonaws.com/demo:latest`
+	- To use image in Task, need to ensure IAM role has sufficient permissions to pull from the repo
+
+
 
 ### OpsWorks
 
