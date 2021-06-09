@@ -1,3 +1,7 @@
+# Exam Preparation
+- E-LEARNING Exam Readiness: AWS Certified DevOps Engineer – Professional https://www.aws.training/Details/eLearning?id=34146
+- AWS Certified DevOps Engineer Professional 2021 - Hands On! (Stephane Maarek) https://www.udemy.com/course/aws-certified-devops-engineer-professional-hands-on/
+
 # Domain 1: SDLC Automation
 ## Apply concepts required to automate a CI/CD pipeline
 ### Continuous Integration 
