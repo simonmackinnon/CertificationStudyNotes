@@ -5,6 +5,10 @@
 - Practice Exam | AWS Certified DevOps Engineer Professional https://www.udemy.com/course/aws-certified-devops-engineer-professional-practice-exam-dop/
 - AWS Certified DevOps Engineer - Professional 2020 - https://acloud.guru/overview/aws-certified-devops-engineer-professional
 - Advanced AWS CloudFormation (legacy) https://learn.acloud.guru/course/aws-advanced-cloudformation/dashboard
+- https://www.udemy.com/course/aws-certified-devops-engineer-professional-practice-exams-amazon/
+- https://aws.amazon.com/certification/certified-devops-engineer-professional/
+- https://d1.awsstatic.com/training-and-certification/docs/AWS_certified_DevOps_Engineer_Professional_SampleExam.pdf
+- https://www.whizlabs.com/aws-devops-certification-training/practice-tests/
 
 # Domain 1: SDLC Automation
 ## Apply concepts required to automate a CI/CD pipeline
