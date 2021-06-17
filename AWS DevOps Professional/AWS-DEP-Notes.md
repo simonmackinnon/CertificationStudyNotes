@@ -558,9 +558,20 @@
 		- Schedule running tasks (using cron) by setting ECS TD as CW Event rule target
 - CodePipeline CICD & ECS 
 	- Can define a buildspec.yml file to build and push an image to ECR and have CodeBuild or CodeDeploy to deploy to ECS (update Task Definition and update the cluster using Blue/Green deployment option)
-	- As the tag of an image is not immutable (i.e. can be overwritten), we can use the digest instead, which uniquely identifies an image (i.e. is immutable identifier), i.e. `docker run 955966247963.dkr.ecr.ap-southeast-2.amazonaws.com/demo@sha256:32412343bfacd3242bda43543fe324fe12ac3424`
+		- Developers push change to an Dockerfile into Github/CodeCommit, CodePipeline triggers a build of the image in Codebuild, pushes new version of image to ECR. Cloudformation then runs, which creates a new Task Definition in ECS, which references the new image in ECR, and then deploys the new TD. 
+	- As the tag of an image is not immutable (i.e. can be overwritten), we can use the digest instead, which uniquely identifies an specific version image (i.e. is immutable identifier), i.e. `docker run 955966247963.dkr.ecr.ap-southeast-2.amazonaws.com/demo@sha256:32412343bfacd3242bda43543fe324fe12ac3424` 
+		- useful if image required should be static (i.e. not automatically ge the latest) 
 
 ### OpsWorks
+- OpsWorks Stacks 
+	- using Chef cookbooks (code telling the application layer how to provision/configure itself) to deploy your application
+	- Deploy infrastructure/application/configuration using Chef in the cloud
+	- Stacks are deployed in layers 
+		- blueprint for a set of EC2 instances 
+		- defines instance settings, resources, packages, profiles, security groups
+		- add Chef recipes to lifecycle events, e.g to set up, deploy, configure instances or discover resources
+	- 
+
 
 # Domain 3: Monitoring and Logging
 ## Determine how to set up the aggregation, storage, and analysis of logs and metrics
