@@ -570,7 +570,40 @@
 		- blueprint for a set of EC2 instances 
 		- defines instance settings, resources, packages, profiles, security groups
 		- add Chef recipes to lifecycle events, e.g to set up, deploy, configure instances or discover resources
-	- 
+		- Auto healing enabled - if instance is unhealthy, OpsWorks will reprovision the instance
+		- Can add ECS layer or RDS layer (for RDS, need to add an RDS DB instance)
+	- Recipes
+		- Instructions for installing/configuring and running an app, depending on lifecycle event (i.e. run an app at deploy event, setup a server configs at setup event, stop gracefully at Undeploy event)
+	- Can specify ELB, EBS Volumes, Security Groups
+	- CloudWatch Logs integration - if enabled, AWS will update the IAM policy (instance profile) to allow instances to push logs to CloudWatch
+	- Instances
+		- Can modify name, size, ssh key, OW agent version, layer after provisioned 
+		- Managed by OpsWorks
+		- Can have always-on servers
+			- Type is "24/7" 
+		- Can have Time-Based instances based on schedule 
+			- start and stop at specific times 
+			- hourly blocks, specifc days or every day
+			- useful when predictable loads require scheduled scaling of server(s)
+		- Can have Load-based instances
+			- Scale up/down based on layer averages (e.g. average CPU/Memory/Load
+			- Set batches to start or stop during scaling out/in events (number of instacnces to start/stop)
+			- Set thresholds periods and cooldown periods in minutes 
+			- Not as flexible as Autoscaling
+	- Apps
+		- Can manaully deploy app on instances
+		- Run a command on all instances
+			- Execute Recipes (Chef Cookbooks)
+			- Update custom cookbooks
+			- Setup
+			- Configure
+			- Upgrade OS (only available for Amazon Linux)
+		- Logs
+			- Shows the Chef logs for each command run, i.e. configure or setup
+			- Can view the logs from within the OpsWorks app console
+		- Can deploy many apps as part of a Stack 
+	- Lifecycle Events
+	- Auto-Healing and CloudWatch Events
 
 
 # Domain 3: Monitoring and Logging
