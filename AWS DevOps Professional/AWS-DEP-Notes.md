@@ -591,7 +591,9 @@
 			- Set thresholds periods and cooldown periods in minutes 
 			- Not as flexible as Autoscaling
 	- Apps
+		- Come from Git or a HTTP endpoint
 		- Can manaully deploy app on instances
+			- Run "Deploy" command 
 		- Run a command on all instances
 			- Execute Recipes (Chef Cookbooks)
 			- Update custom cookbooks
@@ -603,7 +605,35 @@
 			- Can view the logs from within the OpsWorks app console
 		- Can deploy many apps as part of a Stack 
 	- Lifecycle Events
+		- Layer have 5 lifecycle events
+		- OpsWorks runs recipes for corresponding events
+		- Can run custom cookbooks
+			- Setup 
+				- after a started instance has finished booting
+			- Configure (useful for running commands on all instances in distributed system when new instances added, i.e. reconfigure a load balancer to accomodate changes)
+				- occurs on **ALL** stack's instances when:
+					- instance enters or leaves online state
+					- EIP is associated/disassociated with an instance
+					- ELB is attached/detached to/from layer
+				- data sent to event
+					- layers, apps, all instances, instance details
+					- load balancer details
+					- 
+			- Deploy
+				- when you run a deploy command
+				- normally used to deploy an app to a set of server instances
+				- Setup includes Deploy; runs deploy recipes after setup is complete 
+			- Undeploy
+				- When we remove an app from a set of instances
+				- When we delete an app	 
+			- Shutdown 
+				- Happens before a server is terminated
+				- Allows graceful exit of services prior to shut-down, i.e. stop Node service 
 	- Auto-Healing and CloudWatch Events
+		- OpsWorks instances have OpsWorks Stacks agent installed, communicates with service endpoint regularly. If communication fails for 5min, then it is considered unhealthy
+		- If unhealthy, OpsWorks stops the instance, then starts the instance 
+		- In CloudWatch events, can monitor for instance state change, e.g. connection_lost, shutting_down, online
+			- Can target anything CloudWatch, esp SNS topic to get email when events occur 
 
 
 # Domain 3: Monitoring and Logging
