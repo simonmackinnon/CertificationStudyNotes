@@ -642,7 +642,27 @@
 ### CloudTrail
 - By default CT's are encrypted with AWS default KMS key
 - Can enable SNS notification delivery, each CloudTrail log will be sent to SNS
-- 
+- Can enable CloudTrail Logs to be sent to CloudWatch
+	- Needs an IAM role to allow CT service write access to the CW log(s)
+	- Creating trail from console with this option enabled creates policy that allows this automatically
+- file in S3:
+	- location like s3://aws-devops-simon-course-cloudtrail/AWSLogs/955966247963/
+		CloudTrail/ap-southeast-2/2021/06/20/955966247963_CloudTrail
+		_ap-southeast-2_20210620T2200Z_ZM4WjkEwfTW5SB5O.json.gz 
+	- Details event properties (basically the whole story of what occured)
+		- identity
+		- time
+		- eventID
+		- source
+		- eventName
+		- awsRegion
+		- requestParams -  what was requested
+		- Response - what was returned
+		- etc.
+- doesn't deliver to s3 in real-time, can take up to 15-minutes to get into S3 bucket
+- If sent to CloudWatch can filter/search easily, each event is a new record
+	- set up custom log metrics/rules/alarms 
+- Can also search directly in CloudTrail based on high level event attributes (i.e. event name, ID, AWS Access Key, etc.)
 
 ### Kinesis
 
