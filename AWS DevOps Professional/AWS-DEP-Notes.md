@@ -638,6 +638,23 @@
 
 # Domain 3: Monitoring and Logging
 ## Determine how to set up the aggregation, storage, and analysis of logs and metrics
+
+### CloudTrail
+- By default CT's are encrypted with AWS default KMS key
+- Can enable SNS notification delivery, each CloudTrail log will be sent to SNS
+- 
+
+### Kinesis
+
+### CloudWatch
+
+### X-Ray
+
+### Amazon ElasticSearch
+
+### Tagging
+
+
 ## Apply concepts required to automate monitoring and event management of an environment
 ## Apply concepts required to audit, log, and monitor operating systems, infrastructures, and applications
 ## Determine how to implement tagging and other metadata strategies
