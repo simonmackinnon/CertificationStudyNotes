@@ -684,8 +684,31 @@
 - *Kinesis Streams*
 	- low latency, high scale streming ingest
 	- divided into shards for ingestion
+		- Billing is per shard
+		- Records have the following attributes:
+			- Data blob (the data) up to 1 MB
+			- Record Key, determines which shard a record should go to
+				- the better we can distribute this, the more distributed our data is, and we avoid overloading particualr shards ("hot partition" problem)	
+			- Sequence number, how a record should be ordered (only ordered relative within shard)
 	- data from producers turned into shards, shards consumed by consumers
 	- data retained for 1 day (default), can configure it to be up to 7 days
+	- Can replay/reprocess data
+	- multiple applications can consume the data
+	- RT processing (scalability in throughput, i.e. when more throughput needed, more shards are added)
+	- Can't manually delete data, need to wait for retention period to elapse
+	- Limits:
+		- Producer:
+			- 1MB/s or 1000 messages/s at write per shard 
+			- (ProvisionedThroughputException - need to add shards or fix distribution of records across shards)
+		- Consumer Classic
+			- 2MB/s at read per shard across all consumers
+			- 5 API calls per shard across all consumers
+			- Will be throttled if exceedin this
+		- Producers (what can write to Kinesis):
+			- SDK
+			- Kinesis Producer Library (Java libray)
+			- Kinesis Agent
+			- CloudWatch Logs
 - Kinesis Analytics
 	- Use SQL to perform RT analytics on streams	
 - *Kinesis Firehose*
