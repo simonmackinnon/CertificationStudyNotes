@@ -676,6 +676,23 @@
 		- conditionally access the prefix of the logs for the particular accounts
 
 ### Kinesis
+- managed service (alternative to Apache Kafka)
+- service used to ingest streaming data 
+	- click strams, logs, metric, IoT data, real-time Big Data
+	- for streaming processing frameworks (Spark, NiFi, etc...)
+- Data automatically replicated across 3 Availability Zones
+- *Kinesis Streams*
+	- low latency, high scale streming ingest
+	- divided into shards for ingestion
+	- data from producers turned into shards, shards consumed by consumers
+	- data retained for 1 day (default), can configure it to be up to 7 days
+- Kinesis Analytics
+	- Use SQL to perform RT analytics on streams	
+- *Kinesis Firehose*
+	- load streams into AWS services like S3, Redshift, ElasticSearch
+- Example:
+	- Device data/clickstream/logs -> Amazon Kinesis Streams -> Kinesis Analytics -> Firehose -> S3
+
 
 ### CloudWatch
 
