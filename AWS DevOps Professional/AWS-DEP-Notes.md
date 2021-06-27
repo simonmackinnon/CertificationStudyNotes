@@ -663,6 +663,17 @@
 - If sent to CloudWatch can filter/search easily, each event is a new record
 	- set up custom log metrics/rules/alarms 
 - Can also search directly in CloudTrail based on high level event attributes (i.e. event name, ID, AWS Access Key, etc.)
+- Log integrity checking
+	- compare digest files to contents, if either are altered, then an error is thrown when the API calls are run
+	- digest files created once per hour, first check might take up to 2 hours to be able to be run
+- Cross account logging - when you want to put logs from many accounts into a centralised bucked
+	- Write Access: 
+		- Use bucket policy to allow additional buckets to write (add additional account to the resources on the PutObject permissions), 
+		- then set the target for the logs to be the centralised bucket
+	- Read Access
+		- Create IAM user in central account
+		- Attach permissions to read objects
+		- conditionally access the prefix of the logs for the particular accounts
 
 ### Kinesis
 
