@@ -731,7 +731,8 @@
 	- Create streams out of queries -> Can go to Kinesis Streams or Kinesis Firehose
 - **Kinesis Firehose**
 	![](https://docs.aws.amazon.com/firehose/latest/dev/images/fh-flow-splunk.png)
-	- load streams into AWS services like S3, Redshift, ElasticSearch, Splunk
+	- load streams into AWS services like S3, Redshift, ElasticSearch
+		- 3rd parties: Datadog, Dynatrace, LogicMonitor, MongoDB Cloud, New Relic, Splunk, Sumo Logic
 	- Fully managed
 	- Near real time - 60sec latency
 	- Automatic scaling
