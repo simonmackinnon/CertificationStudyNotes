@@ -703,7 +703,8 @@
 		- Consumer Classic
 			- 2MB/s at read per shard across all consumers
 			- 5 API calls per shard across all consumers
-			- Will be throttled if exceedin this
+			- Will be throttled if exceedin this scenario
+			- More consumers, higher chance of throttling -> increase number of shards (i.e. decrease number of consumers per shard)
 		- Producers (what can write to Kinesis):
 			- SDK
 			- Kinesis Producer Library (Java libray)
