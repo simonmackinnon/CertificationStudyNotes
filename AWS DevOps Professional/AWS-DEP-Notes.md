@@ -681,8 +681,9 @@
 	- click strams, logs, metric, IoT data, real-time Big Data
 	- for streaming processing frameworks (Spark, NiFi, etc...)
 - Data automatically replicated across 3 Availability Zones
-- *Kinesis Streams*
-	- low latency, high scale streming ingest
+- **Kinesis Streams**
+	![](https://miro.medium.com/max/3060/0*JzY8ZMS9r_JzxIpy.png) 
+	- low latency (~200ms), high scale streming ingest
 	- divided into shards for ingestion
 		- Billing is per shard
 		- Records have the following attributes:
@@ -701,22 +702,60 @@
 			- 1MB/s or 1000 messages/s at write per shard 
 			- (ProvisionedThroughputException - need to add shards or fix distribution of records across shards)
 		- Consumer Classic
+			- Kinesis SDK
+			- **Kinesis Client Library** 
+				- KCL shares work amongst shards 
+				- uses DynamoDB to checkpoint offsets
+				- workers are KCL enabled apps, they check progress against the DynamoDB 
+				- great for distributed reading of streams
+			- Kinesis Connector Library
+			- Kinesis Firehose
+			- Lambda
+			- 3rd Party Libs: Spark, Log4J, Appenders, Flume, Kafka Connect, NiFi...
 			- 2MB/s at read per shard across all consumers
 			- 5 API calls per shard across all consumers
 			- Will be throttled if exceedin this scenario
 			- More consumers, higher chance of throttling -> increase number of shards (i.e. decrease number of consumers per shard)
 		- Producers (what can write to Kinesis):
-			- SDK
+			- **SDK**
 			- Kinesis Producer Library (Java libray)
 			- Kinesis Agent
-			- CloudWatch Logs
+			- **CloudWatch Logs**
+			- 3rd Party Libs: Spark, Log4J, Appenders, Flume, Kafka Connect, NiFi...
 - Kinesis Analytics
-	- Use SQL to perform RT analytics on streams	
-- *Kinesis Firehose*
-	- load streams into AWS services like S3, Redshift, ElasticSearch
+	- Use SQL to perform RT analytics on streams
+	- AutoScaling
+	- Managed 
+	- Continuous: real time
+	- Pay only for consumption rate
+	- Create streams out of queries -> Can go to Kinesis Streams or Kinesis Firehose
+- **Kinesis Firehose**
+	![](https://docs.aws.amazon.com/firehose/latest/dev/images/fh-flow-splunk.png)
+	- load streams into AWS services like S3, Redshift, ElasticSearch, Splunk
+	- Fully managed
+	- Near real time - 60sec latency
+	- Automatic scaling
+	- Can do data transforms using Lambda (e.g. CSV => JSON)
+	- Supports compression (if target is S3)
+	- Pay for data throughput
 - Example:
 	- Device data/clickstream/logs -> Amazon Kinesis Streams -> Kinesis Analytics -> Firehose -> S3
-
+- **Streams vs. Firehose**
+	- Streams:
+		- custom code at consumer/producer
+		- **real time** (about 200ms)
+		- manual scaling (i.e. slit shards, merge shards)
+		- data retention 1 day default, 7 day max
+			- can replay data
+		- use Lambda to forward data to other services/storage (e.g. to ElasticSearch)
+	- Firehose:
+		- Fully Managed
+		- Send to S3, Splunk, Redshift, ElasticSearch
+		- Serverless data transforms
+		- **Near Real time** (lowest buffer time is 1 minute)
+		- Automated Scaling
+		- No data storage 
+			- no data replays 
 
 ### CloudWatch
 
